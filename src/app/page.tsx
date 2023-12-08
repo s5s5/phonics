@@ -5,6 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import useSound from "use-sound";
 import { HookOptions } from "use-sound/dist/types";
 
+/*
+https://study.zwjjiaozhu.top/jz-translator/advance/pronunciation-interface.html
+
+https://dict.youdao.com/dictvoice?le={lang}&audio={text}
+https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang={lang}&from=translateweb&speaker=6
+https://fanyi.baidu.com/gettts?lan={lang}&text={text}&spd=3&source=wise
+* */
 const soundUrl = "https://dict.youdao.com/dictvoice?audio=love&type=2";
 
 export default function Home() {
