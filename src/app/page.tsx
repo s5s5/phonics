@@ -1,100 +1,45 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import useSound from "use-sound";
-import { HookOptions } from "use-sound/dist/types";
-
-/*
-https://study.zwjjiaozhu.top/jz-translator/advance/pronunciation-interface.html
-
-https://dict.youdao.com/dictvoice?le={lang}&audio={text}
-https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang={lang}&from=translateweb&speaker=6
-https://fanyi.baidu.com/gettts?lan={lang}&text={text}&spd=3&source=wise
-* */
-const soundUrl = "https://dict.youdao.com/dictvoice?audio=love&type=2";
+import List from "@/app/components/List";
+import { LIST } from "@/app/constants";
 
 export default function Home() {
-  usePrefetchPronunciationSound("love");
-  const { play, stop, isPlaying } = usePronunciationSound("love");
-
-  useEffect(() => {
-    if (isPlaying) {
-      setTimeout(() => {
-        stop();
-      }, 3000);
-    }
-  }, [isPlaying]);
-
   return (
-    <main>
-      <Image
-        src="/next.svg"
-        alt="Next.js Logo"
-        width={180}
-        height={37}
-        priority
+    <main className="font-sans">
+      <hr className="mb-4" />
+      <h2 className="text-center text-7xl">Alphabet</h2>
+      <hr className="my-4" />
+      <List
+        list={LIST.filter(({ graphemeType }) => graphemeType === "Alphabet")}
       />
-      <button
-        onClick={() => {
-          play();
-        }}
-      >
-        fdsfdsfdssd
-      </button>
+      <hr className="my-4" />
+
+      <h2 className="text-center text-7xl">ShortVowel+</h2>
+      <hr className="my-4" />
+      <List
+        list={LIST.filter(({ graphemeType }) => graphemeType === "ShortVowel+")}
+      />
+      <hr className="my-4" />
+
+      <h2 className="text-center text-7xl">LongVowel+</h2>
+      <hr className="my-4" />
+      <List
+        list={LIST.filter(({ graphemeType }) => graphemeType === "LongVowel+")}
+      />
+      <hr className="my-4" />
+
+      <h2 className="text-center text-7xl">Consonant+</h2>
+      <hr className="my-4" />
+      <List
+        list={LIST.filter(({ graphemeType }) => graphemeType === "Consonant+")}
+      />
+      <hr className="my-4" />
+
+      <h2 className="text-center text-7xl">Other</h2>
+      <hr className="my-4" />
+      <List
+        list={LIST.filter(({ graphemeType }) => graphemeType === "Other")}
+      />
     </main>
   );
-}
-
-export function usePronunciationSound(word: string, isLoop?: boolean) {
-  const loop = false;
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const [play, { stop, sound }] = useSound(soundUrl, {
-    html5: true,
-    format: ["mp3"],
-    loop,
-    volume: 1,
-    rate: 1,
-  } as HookOptions);
-
-  useEffect(() => {
-    if (!sound) return;
-    sound.loop(loop);
-  }, [loop, sound]);
-
-  useEffect(() => {
-    if (!sound) return;
-    const unListens: Array<() => void> = [];
-
-    return () => {
-      setIsPlaying(false);
-      unListens.forEach((unListen) => unListen());
-      sound.unload();
-    };
-  }, [sound]);
-
-  return { play, stop, isPlaying };
-}
-
-export function usePrefetchPronunciationSound(word: string | undefined) {
-  useEffect(() => {
-    // if (!word) return;
-
-    const head = document.head;
-    const isPrefetch = (
-      Array.from(head.querySelectorAll("link[href]")) as HTMLLinkElement[]
-    ).some((el) => el.href === soundUrl);
-
-    if (!isPrefetch) {
-      const link = document.createElement("link");
-      link.rel = "prefetch";
-      link.href = soundUrl;
-      head.appendChild(link);
-
-      return () => {
-        head.removeChild(link);
-      };
-    }
-  }, [word]);
 }
