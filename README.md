@@ -33,8 +33,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO List
 
-1. [ ] 整理自然拼读 MP3
-2. [ ] 从自然拼读提取音标
+1. [X] 整理自然拼读 MP3
+2. [X] 从自然拼读提取音标
 3. [ ] 发音
 4. [ ] 加音标
 5. [ ] KK音标 https://zh.wikipedia.org/wiki/KK%E9%9F%B3%E6%A8%99

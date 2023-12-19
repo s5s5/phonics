@@ -162,7 +162,7 @@ export const LIST = [
   { phoneme: "ɔ", grapheme: "aw", graphemeType: "Other" },
   { phoneme: "ɔ", grapheme: "al", graphemeType: "Other" },
   { phoneme: "ɔɫ", grapheme: "all", graphemeType: "Other" },
-  { phoneme: "ʊ", grapheme: "oo", graphemeType: "Other", tips: "?" },
+  { phoneme: "ʊ", grapheme: "oo", graphemeType: "Other", tips: "k" },
   { phoneme: "ʊ", grapheme: "u", graphemeType: "Other", tips: "?" },
   { phoneme: "m", grapheme: "mb", graphemeType: "Other" },
   { phoneme: "n", grapheme: "kn", graphemeType: "Other" },

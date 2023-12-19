@@ -7,7 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        doodle: ["Rubik Doodle Shadow"],
+        playpen: ["Playpen Sans", "cursive"],
+      },
+    },
   },
   plugins: [],
 };
