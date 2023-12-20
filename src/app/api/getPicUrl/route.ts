@@ -1,7 +1,8 @@
-import { NextRequest } from "next/server";
-import * as cheerio from "cheerio";
 import path from "node:path";
+
+import * as cheerio from "cheerio";
 import fs from "fs";
+import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {

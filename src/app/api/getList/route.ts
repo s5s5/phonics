@@ -1,10 +1,19 @@
 import path from "node:path";
 
+import fs from "fs";
 import fsPromises from "fs/promises";
 import { NextResponse } from "next/server";
 
+import { LIST } from "@/app/constants";
+
 export const dynamic = "force-dynamic";
 export async function GET() {
+  const localListPath = path.join(process.cwd(), "public", "list.json");
+  if (fs.existsSync(localListPath)) {
+    const LIST = await getLocalData("list.json");
+    return NextResponse.json({ LIST });
+  }
+
   const words = await getLocalData("words.json");
   const en_US = await getLocalData("en_US.json");
   const coca20000 = await getLocalData("coca20000.json");
@@ -53,7 +62,31 @@ export async function GET() {
       chinese_meanings,
     };
   });
-  return NextResponse.json({ dict });
+
+  const newLIST = LIST.map((item: any) => {
+    const { grapheme, phoneme } = item;
+    const words = dict
+      ?.filter((item: any) => {
+        let testGrapheme = item.word.includes(grapheme);
+        if (grapheme.includes("_")) {
+          const regex = new RegExp(grapheme.replace("_", "."), "gi");
+          testGrapheme = regex.test(item.word);
+        }
+
+        return (
+          testGrapheme &&
+          item.american_phonetic.findIndex((phonetic: string) =>
+            phonetic.includes(phoneme),
+          ) !== -1
+        );
+      })
+      .map((item: any) => item.word);
+    return { ...item, words };
+  });
+
+  fs.writeFileSync(localListPath, JSON.stringify(newLIST));
+
+  return NextResponse.json({ LIST: newLIST });
 }
 
 async function getLocalData(fileName: string) {

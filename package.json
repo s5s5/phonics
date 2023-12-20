@@ -10,21 +10,20 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.14.1",
+    "beautiful-react-hooks": "^5.0.1",
     "cheerio": "^1.0.0-rc.12",
-    "easy-speech": "^2.2.0",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18",
-    "use-sound": "^4.0.1"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/easy-speech": "^1.2.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8",
     "prettier": "3.1.0",
     "tailwindcss": "^3.3.0",
