@@ -18,7 +18,7 @@ export default function Word({ word, voice }: WordProps) {
     >
       <Image
         className="mx-auto my-5"
-        src={`/api/getPicUrl?word=${word}`}
+        src={`/images/words/${word}.png`}
         width={32}
         height={32}
         alt={word}
