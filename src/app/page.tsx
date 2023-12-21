@@ -5,7 +5,6 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import useSystemVoices from "beautiful-react-hooks/useSystemVoices";
 import { useState } from "react";
 
 import List from "@/app/components/List";
@@ -30,13 +29,16 @@ function Home() {
 
   const [nav, setNav] = useState(sort[0]);
 
-  const voices = useSystemVoices();
+  let voices: SpeechSynthesisVoice[] = [];
+  if (typeof window !== "undefined") {
+    voices = window.speechSynthesis.getVoices();
+  }
   const [voice, setVoice] = useState<SpeechSynthesisVoice>(voices[118]);
 
   return (
     <main className="font-sans" style={{ backgroundImage: "url(/bg.jpg)" }}>
       <h1 className="text-center text-3xl md:text-6xl font-doodle">Phonics</h1>
-      <VoiceSelector onVoiceChange={setVoice} />
+      <VoiceSelector voices={voices} onVoiceChange={setVoice} />
       {isPending && (
         <div className="font-doodle h-screen text-center text-2xl">
           Loading...

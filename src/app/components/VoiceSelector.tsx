@@ -1,11 +1,17 @@
 "use client";
 
-import useSystemVoices from "beautiful-react-hooks/useSystemVoices";
 import { useEffect, useState } from "react";
 
-export const VoiceSelector = ({ onVoiceChange }: any) => {
+type VoiceSelectorProps = {
+  voices: SpeechSynthesisVoice[];
+  onVoiceChange: Function;
+};
+
+export const VoiceSelector = ({
+  voices,
+  onVoiceChange,
+}: VoiceSelectorProps) => {
   const [current, setVoice] = useState(118);
-  const voices = useSystemVoices();
   const options = voices.map(({ name, lang }, index) => ({
     label: name,
     value: index,
