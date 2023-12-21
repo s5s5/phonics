@@ -1,5 +1,6 @@
 "use client";
 
+import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
 type VoiceSelectorProps = {
@@ -32,7 +33,7 @@ export const VoiceSelector = ({
         {options
           .filter(({ lang }) => lang === "en-US")
           .map(({ label, value }) => (
-            <option value={value} key={label + value} className="text-center">
+            <option value={value} key={nanoid()} className="text-center">
               {label}
             </option>
           ))}

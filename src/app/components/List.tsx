@@ -1,5 +1,7 @@
 "use client";
 
+import { nanoid } from "nanoid";
+
 import Item, { ItemProps } from "@/app/components/Item";
 
 export type ListProps = {
@@ -14,7 +16,7 @@ export default function List({ list, type, voice }: ListProps) {
   return (
     <div className="p-1">
       {filtered.map((item: ItemProps, index) => (
-        <Item item={item} voice={voice} key={type + index} />
+        <Item item={item} voice={voice} key={nanoid()} />
       ))}
     </div>
   );

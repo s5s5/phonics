@@ -1,6 +1,7 @@
 "use client";
 
 import useAudio from "beautiful-react-hooks/useAudio";
+import { nanoid } from "nanoid";
 
 import Word from "@/app/components/Word";
 
@@ -24,11 +25,7 @@ export default function Item({ item, voice }: ItemProps) {
         <div className="text-center mb-6 font-playpen">/{phoneme}/</div>
       </div>
       {words?.map((word: string, index: number) => (
-        <Word
-          word={word}
-          voice={voice}
-          key={word + index + phoneme + grapheme}
-        />
+        <Word word={word} voice={voice} grapheme={grapheme} key={nanoid()} />
       ))}
     </div>
   );

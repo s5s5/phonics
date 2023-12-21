@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import { nanoid } from "nanoid";
 import { useState } from "react";
 
 import List from "@/app/components/List";
@@ -63,7 +64,7 @@ function Home() {
                 className={`flex-auto text-center cursor-pointer ${
                   type === nav && "underline"
                 } hover:underline`}
-                key={type + index}
+                key={nanoid()}
                 onClick={() => {
                   setNav(type);
                 }}
@@ -74,7 +75,7 @@ function Home() {
           </div>
           {sort.map((type, index) => (
             <div
-              key={type}
+              key={nanoid()}
               style={{ display: type === nav ? "block" : "none" }}
             >
               <List list={data.LIST} voice={voice} type={type} />

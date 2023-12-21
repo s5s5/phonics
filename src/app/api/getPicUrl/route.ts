@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=31622400",
+        // "Cache-Control": "public, max-age=31622400",
       },
     });
   }
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=31622400",
+        // "Cache-Control": "public, max-age=31622400",
       },
     });
   }
@@ -53,11 +53,12 @@ export async function GET(request: NextRequest) {
   const picUrl = $(".icon--item img").eq(0).attr("data-src");
 
   if (!picUrl) {
+    fs.writeFileSync(localPicPath, defaultPicBuffer);
     return new Response(defaultPicBuffer, {
       status: 200,
       headers: {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=31622400",
+        // "Cache-Control": "public, max-age=31622400",
       },
     });
   }
@@ -71,7 +72,7 @@ export async function GET(request: NextRequest) {
     status: 200,
     headers: {
       "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=31622400",
+      // "Cache-Control": "public, max-age=31622400",
     },
   });
 }

@@ -12,6 +12,7 @@
     "@tanstack/react-query": "^5.14.1",
     "beautiful-react-hooks": "^5.0.1",
     "cheerio": "^1.0.0-rc.12",
+    "nanoid": "^5.0.4",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
