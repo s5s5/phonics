@@ -1,3 +1,5 @@
+"use client";
+
 import useSystemVoices from "beautiful-react-hooks/useSystemVoices";
 import { useEffect, useState } from "react";
 
