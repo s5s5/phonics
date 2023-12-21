@@ -8,12 +8,9 @@ export async function GET() {
   const words = await getLocalData("words.json");
   const en_US = await getLocalData("en_US.json");
   const coca20000 = await getLocalData("coca20000.json");
-  // console.log("words", words);
-  // console.log("en_US", en_US);
-  // console.log("coca20000", coca20000);
+
   function finePronunciation(word: string) {
     if (!en_US[word.toLowerCase()]) {
-      // console.log("miss word", word);
       return [];
     }
     return (en_US[word.toLowerCase()] as string)

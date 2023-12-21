@@ -19,7 +19,10 @@ export async function GET(request: NextRequest) {
   if (!word) {
     return new Response(defaultPicBuffer, {
       status: 200,
-      headers: { "Content-Type": "image/png" },
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31622400",
+      },
     });
   }
 
@@ -27,6 +30,7 @@ export async function GET(request: NextRequest) {
     process.cwd(),
     "public",
     "images",
+    "words",
     `${word}.png`,
   );
 
@@ -34,7 +38,10 @@ export async function GET(request: NextRequest) {
     const localPicBuffer = fs.readFileSync(localPicPath);
     return new Response(localPicBuffer, {
       status: 200,
-      headers: { "Content-Type": "image/png" },
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31622400",
+      },
     });
   }
 
@@ -48,7 +55,10 @@ export async function GET(request: NextRequest) {
   if (!picUrl) {
     return new Response(defaultPicBuffer, {
       status: 200,
-      headers: { "Content-Type": "image/png" },
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31622400",
+      },
     });
   }
 
@@ -59,6 +69,9 @@ export async function GET(request: NextRequest) {
 
   return new Response(picBuffer, {
     status: 200,
-    headers: { "Content-Type": "image/png" },
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31622400",
+    },
   });
 }
