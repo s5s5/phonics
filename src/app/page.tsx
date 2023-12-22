@@ -12,9 +12,8 @@ import { useCallback, useState } from "react";
 import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
 
-const queryClient = new QueryClient();
-
 export default function Page() {
+  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <Home />
