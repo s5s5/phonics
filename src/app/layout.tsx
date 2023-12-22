@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -17,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

@@ -6,8 +6,6 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import useAudio from "beautiful-react-hooks/useAudio";
-import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
-import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 import { useCallback, useState } from "react";
 
@@ -24,11 +22,6 @@ export default function Page() {
   );
 }
 function Home() {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["LIST"],
-    queryFn: () => fetch("/api/getList").then((res) => res.json()),
-  });
-
   const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
 
   const [nav, setNav] = useState(sort[0]);
@@ -45,6 +38,11 @@ function Home() {
     audio.load();
     audio.play();
   }, []);
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ["LIST"],
+    queryFn: () => fetch("/api/getList").then((res) => res.json()),
+  });
 
   return (
     <main className="font-sans" style={{ backgroundImage: "url(/bg.jpg)" }}>
