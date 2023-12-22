@@ -6,12 +6,13 @@ import { nanoid } from "nanoid";
 import Image from "next/image";
 
 export type WordProps = {
-  word: string;
+  wordObj: any;
   grapheme: string;
   voice: SpeechSynthesisVoice;
 };
 
-export default function Word({ word, grapheme, voice }: WordProps) {
+export default function Word({ wordObj, grapheme, voice }: WordProps) {
+  const { word, chinese_meanings } = wordObj;
   const { speak } = useSpeechSynthesis(word, { voice, rate: 0.7 });
   const wordList = splitWord(word, grapheme);
 
@@ -21,6 +22,7 @@ export default function Word({ word, grapheme, voice }: WordProps) {
     <div
       className="m-1 rounded-xl border-4 border-gray-700 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
       onClick={speakWord}
+      title={chinese_meanings}
     >
       <Image
         className="mx-auto my-5"

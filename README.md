@@ -35,11 +35,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 1. [X] 整理自然拼读 MP3
 2. [X] 从自然拼读提取音标
-3. [ ] 发音
-4. [ ] 加音标
-5. [ ] KK音标 https://zh.wikipedia.org/wiki/KK%E9%9F%B3%E6%A8%99
-6. [ ] IPA和ARPAbet https://github.com/chdzq/ARPAbetAndIPAConvertor
-7. [ ] TTS https://github.com/jankapunkt/easy-speech
+3. [X] 发音
+4. [X] 加音标
+5. [X] KK音标 https://zh.wikipedia.org/wiki/KK%E9%9F%B3%E6%A8%99
+6. [X] IPA和ARPAbet https://github.com/chdzq/ARPAbetAndIPAConvertor
+7. [X] TTS https://github.com/jankapunkt/easy-speech
 8. [ ] 连字符 https://github.com/cuzzo/Hyphenator
 9. [ ] 连字符 https://github.com/ytiurin/hyphen
 10. [ ] 发音重拼 https://github.com/Attacktive/ipa-to-pronunciation-respelling
@@ -52,6 +52,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 * https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang={lang}&from=translateweb&speaker=6
 * https://fanyi.baidu.com/gettts?lan={lang}&text={text}&spd=3&source=wise
 * https://fanyi.baidu.com/gettts?lan=en&text=have&spd=3&source=web
+
+### 转音标
+
+* https://www.internationalphoneticalphabet.org/english-to-ipa-translator/
 
 
 `"AA1 R|ER0".replace(/\d/g, "").split("|")[0].split(" ")`

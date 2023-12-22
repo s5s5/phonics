@@ -6,6 +6,8 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import useAudio from "beautiful-react-hooks/useAudio";
+import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
+import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 import { useCallback, useState } from "react";
 
@@ -46,7 +48,12 @@ function Home() {
 
   return (
     <main className="font-sans" style={{ backgroundImage: "url(/bg.jpg)" }}>
-      <h1 className="text-center text-3xl md:text-6xl font-doodle">Phonics</h1>
+      <h1 className="text-center text-3xl md:text-6xl font-doodle">
+        ✨ Phonics
+        <span className="text-2xl md:text-4xl ml-4 inline-block">
+          /<span className="font-bold">fon</span>-iks/
+        </span>
+      </h1>
       {isPending && (
         <div className="font-doodle h-screen text-center text-2xl">
           Loading...
@@ -69,7 +76,7 @@ function Home() {
             {sort.map((type, index) => (
               <h2
                 className={`flex-auto text-center cursor-pointer ${
-                  type === nav && "underline"
+                  type === nav && "underline decoration-double"
                 } hover:underline`}
                 key={nanoid()}
                 onClick={() => {

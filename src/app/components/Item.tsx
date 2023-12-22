@@ -21,8 +21,6 @@ export default function Item({ item, voice, play }: ItemProps) {
 
   const playPhoneme = useThrottledCallback(play, [], 500);
 
-  if (words?.length > 10) words.length = 10;
-
   return (
     <div className="mb-4 text-gray-950 grid grid-cols-4 md:grid-cols-11">
       <div
@@ -31,15 +29,14 @@ export default function Item({ item, voice, play }: ItemProps) {
           playPhoneme(phoneme);
         }}
       >
-        <div className="h-16 overflow-visible mt-3 mb-4 text-center font-doodle flex content-center justify-items-center">
+        <div className="h-16 overflow-visible mt-8 mb-4 text-center font-doodle flex content-center justify-items-center">
           <div className={`flex-1 text-center ${textSizes[grapheme.length]}`}>
             {grapheme}
           </div>
         </div>
-        <div className="text-center text-xs mb-6 font-playpen">/{phoneme}/</div>
       </div>
-      {words?.map((word: string, index: number) => (
-        <Word word={word} voice={voice} grapheme={grapheme} key={nanoid()} />
+      {words?.map((word: any, index: number) => (
+        <Word wordObj={word} voice={voice} grapheme={grapheme} key={nanoid()} />
       ))}
     </div>
   );

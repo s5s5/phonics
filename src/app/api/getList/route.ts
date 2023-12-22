@@ -62,22 +62,21 @@ export async function GET() {
 
   const newLIST = LIST.map((item: any) => {
     const { grapheme, phoneme } = item;
-    const words = dict
-      ?.filter((item: any) => {
-        let testGrapheme = item.word.includes(grapheme);
-        if (grapheme.includes("_")) {
-          const regex = new RegExp(grapheme.replace("_", "."), "gi");
-          testGrapheme = regex.test(item.word);
-        }
+    const words = dict?.filter((item: any) => {
+      let testGrapheme = item.word.includes(grapheme);
+      if (grapheme.includes("_")) {
+        const regex = new RegExp(grapheme.replace("_", "."), "gi");
+        testGrapheme = regex.test(item.word);
+      }
 
-        return (
-          testGrapheme &&
-          item.american_phonetic.findIndex((phonetic: string) =>
-            phonetic.includes(phoneme),
-          ) !== -1
-        );
-      })
-      .map((item: any) => item.word);
+      return (
+        testGrapheme &&
+        item.american_phonetic.findIndex((phonetic: string) =>
+          phonetic.includes(phoneme),
+        ) !== -1
+      );
+    });
+    if (words?.length > 10) words.length = 10;
     return { ...item, words };
   });
 
