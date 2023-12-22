@@ -9,11 +9,12 @@ type VoiceSelectorProps = {
 };
 
 export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
-  let voices: SpeechSynthesisVoice[] = [];
-  if (typeof window !== "undefined") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    voices = useSystemVoices();
-  }
+  // let voices: SpeechSynthesisVoice[] = [];
+  // if (typeof window !== "undefined") {
+  //   voices = useSystemVoices() ?? [];
+  // }
+  const voices = useSystemVoices() ?? [];
+  console.error("voices error", voices);
 
   const options = voices.filter(({ lang }) => lang === "en-US");
 
@@ -35,7 +36,7 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   return (
     <>
       {options &&
-        options.length &&
+        options.length > 0 &&
         options.map(({ name, lang }) => (
           <div key={nanoid()}>
             {name} ({lang})
