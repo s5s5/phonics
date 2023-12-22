@@ -13,10 +13,18 @@ export type WordProps = {
 
 export default function Word({ wordObj, grapheme, voice }: WordProps) {
   const { word, chinese_meanings } = wordObj;
-  const { speak } = useSpeechSynthesis(word, { voice, rate: 0.7 });
+
+  let speech = { speak: () => {} };
+  if (
+    typeof window !== "undefined" &&
+    typeof window["speechSynthesis"] !== "undefined"
+  ) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    speech = useSpeechSynthesis(word, { voice, rate: 0.7 });
+  }
   const wordList = splitWord(word, grapheme);
 
-  const speakWord = useThrottledCallback(speak, [], 1000);
+  const speakWord = useThrottledCallback(speech.speak, [speech], 1000);
 
   return (
     <div
