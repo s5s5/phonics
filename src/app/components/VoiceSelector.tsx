@@ -1,6 +1,5 @@
 "use client";
 
-import useSystemVoices from "beautiful-react-hooks/useSystemVoices";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
@@ -9,12 +8,11 @@ type VoiceSelectorProps = {
 };
 
 export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
-  // let voices: SpeechSynthesisVoice[] = [];
-  // if (typeof window !== "undefined") {
-  //   voices = useSystemVoices() ?? [];
-  // }
-  const voices = useSystemVoices() ?? [];
-  console.error("voices error", voices);
+  let voices: SpeechSynthesisVoice[] = [];
+  if (typeof window !== "undefined") {
+    voices = window.speechSynthesis.getVoices() ?? [];
+  }
+  console.error("voices error", JSON.stringify(voices));
 
   const options = voices.filter(({ lang }) => lang === "en-US");
 
