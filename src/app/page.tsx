@@ -5,8 +5,9 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import useAudio from "beautiful-react-hooks/useAudio";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
@@ -30,16 +31,22 @@ function Home() {
 
   const [nav, setNav] = useState(sort[0]);
 
-  let voices: SpeechSynthesisVoice[] = [];
-  if (typeof window !== "undefined") {
-    voices = window.speechSynthesis.getVoices();
-  }
-  const [voice, setVoice] = useState<SpeechSynthesisVoice>(voices[118]);
+  const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+
+  const [state, controls, audioRef] = useAudio(`/audio/æ.mp3`, {
+    preload: "none",
+  });
+
+  const play = useCallback((phoneme: string) => {
+    const audio = audioRef.current;
+    audio.src = `/audio/${phoneme}.mp3`;
+    audio.load();
+    audio.play();
+  }, []);
 
   return (
     <main className="font-sans" style={{ backgroundImage: "url(/bg.jpg)" }}>
       <h1 className="text-center text-3xl md:text-6xl font-doodle">Phonics</h1>
-      <VoiceSelector voices={voices} onVoiceChange={setVoice} />
       {isPending && (
         <div className="font-doodle h-screen text-center text-2xl">
           Loading...
@@ -78,11 +85,25 @@ function Home() {
               key={nanoid()}
               style={{ display: type === nav ? "block" : "none" }}
             >
-              <List list={data.LIST} voice={voice} type={type} />
+              <List list={data.LIST} voice={voice} play={play} type={type} />
             </div>
           ))}
         </>
       )}
+      <hr />
+      <div className="text-center text-xs font-playpen">
+        <div className="font-doodle text-xl">Thanks</div>
+        <a
+          href="https://www.flaticon.com/free-stickers/speech"
+          title="speech stickers"
+          target="_blank"
+        >
+          All stickers created by Gohsantosadrive - Flaticon
+        </a>
+        <div className="mt-3">
+          <VoiceSelector onVoiceChange={setVoice} />
+        </div>
+      </div>
     </main>
   );
 }
