@@ -9,7 +9,7 @@ import DatadogInit from "@/app/components/DatadogInit";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "Phonics /fon-iks/",
+  title: "✨ Phonics /fon-iks/",
   description: "let's learn phonics together",
 };
 

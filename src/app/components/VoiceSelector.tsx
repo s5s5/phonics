@@ -12,7 +12,6 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   if (typeof window !== "undefined") {
     voices = window.speechSynthesis.getVoices() ?? [];
   }
-  console.error("voices error", JSON.stringify(voices));
 
   const options = voices.filter(({ lang }) => lang === "en-US");
 
