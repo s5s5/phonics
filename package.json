@@ -14,12 +14,14 @@
     "@vercel/speed-insights": "^1.0.2",
     "beautiful-react-hooks": "^5.0.1",
     "cheerio": "^1.0.0-rc.12",
+    "howler": "^2.2.4",
     "nanoid": "^5.0.4",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/howler": "^2.2.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

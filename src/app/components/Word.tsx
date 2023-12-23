@@ -5,6 +5,8 @@ import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 import Image from "next/image";
 
+import useMeaning from "@/app/hooks/useMeaning";
+
 export type WordProps = {
   wordObj: any;
   grapheme: string;
@@ -13,6 +15,8 @@ export type WordProps = {
 
 export default function Word({ wordObj, grapheme, voice }: WordProps) {
   const { word, chinese_meanings } = wordObj;
+
+  const { meaningContent, showMeaning } = useMeaning();
 
   let speech = { speak: () => {} };
   if (
@@ -24,13 +28,19 @@ export default function Word({ wordObj, grapheme, voice }: WordProps) {
   }
   const wordList = splitWord(word, grapheme);
 
-  const speakWord = useThrottledCallback(speech.speak, [speech], 1000);
+  const speakWord = useThrottledCallback(
+    () => {
+      speech.speak();
+      showMeaning(chinese_meanings);
+    },
+    [speech],
+    1000,
+  );
 
   return (
     <div
       className="m-1 rounded-xl border-4 border-gray-700 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
       onClick={speakWord}
-      title={chinese_meanings}
     >
       <Image
         className="mx-auto my-5"
@@ -53,6 +63,7 @@ export default function Word({ wordObj, grapheme, voice }: WordProps) {
           return <span key={nanoid()}>{word}</span>;
         })}
       </div>
+      {meaningContent}
     </div>
   );
 }

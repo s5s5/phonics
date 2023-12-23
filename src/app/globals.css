@@ -20,3 +20,11 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
 }
+
+.bg-paper {
+  background-image: url("/bg.jpg");
+}
+
+.content-visibility-auto {
+  content-visibility: auto;
+}

@@ -1,6 +1,5 @@
 "use client";
 
-import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 
 import Word from "@/app/components/Word";
@@ -16,18 +15,14 @@ const textSizes = [
   "text-2xl",
 ];
 
-export default function Item({ item, voice, play }: ItemProps) {
+export default function Item({ item, play, voice }: ItemProps) {
   const { phoneme, grapheme, words } = item;
 
-  const playPhoneme = useThrottledCallback(play, [], 500);
-
   return (
-    <div className="mb-4 text-gray-950 grid grid-cols-4 md:grid-cols-11">
+    <div className="mb-4 text-gray-950 grid grid-cols-4 lg:grid-cols-11">
       <div
         className="m-1 rounded-xl border-4 border-transparent transition duration-300 hover:bg-indigo-500 hover:text-white cursor-pointer"
-        onClick={() => {
-          playPhoneme(phoneme);
-        }}
+        onClick={() => play(phoneme)}
       >
         <div className="h-16 overflow-visible mt-8 mb-4 text-center font-doodle flex content-center justify-items-center">
           <div className={`flex-1 text-center ${textSizes[grapheme.length]}`}>
@@ -35,7 +30,7 @@ export default function Item({ item, voice, play }: ItemProps) {
           </div>
         </div>
       </div>
-      {words?.map((word: any, index: number) => (
+      {words?.map((word: any) => (
         <Word wordObj={word} voice={voice} grapheme={grapheme} key={nanoid()} />
       ))}
     </div>

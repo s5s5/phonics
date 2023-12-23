@@ -1,8 +1,7 @@
 "use client";
 
-import useAudio from "beautiful-react-hooks/useAudio";
 import { nanoid } from "nanoid";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
@@ -15,30 +14,16 @@ export default function Home() {
 
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
-  const [state, controls, audioRef] = useAudio(`/audio/æ.mp3`, {
-    preload: "none",
-  });
-
-  const play = useCallback((phoneme: string) => {
-    const audio = audioRef.current;
-    audio.src = `/audio/${phoneme}.mp3`;
-    audio.load();
-    audio.play();
-  }, []);
-
   return (
-    <main className="font-sans" style={{ backgroundImage: "url(/bg.jpg)" }}>
-      <h1 className="text-center text-3xl md:text-6xl font-doodle">
+    <main className="font-sans bg-paper">
+      <h1 className="text-center text-3xl lg:text-6xl font-doodle">
         ✨ Phonics
-        <span className="text-2xl md:text-4xl ml-4 inline-block">
+        <span className="text-2xl lg:text-4xl ml-4 inline-block">
           /<span className="font-bold">fon</span>-iks/
         </span>
       </h1>
 
-      <div
-        className="flex text-xs md:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0"
-        style={{ backgroundImage: "url(/bg.jpg)" }}
-      >
+      <div className="bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
         {sort.map((type, index) => (
           <h2
             className={`flex-auto text-center cursor-pointer ${
@@ -54,15 +39,14 @@ export default function Home() {
         ))}
       </div>
       {sort.map((type, index) => (
-        <div
-          key={nanoid()}
-          style={{ display: type === nav ? "block" : "none" }}
-        >
-          <List list={PHONICS_LIST} voice={voice} play={play} type={type} />
+        <div key={nanoid()}>
+          {type === nav && (
+            <List list={PHONICS_LIST} voice={voice} type={type} />
+          )}
         </div>
       ))}
-      <hr />
-      <div className="text-center text-xs font-playpen">
+
+      <div className="text-center text-xs font-playpen content-visibility-auto">
         <div className="font-doodle text-xl">Thanks</div>
         <a
           href="https://www.flaticon.com/free-stickers/speech"
