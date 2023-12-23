@@ -1,3 +1,4 @@
+import useTimeout from "beautiful-react-hooks/useTimeout";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function useMeaning() {
@@ -12,7 +13,7 @@ export default function useMeaning() {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/50 text-white text-xs text-center">
+      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950 text-white text-base text-center">
         {meaning}
       </div>
     );
@@ -22,7 +23,7 @@ export default function useMeaning() {
     if (show) {
       setTimeout(() => {
         setShow(false);
-      }, 1000);
+      }, 5000);
     }
   }, [show]);
 

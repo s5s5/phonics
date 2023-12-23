@@ -1,6 +1,6 @@
 "use client";
 
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import { useEffect, useMemo, useState } from "react";
 
 type VoiceSelectorProps = {
@@ -16,16 +16,16 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
     voices = window.speechSynthesis.getVoices() ?? [];
   }
 
-  const options = useMemo(
-    () =>
-      voices
-        .map((voice, index) => ({
-          voice,
-          index,
-        }))
-        .filter(({ voice }) => voice.lang === "en-US"),
-    [voices],
-  );
+  // const options = useMemo(
+  //   () =>
+  //     voices
+  //       .map((voice, index) => ({
+  //         voice,
+  //         index,
+  //       }))
+  //       .filter(({ voice }) => voice.lang === "en-US"),
+  //   [voices],
+  // );
 
   useEffect(() => {
     if (voices.length > 0 && !isAutoSet) {
@@ -41,18 +41,20 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
     onVoiceChange(voices[current]);
   }, [current, onVoiceChange, voices]);
 
-  if (options.length === 0) return null;
+  return null;
 
-  return (
-    <div className="content-visibility-auto">
-      {options.map(({ voice, index }) => (
-        <div key={nanoid()}>
-          <span onClick={() => setVoice(index)}>
-            {voice.name} ({voice.lang})
-            {current === index ? <span className="text-xl">📣</span> : ""}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
+  // if (options.length === 0) return null;
+
+  // return (
+  //   <div className="content-visibility-auto">
+  //     {options.map(({ voice, index }) => (
+  //       <div key={nanoid()}>
+  //         <span onClick={() => setVoice(index)}>
+  //           {voice.name} ({voice.lang})
+  //           {current === index ? <span className="text-xl">📣</span> : ""}
+  //         </span>
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 };
