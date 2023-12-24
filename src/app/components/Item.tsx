@@ -1,6 +1,7 @@
 "use client";
 
 import { nanoid } from "nanoid";
+import { useMemo } from "react";
 
 import Word from "@/app/components/Word";
 
@@ -18,6 +19,14 @@ const textSizes = [
 export default function Item({ item, play, voice }: ItemProps) {
   const { phoneme, grapheme, words } = item;
 
+  const content = useMemo(
+    () =>
+      words?.map((word: any) => (
+        <Word wordObj={word} voice={voice} grapheme={grapheme} key={nanoid()} />
+      )),
+    [words, voice, grapheme],
+  );
+
   return (
     <div className="mb-4 text-gray-950 grid grid-cols-4 lg:grid-cols-11">
       <div
@@ -30,9 +39,7 @@ export default function Item({ item, play, voice }: ItemProps) {
           </div>
         </div>
       </div>
-      {words?.map((word: any) => (
-        <Word wordObj={word} voice={voice} grapheme={grapheme} key={nanoid()} />
-      ))}
+      {content}
     </div>
   );
 }

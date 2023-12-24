@@ -7,9 +7,9 @@ import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
 import { PHONICS_LIST } from "@/app/constants/list";
 
-export default function Home() {
-  const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
+const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
 
+export default function Home() {
   const [nav, setNav] = useState(sort[0]);
 
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();

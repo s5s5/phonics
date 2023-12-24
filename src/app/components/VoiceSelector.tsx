@@ -1,6 +1,7 @@
 "use client";
 
 // import { nanoid } from "nanoid";
+import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
 import { useEffect, useMemo, useState } from "react";
 
 type VoiceSelectorProps = {
@@ -14,6 +15,12 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   let voices: any[] = [];
   if (typeof window !== "undefined") {
     voices = window.speechSynthesis.getVoices() ?? [];
+  }
+
+  let speech = { speak: () => {} };
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const speech = useSpeechSynthesis("Phonics");
   }
 
   // const options = useMemo(
@@ -39,7 +46,8 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
 
   useEffect(() => {
     onVoiceChange(voices[current]);
-  }, [current, onVoiceChange, voices]);
+    speech.speak();
+  }, [current, onVoiceChange, speech, voices]);
 
   return null;
 
