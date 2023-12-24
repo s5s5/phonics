@@ -292,6 +292,10 @@ export const MAP = new Map<string, string>([
 ]);
 
 export const POS = [
+  "prep.&conj.",
+  "adj.&pron.",
+  "vt.&vi.",
+  "vi.&vt.",
   "pron.",
   "conj.",
   "prep.",

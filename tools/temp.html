@@ -171,6 +171,21 @@
         { phoneme: "", grapheme: "nk", graphemeType: "Alphabet" },
         { phoneme: "", grapheme: "ng", graphemeType: "Alphabet" },
       ];
+
+      const haha = [];
+      PHONICS_LIST.map(({ words }) => {
+        words.map(({ chinese_meanings }) => {
+          if (!chinese_meanings) return;
+          chinese_meanings.map((meaning) => {
+            const regex = /\b[a-zA-Z&.\s]+\./gi;
+            const matches = meaning.replaceAll(" ", "").match(regex);
+            if (matches) {
+              haha.push(...matches);
+            }
+          });
+        });
+      });
+      console.log("ha", [...new Set(haha)].sort((a, b) => b.length - a.length));
     </script>
   </body>
 </html>

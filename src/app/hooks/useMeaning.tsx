@@ -6,14 +6,15 @@ import { POS } from "@/app/constants";
 const END_TIME = 5000;
 
 const sliceMeaning = (meaning: string, pos: string) => {
-  const posIndex = meaning.indexOf(pos);
+  const clearMeaning = meaning.replaceAll(" ", "");
+  const posIndex = clearMeaning.indexOf(pos);
   if (posIndex !== -1) {
-    let first = meaning.slice(0, posIndex);
-    const second = meaning.slice(posIndex + pos.length);
+    let first = clearMeaning.slice(0, posIndex);
+    const second = clearMeaning.slice(posIndex + pos.length);
 
     return [{ w: first }, { w: pos, pos: true }, { w: second }];
   }
-  return [{ w: meaning }];
+  return [{ w: clearMeaning }];
 };
 
 export default function useMeaning() {
@@ -46,16 +47,26 @@ export default function useMeaning() {
       list = newList;
     });
 
-    const pairedArray = list
-      .filter(({ w }) => w !== "")
-      .reduce((result, value, index, array) => {
-        if (index % 2 === 0) {
-          result.push(array.slice(index, index + 2));
-        }
-        return result;
-      }, []);
+    let list1 = list.filter(({ w }) => w !== "");
+    const has8 = list1.findIndex((item) => !item.pos && item.w === "&");
+    if (has8 !== -1) {
+      const o = {
+        pos: true,
+        w: list1[has8 - 1].w + "&" + list1[has8 + 1].w,
+      };
+      list1 = [...list1.slice(0, has8 - 1), o, ...list1.slice(has8 + 1)];
+    }
 
-    return <div key={nanoid()}>{pairedArray[0][1].w.replace(",", "，")}</div>;
+    const pairedArray = list1.reduce((result, value, index, array) => {
+      if (index % 2 === 0) {
+        result.push(array.slice(index, index + 2));
+      }
+      return result;
+    }, []);
+
+    return (
+      <div key={nanoid()}>{pairedArray[0][1].w.replaceAll(",", "，")}</div>
+    );
   }, [meaning]);
 
   const showMeaning = useCallback((word: string) => {
@@ -71,7 +82,7 @@ export default function useMeaning() {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/50 text-white text-xs text-center">
+      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/50 text-white text-base text-center">
         {meaningMain}
       </div>
     );
