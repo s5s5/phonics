@@ -22,7 +22,7 @@ body {
 }
 
 .bg-paper {
-  background-image: url("/bg.jpg");
+  background-image: url("/images/bg.webp");
 }
 
 .content-visibility-auto {
