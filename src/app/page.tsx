@@ -35,7 +35,7 @@ export default function Home() {
   );
 
   return (
-    <main className="font-sans bg-paper">
+    <main className="font-sans bg-paper pb-20">
       <h1 className="text-center text-3xl lg:text-6xl font-doodle">
         ✨ Phonics
         <span className="text-2xl lg:text-4xl ml-4 inline-block">
@@ -58,6 +58,7 @@ export default function Home() {
           </h2>
         ))}
       </div>
+
       {listContent}
 
       <div className="text-center text-xs font-playpen content-visibility-auto">

@@ -290,3 +290,22 @@ export const MAP = new Map<string, string>([
   ["j", "j"],
   ["w", "w"],
 ]);
+
+export const POS = [
+  "pron.",
+  "conj.",
+  "prep.",
+  "abbr.",
+  "det.",
+  "adv.",
+  "aux.",
+  "adj.",
+  "int.",
+  "num.",
+  "art.",
+  "vt.",
+  "vi.",
+  "na.",
+  "n.",
+  "v.",
+];

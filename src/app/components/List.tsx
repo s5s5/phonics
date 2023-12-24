@@ -28,5 +28,5 @@ export default function List({ list, type, voice, showMeaning }: ListProps) {
     ));
   }, [list, type, voice]);
 
-  return <div className="p-1">{content}</div>;
+  return <div className="p-1 content-visibility-auto">{content}</div>;
 }
