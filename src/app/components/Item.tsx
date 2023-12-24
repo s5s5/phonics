@@ -16,13 +16,19 @@ const textSizes = [
   "text-2xl",
 ];
 
-export default function Item({ item, play, voice }: ItemProps) {
+export default function Item({ item, play, voice, showMeaning }: ItemProps) {
   const { phoneme, grapheme, words } = item;
 
   const content = useMemo(
     () =>
       words?.map((word: any) => (
-        <Word wordObj={word} voice={voice} grapheme={grapheme} key={nanoid()} />
+        <Word
+          wordObj={word}
+          voice={voice}
+          grapheme={grapheme}
+          showMeaning={showMeaning}
+          key={nanoid()}
+        />
       )),
     [words, voice, grapheme],
   );

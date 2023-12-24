@@ -11,12 +11,16 @@ export type WordProps = {
   wordObj: any;
   grapheme: string;
   voice: SpeechSynthesisVoice;
+  showMeaning: Function;
 };
 
-export default function Word({ wordObj, grapheme, voice }: WordProps) {
+export default function Word({
+  wordObj,
+  grapheme,
+  voice,
+  showMeaning,
+}: WordProps) {
   const { word, chinese_meanings } = wordObj;
-
-  const { meaningContent, showMeaning } = useMeaning();
 
   let speech = { speak: () => {} };
   if (
@@ -63,7 +67,6 @@ export default function Word({ wordObj, grapheme, voice }: WordProps) {
           return <span key={nanoid()}>{word}</span>;
         })}
       </div>
-      {meaningContent}
     </div>
   );
 }

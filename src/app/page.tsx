@@ -1,11 +1,12 @@
 "use client";
 
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
 import { PHONICS_LIST } from "@/app/constants/list";
+import useMeaning from "@/app/hooks/useMeaning";
 
 const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
 
@@ -13,6 +14,25 @@ export default function Home() {
   const [nav, setNav] = useState(sort[0]);
 
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+
+  const { meaningContent, showMeaning } = useMeaning();
+
+  const listContent = useMemo(
+    () =>
+      sort.map((type, index) => (
+        <div key={nanoid()}>
+          {type === nav && (
+            <List
+              list={PHONICS_LIST}
+              voice={voice}
+              showMeaning={showMeaning}
+              type={type}
+            />
+          )}
+        </div>
+      )),
+    [nav, voice],
+  );
 
   return (
     <main className="font-sans bg-paper">
@@ -38,13 +58,7 @@ export default function Home() {
           </h2>
         ))}
       </div>
-      {sort.map((type, index) => (
-        <div key={nanoid()}>
-          {type === nav && (
-            <List list={PHONICS_LIST} voice={voice} type={type} />
-          )}
-        </div>
-      ))}
+      {listContent}
 
       <div className="text-center text-xs font-playpen content-visibility-auto">
         <div className="font-doodle text-xl">Thanks</div>
@@ -59,6 +73,8 @@ export default function Home() {
           <VoiceSelector onVoiceChange={setVoice} />
         </div>
       </div>
+
+      {meaningContent}
     </main>
   );
 }
