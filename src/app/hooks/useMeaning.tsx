@@ -5,18 +5,6 @@ import { POS } from "@/app/constants";
 
 const END_TIME = 5000;
 
-const sliceMeaning = (meaning: string, pos: string) => {
-  const clearMeaning = meaning.replaceAll(" ", "");
-  const posIndex = clearMeaning.indexOf(pos);
-  if (posIndex !== -1) {
-    let first = clearMeaning.slice(0, posIndex);
-    const second = clearMeaning.slice(posIndex + pos.length);
-
-    return [{ w: first }, { w: pos, pos: true }, { w: second }];
-  }
-  return [{ w: clearMeaning }];
-};
-
 export default function useMeaning() {
   const [wordObj, setWordObj] = useState<any>({});
   const [show, setShow] = useState(false);
@@ -54,53 +42,8 @@ export default function useMeaning() {
   }, [wordObj]);
 
   const meaningMain = useMemo(() => {
-    const { wordList, american_phonetic, chinese_meanings } = wordObj;
-    if (!chinese_meanings) return "???";
-    if (chinese_meanings.length === 0) return "???";
-
-    const trimMeaning = (chinese_meanings[0] as string).trim();
-    if (!trimMeaning) return "???";
-    if (trimMeaning === "") return "???";
-
-    let list: any[] = [];
-    POS.map((pos) => {
-      if (list.length === 0) {
-        list = sliceMeaning(trimMeaning, pos);
-      }
-
-      const newList: any[] = [];
-      list.map((item) => {
-        if (item.pos) {
-          newList.push(item);
-        } else {
-          newList.push(...sliceMeaning(item.w, pos));
-        }
-      });
-      list = newList;
-    });
-
-    let list1 = list.filter(({ w }) => w !== "");
-    const has8 = list1.findIndex((item) => !item.pos && item.w === "&");
-    if (has8 !== -1) {
-      const o = {
-        pos: true,
-        w: list1[has8 - 1].w + "&" + list1[has8 + 1].w,
-      };
-      list1 = [...list1.slice(0, has8 - 1), o, ...list1.slice(has8 + 1)];
-    }
-
-    const pairedArray = list1.reduce((result, value, index, array) => {
-      if (index % 2 === 0) {
-        result.push(array.slice(index, index + 2));
-      }
-      return result;
-    }, []);
-
-    return (
-      <div className="text-base" key={nanoid()}>
-        {pairedArray[0][1].w.replaceAll(",", "，")}
-      </div>
-    );
+    const { chinese_meanings } = wordObj;
+    return <div>{chinese_meanings}</div>;
   }, [wordObj]);
 
   const showMeaning = useCallback((wordObj: any) => {

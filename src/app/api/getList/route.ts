@@ -2,9 +2,10 @@ import path from "node:path";
 
 import fs from "fs";
 import fsPromises from "fs/promises";
+import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 
-import { LIST } from "@/app/constants";
+import { LIST, POS } from "@/app/constants";
 
 export const dynamic = "force-dynamic";
 export async function GET() {
@@ -17,6 +18,7 @@ export async function GET() {
   const words = await getLocalData("words.json");
   const en_US = await getLocalData("en_US.json");
   const coca20000 = await getLocalData("coca20000.json");
+  const pronunciation = await getLocalData("pronunciation.json");
 
   function finePronunciation(word: string) {
     if (!en_US[word.toLowerCase()]) {
@@ -25,6 +27,23 @@ export async function GET() {
     return (en_US[word.toLowerCase()] as string)
       .split(",")
       .map((s: string) => s.trim().replaceAll("/", ""));
+  }
+
+  function findPronunciation(word: string) {
+    const item = pronunciation.find(
+      (item: any) => item.attributes.data === word,
+    );
+    if (item) {
+      let content = item.content;
+      const hasF = content.findIndex(
+        (obj: any) => typeof obj === "string" && obj.includes(";"),
+      );
+      if (hasF !== -1) {
+        content = content.slice(0, hasF + 1);
+      }
+      return;
+    }
+    return;
   }
 
   const newWords: any[] = [];
@@ -45,17 +64,14 @@ export async function GET() {
 
   const dict = newWords.map((word: any) => {
     const american_phonetic = finePronunciation(word.lemma);
-    const inflections = Object.keys(word.inf).map((key) => ({
-      [key]: finePronunciation(key),
-    }));
-    const chinese_meanings = coca20000.find(
-      (coca: any) => coca.name === word.lemma,
-    )?.trans;
+    const chinese_meanings = getMeaning(
+      coca20000.find((coca: any) => coca.name === word.lemma)?.trans,
+    );
     return {
       rank: word.rank,
       word: word.lemma,
       american_phonetic,
-      inflections,
+      pronunciation: findPronunciation(word.lemma),
       chinese_meanings,
     };
   });
@@ -90,3 +106,58 @@ export async function getLocalData(fileName: string) {
   const jsonData = await fsPromises.readFile(filePath);
   return JSON.parse(jsonData.toString());
 }
+const getMeaning = (trans: any) => {
+  if (!trans) return;
+  if (trans.length === 0) return;
+
+  const trimMeaning = (trans[0] as string).trim();
+  if (!trimMeaning) return;
+  if (trimMeaning === "") return;
+
+  let list: any[] = [];
+  POS.map((pos) => {
+    if (list.length === 0) {
+      list = sliceMeaning(trimMeaning, pos);
+    }
+
+    const newList: any[] = [];
+    list.map((item) => {
+      if (item.pos) {
+        newList.push(item);
+      } else {
+        newList.push(...sliceMeaning(item.w, pos));
+      }
+    });
+    list = newList;
+  });
+
+  let list1 = list.filter(({ w }) => w !== "");
+  const has8 = list1.findIndex((item) => !item.pos && item.w === "&");
+  if (has8 !== -1) {
+    const o = {
+      pos: true,
+      w: list1[has8 - 1].w + "&" + list1[has8 + 1].w,
+    };
+    list1 = [...list1.slice(0, has8 - 1), o, ...list1.slice(has8 + 1)];
+  }
+
+  const pairedArray = list1.reduce((result, value, index, array) => {
+    if (index % 2 === 0) {
+      result.push(array.slice(index, index + 2));
+    }
+    return result;
+  }, []);
+
+  return pairedArray[0][1].w.replaceAll(",", "，");
+};
+const sliceMeaning = (meaning: string, pos: string) => {
+  const clearMeaning = meaning.replaceAll(" ", "");
+  const posIndex = clearMeaning.indexOf(pos);
+  if (posIndex !== -1) {
+    let first = clearMeaning.slice(0, posIndex);
+    const second = clearMeaning.slice(posIndex + pos.length);
+
+    return [{ w: first }, { w: pos, pos: true }, { w: second }];
+  }
+  return [{ w: clearMeaning }];
+};
