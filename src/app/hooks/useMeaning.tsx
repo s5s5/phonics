@@ -18,15 +18,47 @@ const sliceMeaning = (meaning: string, pos: string) => {
 };
 
 export default function useMeaning() {
-  const [meaning, setMeaning] = useState("");
+  const [wordObj, setWordObj] = useState<any>({});
   const [show, setShow] = useState(false);
   const [endTime, setEndTime] = useState(Date.now() + END_TIME);
 
-  const meaningMain = useMemo(() => {
-    if (!meaning) return "???";
-    if (meaning.length === 0) return "???";
+  const wordMain = useMemo(() => {
+    const { wordList } = wordObj;
+    if (!wordList) return null;
+    const wl = wordList.map(({ word, highLight }: any) => {
+      if (highLight) {
+        return (
+          <span className="text-red-500" key={nanoid()}>
+            {word}
+          </span>
+        );
+      }
+      return <span key={nanoid()}>{word}</span>;
+    });
+    return <div className="text-2xl font-playpen font-bold">{wl}</div>;
+  }, [wordObj]);
 
-    const trimMeaning = (meaning[0] as string).trim();
+  const phoneticMain = useMemo(() => {
+    const { american_phonetic } = wordObj;
+
+    if (!american_phonetic) return null;
+    const ap = american_phonetic.map((phonetic: string) => {
+      return (
+        <span className="mx-1" key={nanoid()}>
+          /{phonetic}/
+        </span>
+      );
+    });
+
+    return <div>{ap}</div>;
+  }, [wordObj]);
+
+  const meaningMain = useMemo(() => {
+    const { wordList, american_phonetic, chinese_meanings } = wordObj;
+    if (!chinese_meanings) return "???";
+    if (chinese_meanings.length === 0) return "???";
+
+    const trimMeaning = (chinese_meanings[0] as string).trim();
     if (!trimMeaning) return "???";
     if (trimMeaning === "") return "???";
 
@@ -65,14 +97,16 @@ export default function useMeaning() {
     }, []);
 
     return (
-      <div key={nanoid()}>{pairedArray[0][1].w.replaceAll(",", "，")}</div>
+      <div className="text-base" key={nanoid()}>
+        {pairedArray[0][1].w.replaceAll(",", "，")}
+      </div>
     );
-  }, [meaning]);
+  }, [wordObj]);
 
-  const showMeaning = useCallback((word: string) => {
+  const showMeaning = useCallback((wordObj: any) => {
     setEndTime(Date.now() + END_TIME);
     setShow(true);
-    setMeaning(word);
+    setWordObj(wordObj);
   }, []);
 
   const hideMeaning = useCallback(() => {
@@ -82,11 +116,13 @@ export default function useMeaning() {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/50 text-white text-base text-center">
+      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/75 text-white text-center">
+        {wordMain}
+        {phoneticMain}
         {meaningMain}
       </div>
     );
-  }, [meaningMain, show]);
+  }, [meaningMain, phoneticMain, show, wordMain]);
 
   useEffect(() => {
     const id = setInterval(() => {

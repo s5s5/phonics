@@ -5,8 +5,6 @@ import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 import Image from "next/image";
 
-import useMeaning from "@/app/hooks/useMeaning";
-
 export type WordProps = {
   wordObj: any;
   grapheme: string;
@@ -20,7 +18,7 @@ export default function Word({
   voice,
   showMeaning,
 }: WordProps) {
-  const { word, chinese_meanings } = wordObj;
+  const { word } = wordObj;
 
   let speech = { speak: () => {} };
   if (
@@ -35,7 +33,7 @@ export default function Word({
   const speakWord = useThrottledCallback(
     () => {
       speech.speak();
-      showMeaning(chinese_meanings);
+      showMeaning({ ...wordObj, wordList });
     },
     [speech],
     1000,
