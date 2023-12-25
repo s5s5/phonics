@@ -85,7 +85,7 @@ export async function GET() {
   return NextResponse.json({ LIST: newLIST });
 }
 
-async function getLocalData(fileName: string) {
+export async function getLocalData(fileName: string) {
   const filePath = path.join(process.cwd(), "public", fileName);
   const jsonData = await fsPromises.readFile(filePath);
   return JSON.parse(jsonData.toString());
