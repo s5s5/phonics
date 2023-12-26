@@ -7,11 +7,13 @@ import List from "@/app/components/List";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useMeaning from "@/app/hooks/useMeaning";
+import useRemember from "@/app/hooks/useRemember";
 
 const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
 
 export default function Home() {
   const [nav, setNav] = useState(sort[0]);
+  const { remember } = useRemember({ nav, setNav });
 
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
@@ -52,6 +54,7 @@ export default function Home() {
             key={nanoid()}
             onClick={() => {
               setNav(type);
+              remember();
             }}
           >
             {type}

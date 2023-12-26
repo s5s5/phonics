@@ -31,7 +31,7 @@ export default function useMeaning() {
 
     if (!pronunciation) return null;
     const ap = pronunciation.map((phonetic: any) => {
-      const phoneticElemnet = phonetic.map((p) => {
+      const phoneticElemnet = phonetic.map((p: any) => {
         if (typeof p === "object") {
           const className = p.style === "italic" ? "italic" : "font-bold";
           return (

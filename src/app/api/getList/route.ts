@@ -95,7 +95,7 @@ export async function GET() {
             .replaceAll(',",",', "],[")}]`;
           const newOut = JSON.parse(newOutString).map((obj: any) => {
             return obj
-              .map((o) => {
+              .map((o: any) => {
                 if (typeof o === "string") {
                   if (o.includes(",")) {
                     console.log("err", JSON.stringify(obj));
@@ -104,7 +104,7 @@ export async function GET() {
                 }
                 return o;
               })
-              .filter((o) => {
+              .filter((o: any) => {
                 if (typeof o === "string") {
                   return o !== "";
                 }

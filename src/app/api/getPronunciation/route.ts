@@ -2,6 +2,7 @@ import path from "node:path";
 
 import * as cheerio from "cheerio";
 import fs from "fs";
+// @ts-ignore
 import { HTMLToJSON } from "html-to-json-parser";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,12 +21,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ P });
   }
 
-  const words = [];
+  const words: any[] = [];
   PHONICS_LIST.map((item) => {
     item.words.map(({ word }) => {
       words.push(word);
     });
   });
+  // @ts-ignore
   const uniqueWords = [...new Set(words)];
   // const test = await getPronunciation("abandon");
   const P = await makeMultipleRequests(uniqueWords, 10);
@@ -34,7 +36,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ P });
 }
 
-async function makeMultipleRequests(urls, limit) {
+async function makeMultipleRequests(urls: any[], limit: number) {
   const results = [];
   for (let i = 0; i < urls.length; i += limit) {
     let chunk = urls.slice(i, i + limit);
