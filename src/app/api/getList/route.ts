@@ -2,7 +2,6 @@ import path from "node:path";
 
 import fs from "fs";
 import fsPromises from "fs/promises";
-import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 
 import { LIST, POS } from "@/app/constants";
@@ -41,9 +40,83 @@ export async function GET() {
       if (hasF !== -1) {
         content = content.slice(0, hasF + 1);
       }
-      return;
+      const out = content
+        .map((obj: any) => {
+          if (typeof obj === "string") {
+            return obj
+              .replaceAll(";", "")
+              .replaceAll("[", "")
+              .replaceAll("]", "")
+              .trim();
+          }
+          if (obj.attributes.class.includes(" ")) {
+            return "";
+          }
+          if (obj.attributes.class === "superscript") {
+            return {
+              style: obj.content[0].attributes.class,
+              text: obj.content[0].content[0],
+            };
+          }
+          let text = obj.content.reduce((acc: string, cur: any) => {
+            if (typeof cur === "string") {
+              return acc + cur;
+            }
+            if (cur.attributes.class.includes(" ")) {
+              return acc;
+            }
+            if (cur.attributes.class === "superscript") {
+              return acc + cur.content.map((c: any) => c.content[0]).join("");
+            }
+            return acc + cur.content[0];
+          }, "");
+          return {
+            style: obj.attributes.class,
+            text: text,
+          };
+        })
+        .filter((obj: any) => {
+          if (typeof obj === "string") {
+            return obj !== "" && obj !== "null";
+          }
+          return true;
+        });
+      if (out.length > 0) {
+        const hasSP = out.findIndex(
+          (obj: any) => typeof obj === "string" && obj.includes(","),
+        );
+        if (hasSP !== -1) {
+          const outString = JSON.stringify(out);
+          const newOutString = `[${outString
+            .replaceAll(",", '"],["')
+            .replaceAll('""],[""', '","')
+            .replaceAll('"],["{', ",{")
+            .replaceAll('}"],["', "},")
+            .replaceAll(',",",', "],[")}]`;
+          const newOut = JSON.parse(newOutString).map((obj: any) => {
+            return obj
+              .map((o) => {
+                if (typeof o === "string") {
+                  if (o.includes(",")) {
+                    console.log("err", JSON.stringify(obj));
+                  }
+                  return o.trim();
+                }
+                return o;
+              })
+              .filter((o) => {
+                if (typeof o === "string") {
+                  return o !== "";
+                }
+                return true;
+              });
+          });
+          // console.log(JSON.parse(newOut));
+          return newOut;
+        }
+        return [out];
+      }
     }
-    return;
   }
 
   const newWords: any[] = [];
@@ -92,8 +165,12 @@ export async function GET() {
         ) !== -1
       );
     });
-    if (words?.length > 10) words.length = 10;
-    return { ...item, words };
+    if (words.length > 10) words.length = 10;
+    const clearWords = words.map((word: any) => {
+      const { american_phonetic, ...rest } = word;
+      return rest;
+    });
+    return { ...item, words: clearWords };
   });
 
   fs.writeFileSync(localListPath, JSON.stringify(newLIST));
@@ -106,6 +183,10 @@ export async function getLocalData(fileName: string) {
   const jsonData = await fsPromises.readFile(filePath);
   return JSON.parse(jsonData.toString());
 }
+type WP = {
+  w: string;
+  pos?: boolean;
+};
 const getMeaning = (trans: any) => {
   if (!trans) return;
   if (trans.length === 0) return;
@@ -114,7 +195,7 @@ const getMeaning = (trans: any) => {
   if (!trimMeaning) return;
   if (trimMeaning === "") return;
 
-  let list: any[] = [];
+  let list: WP[] = [];
   POS.map((pos) => {
     if (list.length === 0) {
       list = sliceMeaning(trimMeaning, pos);
@@ -141,14 +222,19 @@ const getMeaning = (trans: any) => {
     list1 = [...list1.slice(0, has8 - 1), o, ...list1.slice(has8 + 1)];
   }
 
-  const pairedArray = list1.reduce((result, value, index, array) => {
+  const pairedArray: any[] = list1.reduce((result, value, index, array) => {
     if (index % 2 === 0) {
+      // @ts-ignore
       result.push(array.slice(index, index + 2));
     }
     return result;
   }, []);
 
-  return pairedArray[0][1].w.replaceAll(",", "，");
+  if (pairedArray[0][1]) {
+    return pairedArray[0][1].w.replaceAll(",", "，");
+  } else {
+    return pairedArray[0][0].w.replaceAll(",", "，");
+  }
 };
 const sliceMeaning = (meaning: string, pos: string) => {
   const clearMeaning = meaning.replaceAll(" ", "");

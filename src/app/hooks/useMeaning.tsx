@@ -26,14 +26,25 @@ export default function useMeaning() {
     return <div className="text-2xl font-playpen font-bold">{wl}</div>;
   }, [wordObj]);
 
-  const phoneticMain = useMemo(() => {
-    const { american_phonetic } = wordObj;
+  const pronunciationMain = useMemo(() => {
+    const { pronunciation } = wordObj;
 
-    if (!american_phonetic) return null;
-    const ap = american_phonetic.map((phonetic: string) => {
+    if (!pronunciation) return null;
+    const ap = pronunciation.map((phonetic: any) => {
+      const phoneticElemnet = phonetic.map((p) => {
+        if (typeof p === "object") {
+          const className = p.style === "italic" ? "italic" : "font-bold";
+          return (
+            <span className={className} key={nanoid()}>
+              {p.text}
+            </span>
+          );
+        }
+        return <span key={nanoid()}>{p}</span>;
+      });
       return (
-        <span className="mx-1" key={nanoid()}>
-          /{phonetic}/
+        <span className="mx-1 font-playpen text-xs" key={nanoid()}>
+          /{phoneticElemnet}/
         </span>
       );
     });
@@ -43,6 +54,7 @@ export default function useMeaning() {
 
   const meaningMain = useMemo(() => {
     const { chinese_meanings } = wordObj;
+    if (!chinese_meanings) return null;
     return <div>{chinese_meanings}</div>;
   }, [wordObj]);
 
@@ -61,11 +73,11 @@ export default function useMeaning() {
     return (
       <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/75 text-white text-center">
         {wordMain}
-        {phoneticMain}
+        {pronunciationMain}
         {meaningMain}
       </div>
     );
-  }, [meaningMain, phoneticMain, show, wordMain]);
+  }, [meaningMain, pronunciationMain, show, wordMain]);
 
   useEffect(() => {
     const id = setInterval(() => {
