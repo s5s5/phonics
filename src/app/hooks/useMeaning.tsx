@@ -16,7 +16,7 @@ export default function useMeaning() {
     const wl = wordList.map(({ word, highLight }: any) => {
       if (highLight) {
         return (
-          <span className="text-red-500" key={nanoid()}>
+          <span className="text-red-500 font-bold underline" key={nanoid()}>
             {word}
           </span>
         );
@@ -33,7 +33,8 @@ export default function useMeaning() {
     const ap = pronunciation.map((phonetic: any) => {
       const phoneticElemnet = phonetic.map((p: any) => {
         if (typeof p === "object") {
-          const className = p.style === "italic" ? "italic" : "font-bold";
+          const className =
+            p.style === "italic" ? "italic" : "font-bold underline";
           return (
             <span className={className} key={nanoid()}>
               {p.text}

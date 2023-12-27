@@ -53,11 +53,11 @@ export default function Word({
         alt={word}
       />
 
-      <div className="text-center mb-6 font-playpen text-xs">
+      <div className="text-center mb-6 font-playpen text-base">
         {wordList.map(({ word, highLight }) => {
           if (highLight) {
             return (
-              <span className="text-red-500" key={nanoid()}>
+              <span className="text-red-500 font-bold underline" key={nanoid()}>
                 {word}
               </span>
             );

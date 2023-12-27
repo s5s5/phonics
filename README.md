@@ -41,10 +41,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 6. [x] IPA和ARPAbet https://github.com/chdzq/ARPAbetAndIPAConvertor
 7. [x] TTS https://github.com/jankapunkt/easy-speech
 8. [x] 弹幕显示翻译
-9. [ ] 记忆上次位置
-10. [ ] 连字符 https://github.com/cuzzo/Hyphenator
-11. [ ] 连字符 https://github.com/ytiurin/hyphen
-12. [ ] 发音重拼 https://github.com/Attacktive/ipa-to-pronunciation-respelling
+9. [x] 记忆上次位置
+10. [x] 连字符 https://github.com/cuzzo/Hyphenator
+11. [x] 连字符 https://github.com/ytiurin/hyphen
+12. [x] 发音重拼 https://github.com/Attacktive/ipa-to-pronunciation-respelling
 13. [ ] 发音和读单词一起
 13. [ ] 整理代码，用起 lodash
 14. [ ] 整理代码成 TS

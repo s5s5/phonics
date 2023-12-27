@@ -36,10 +36,15 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
 
   useEffect(() => {
     if (voices.length > 0 && !isAutoSet) {
-      const index = voices.findIndex(({ name }) =>
-        name.toLowerCase().includes("samantha"),
+      let index = voices.findIndex(({ name }) =>
+        name.toLowerCase().includes("google us"),
       );
-      setVoice(index);
+      if (index === -1) {
+        index = voices.findIndex(({ name }) =>
+          name.toLowerCase().includes("samantha"),
+        );
+      }
+      setVoice(index === -1 ? 0 : index);
       setIsAutoSet(true);
     }
   }, [isAutoSet, voices]);

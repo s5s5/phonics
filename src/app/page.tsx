@@ -41,7 +41,7 @@ export default function Home() {
       <h1 className="text-center text-3xl lg:text-6xl font-doodle">
         ✨ Phonics
         <span className="text-2xl lg:text-4xl ml-4 inline-block">
-          /<span className="font-bold">fon</span>-iks/
+          /<span className="font-bold underline">fon</span>-iks/
         </span>
       </h1>
 
