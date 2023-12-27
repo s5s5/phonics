@@ -695,14 +695,7 @@ export const PHONICS_LIST = [
       {
         rank: 1062,
         word: "project",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "noun" },
-            { style: "bold", text: "proj" },
-            "-ekt",
-          ],
-          ["-ikt"],
-        ],
+        pronunciation: [[{ style: "bold", text: "proj" }, "-ekt"], ["-ikt"]],
         chinese_meanings: "放映，计划，发射，展现，使突出",
       },
       {
@@ -2805,14 +2798,7 @@ export const PHONICS_LIST = [
       {
         rank: 4352,
         word: "upset",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "verb," },
-            { style: "luna-pos", text: "adjective" },
-            "uhp-",
-            { style: "bold", text: "set" },
-          ],
-        ],
+        pronunciation: [["uhp-", { style: "bold", text: "set" }]],
         chinese_meanings: "打翻，弄翻，打乱，打搅",
       },
       {
@@ -3379,7 +3365,6 @@ export const PHONICS_LIST = [
         word: "outside",
         pronunciation: [
           [
-            { style: "luna-pos", text: "noun" },
             { style: "bold", text: "out" },
             "-",
             { style: "bold", text: "sahyd" },
@@ -4104,14 +4089,7 @@ export const PHONICS_LIST = [
       {
         rank: 4445,
         word: "object",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "noun" },
-            { style: "bold", text: "ob" },
-            "-jikt",
-          ],
-          ["-jekt"],
-        ],
+        pronunciation: [[{ style: "bold", text: "ob" }, "-jikt"], ["-jekt"]],
         chinese_meanings: "物体，目标，宾语，客体，对象",
       },
       {
@@ -4175,14 +4153,7 @@ export const PHONICS_LIST = [
       {
         rank: 1594,
         word: "subject",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "noun," },
-            { style: "luna-pos", text: "adjective" },
-            { style: "bold", text: "suhb" },
-            "-jikt",
-          ],
-        ],
+        pronunciation: [[{ style: "bold", text: "suhb" }, "-jikt"]],
         chinese_meanings: "主题，话题，学科，科目，哲主观",
       },
       {
@@ -4247,14 +4218,7 @@ export const PHONICS_LIST = [
       {
         rank: 4352,
         word: "upset",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "verb," },
-            { style: "luna-pos", text: "adjective" },
-            "uhp-",
-            { style: "bold", text: "set" },
-          ],
-        ],
+        pronunciation: [["uhp-", { style: "bold", text: "set" }]],
         chinese_meanings: "打翻，弄翻，打乱，打搅",
       },
       {
@@ -4280,7 +4244,6 @@ export const PHONICS_LIST = [
         word: "interrupt",
         pronunciation: [
           [
-            { style: "luna-pos", text: "verb" },
             "in-t",
             { style: "italic", text: "uh" },
             "-",
@@ -5074,7 +5037,7 @@ export const PHONICS_LIST = [
       {
         rank: 627,
         word: "close",
-        pronunciation: [[{ style: "luna-pos", text: "verb" }, "klohz"]],
+        pronunciation: [["klohz"]],
         chinese_meanings: "紧密的，亲密的，亲近的",
       },
     ],
@@ -5087,10 +5050,7 @@ export const PHONICS_LIST = [
       {
         rank: 151,
         word: "use",
-        pronunciation: [
-          [{ style: "luna-pos", text: "verb" }, "yooz"],
-          ["yoost"],
-        ],
+        pronunciation: [["yooz"], ["yoost"]],
         chinese_meanings: "使用，使用权，功能",
       },
       {
@@ -5102,13 +5062,7 @@ export const PHONICS_LIST = [
       {
         rank: 290,
         word: "excuse",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "verb" },
-            "ik-",
-            { style: "bold", text: "skyooz" },
-          ],
-        ],
+        pronunciation: [["ik-", { style: "bold", text: "skyooz" }]],
         chinese_meanings: "原谅，为…申辩，免除，宽免，给…免去",
       },
       {
@@ -5195,10 +5149,7 @@ export const PHONICS_LIST = [
       {
         rank: 151,
         word: "use",
-        pronunciation: [
-          [{ style: "luna-pos", text: "verb" }, "yooz"],
-          ["yoost"],
-        ],
+        pronunciation: [["yooz"], ["yoost"]],
         chinese_meanings: "使用，使用权，功能",
       },
       {
@@ -5210,13 +5161,7 @@ export const PHONICS_LIST = [
       {
         rank: 290,
         word: "excuse",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "verb" },
-            "ik-",
-            { style: "bold", text: "skyooz" },
-          ],
-        ],
+        pronunciation: [["ik-", { style: "bold", text: "skyooz" }]],
         chinese_meanings: "原谅，为…申辩，免除，宽免，给…免去",
       },
       {
@@ -6791,7 +6736,7 @@ export const PHONICS_LIST = [
       {
         rank: 627,
         word: "close",
-        pronunciation: [[{ style: "luna-pos", text: "verb" }, "klohz"]],
+        pronunciation: [["klohz"]],
         chinese_meanings: "紧密的，亲密的，亲近的",
       },
       {
@@ -9032,13 +8977,7 @@ export const PHONICS_LIST = [
       {
         rank: 290,
         word: "excuse",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "verb" },
-            "ik-",
-            { style: "bold", text: "skyooz" },
-          ],
-        ],
+        pronunciation: [["ik-", { style: "bold", text: "skyooz" }]],
         chinese_meanings: "原谅，为…申辩，免除，宽免，给…免去",
       },
       {
@@ -9908,13 +9847,7 @@ export const PHONICS_LIST = [
       {
         rank: 207,
         word: "house",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "noun," },
-            { style: "luna-pos", text: "adjective" },
-            "hous",
-          ],
-        ],
+        pronunciation: [["hous"]],
         chinese_meanings:
           "房屋，全家人，（从事某种生意的）公司，（英国）下议院",
       },
@@ -9950,7 +9883,7 @@ export const PHONICS_LIST = [
       {
         rank: 560,
         word: "mouth",
-        pronunciation: [[{ style: "luna-pos", text: "noun" }, "mouth"]],
+        pronunciation: [["mouth"]],
         chinese_meanings: "口，出入口，传闻",
       },
       {
@@ -9958,7 +9891,6 @@ export const PHONICS_LIST = [
         word: "outside",
         pronunciation: [
           [
-            { style: "luna-pos", text: "noun" },
             { style: "bold", text: "out" },
             "-",
             { style: "bold", text: "sahyd" },
@@ -10101,8 +10033,6 @@ export const PHONICS_LIST = [
         word: "downstairs",
         pronunciation: [
           [
-            { style: "luna-pos", text: "adverb," },
-            { style: "luna-pos", text: "noun" },
             { style: "bold", text: "doun" },
             "-",
             { style: "bold", text: "stairz" },
@@ -10994,13 +10924,7 @@ export const PHONICS_LIST = [
       {
         rank: 207,
         word: "house",
-        pronunciation: [
-          [
-            { style: "luna-pos", text: "noun," },
-            { style: "luna-pos", text: "adjective" },
-            "hous",
-          ],
-        ],
+        pronunciation: [["hous"]],
         chinese_meanings:
           "房屋，全家人，（从事某种生意的）公司，（英国）下议院",
       },
@@ -11391,7 +11315,6 @@ export const PHONICS_LIST = [
         word: "attention",
         pronunciation: [
           [
-            { style: "luna-pos", text: "noun" },
             { style: "italic", text: "uh" },
             "-",
             { style: "bold", text: "ten" },

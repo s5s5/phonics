@@ -49,7 +49,10 @@ export async function GET() {
               .replaceAll("]", "")
               .trim();
           }
-          if (obj.attributes.class.includes(" ")) {
+          if (
+            obj.attributes.class.includes(" ") ||
+            obj.attributes.class === "luna-pos"
+          ) {
             return "";
           }
           if (obj.attributes.class === "superscript") {
