@@ -17,7 +17,7 @@ const textSizes = [
 ];
 
 export default function Item({ item, play, voice, showMeaning }: ItemProps) {
-  const { phoneme, grapheme, words } = item;
+  const { phoneme, grapheme, words, tips } = item;
 
   const content = useMemo(
     () =>
@@ -37,7 +37,12 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
     <div className="mb-4 text-gray-950 grid grid-cols-4 lg:grid-cols-11 content-visibility-auto">
       <div
         className="m-1 rounded-xl border-4 border-transparent transition duration-300 hover:bg-indigo-500 hover:text-white cursor-pointer"
-        onClick={() => play(phoneme)}
+        onClick={() => {
+          play(phoneme);
+          if (tips) {
+            showMeaning({ chinese_meanings: tips });
+          }
+        }}
       >
         <div className="h-16 overflow-visible mt-8 mb-4 text-center font-doodle flex content-center justify-items-center">
           <div className={`flex-1 text-center ${textSizes[grapheme.length]}`}>

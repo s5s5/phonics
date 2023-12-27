@@ -148,6 +148,7 @@ export const PHONICS_LIST = [
     phoneme: "k",
     grapheme: "c",
     graphemeType: "Alphabet",
+    tips: "c 在单词开头",
     words: [
       {
         rank: 23,
@@ -426,6 +427,7 @@ export const PHONICS_LIST = [
     phoneme: "ɡ",
     grapheme: "g",
     graphemeType: "Alphabet",
+    tips: "g 一般情况",
     words: [
       {
         rank: 17,
@@ -1454,6 +1456,7 @@ export const PHONICS_LIST = [
     phoneme: "ə",
     grapheme: "u",
     graphemeType: "Alphabet",
+    tips: "u 在 重读（多个元音时，重读的元音） 闭音节（元音字母被辅音字母关起来）",
     words: [
       {
         rank: 28,
@@ -1758,6 +1761,7 @@ export const PHONICS_LIST = [
     phoneme: "j",
     grapheme: "y",
     graphemeType: "Alphabet",
+    tips: "y 在单词的开头",
     words: [
       {
         rank: 3,
@@ -5139,12 +5143,13 @@ export const PHONICS_LIST = [
           "葬礼，丧礼，〈比喻〉不愉快的事，操心的事，有关系的事",
       },
     ],
+    tips: "u_e 一般情况",
   },
   {
     phoneme: "u",
     grapheme: "u_e",
     graphemeType: "LongVowel+",
-    tips: "^(j|r|l|s)",
+    tips: "u_e 在 j , l , r , s 这四个字母后",
     words: [
       {
         rank: 151,
@@ -5718,7 +5723,7 @@ export const PHONICS_LIST = [
     phoneme: "i",
     grapheme: "y",
     graphemeType: "LongVowel+",
-    tips: "y$ ?",
+    tips: "y 在多音节（两个元音+）单词的结尾",
     words: [
       {
         rank: 63,
@@ -5976,7 +5981,7 @@ export const PHONICS_LIST = [
     phoneme: "aɪ",
     grapheme: "y",
     graphemeType: "LongVowel+",
-    tips: "y$ open?",
+    tips: "y 在单音节（一个元音）单词的结尾",
     words: [
       {
         rank: 19,
@@ -6114,6 +6119,7 @@ export const PHONICS_LIST = [
     phoneme: "oʊ",
     grapheme: "ow",
     graphemeType: "LongVowel+",
+    tips: "ow 在单词结尾",
     words: [
       {
         rank: 27,
@@ -6252,6 +6258,7 @@ export const PHONICS_LIST = [
     phoneme: "ju",
     grapheme: "ue",
     graphemeType: "LongVowel+",
+    tips: "ue 一船情况",
     words: [
       {
         rank: 1142,
@@ -6334,7 +6341,7 @@ export const PHONICS_LIST = [
     phoneme: "u",
     grapheme: "ue",
     graphemeType: "LongVowel+",
-    tips: "with s|l",
+    tips: "ue 遇到字母 s , l",
     words: [
       { rank: 354, word: "true", pronunciation: [["troo"]] },
       {
@@ -6488,6 +6495,7 @@ export const PHONICS_LIST = [
     phoneme: "u",
     grapheme: "oo",
     graphemeType: "LongVowel+",
+    tips: "oo 一般情况",
     words: [
       {
         rank: 104,
@@ -8347,7 +8355,7 @@ export const PHONICS_LIST = [
     phoneme: "θ",
     grapheme: "th",
     graphemeType: "Consonant+",
-    tips: "three",
+    tips: "th 在单词开头和结尾时",
     words: [
       {
         rank: 33,
@@ -8415,7 +8423,7 @@ export const PHONICS_LIST = [
     phoneme: "ð",
     grapheme: "th",
     graphemeType: "Consonant+",
-    tips: "this",
+    tips: "th 在 代、介、连、副、冠 词时；在单词中间时",
     words: [
       {
         rank: 4,
@@ -8935,7 +8943,7 @@ export const PHONICS_LIST = [
     phoneme: "s",
     grapheme: "c",
     graphemeType: "Consonant+",
-    tips: "soft c, with i|e|y",
+    tips: "c 遇到字母 i , e , y",
     words: [
       {
         rank: 156,
@@ -9013,7 +9021,7 @@ export const PHONICS_LIST = [
     phoneme: "dʒ",
     grapheme: "g",
     graphemeType: "Consonant+",
-    tips: "soft g, with i|e|y",
+    tips: "g 遇到字母 i , e , y",
     words: [
       {
         rank: 287,
@@ -9419,7 +9427,7 @@ export const PHONICS_LIST = [
     phoneme: "ɝ",
     grapheme: "or",
     graphemeType: "Other",
-    tips: "end",
+    tips: "or 在单词结尾",
     words: [
       {
         rank: 26,
@@ -9493,7 +9501,7 @@ export const PHONICS_LIST = [
     phoneme: "ɔɹ",
     grapheme: "or",
     graphemeType: "Other",
-    tips: "middle",
+    tips: "or 在单词中间",
     words: [
       {
         rank: 26,
@@ -9570,7 +9578,7 @@ export const PHONICS_LIST = [
     phoneme: "ɝ",
     grapheme: "or",
     graphemeType: "Other",
-    tips: "after w",
+    tips: "or 在字母 w 后面",
     words: [
       {
         rank: 26,
@@ -9905,7 +9913,7 @@ export const PHONICS_LIST = [
     phoneme: "aʊ",
     grapheme: "ow",
     graphemeType: "Other",
-    tips: "?",
+    tips: "ow 在单词中间",
     words: [
       {
         rank: 47,
@@ -10163,6 +10171,7 @@ export const PHONICS_LIST = [
     phoneme: "ɛɹ",
     grapheme: "ear",
     graphemeType: "Other",
+    tips: "ear 在字母 b , p , w 后",
     words: [
       {
         rank: 266,
@@ -10280,7 +10289,7 @@ export const PHONICS_LIST = [
     phoneme: "ɪɹ",
     grapheme: "ear",
     graphemeType: "Other",
-    tips: "?",
+    tips: "ear 在单词结尾",
     words: [
       {
         rank: 145,
@@ -10782,7 +10791,7 @@ export const PHONICS_LIST = [
     phoneme: "ʊ",
     grapheme: "oo",
     graphemeType: "Other",
-    tips: "k",
+    tips: "oo 在字母 k 前时；好、脚、站在、羊毛、木头 时",
     words: [
       {
         rank: 43,
@@ -10857,7 +10866,7 @@ export const PHONICS_LIST = [
     phoneme: "ʊ",
     grapheme: "u",
     graphemeType: "Other",
-    tips: "?",
+    tips: "u 在 推、拉、放、满 时",
     words: [
       {
         rank: 29,
@@ -11455,6 +11464,7 @@ export const PHONICS_LIST = [
     phoneme: "ʃən",
     grapheme: "sion",
     graphemeType: "Other",
+    tips: "sion 遇到辅音",
     words: [
       {
         rank: 2949,
@@ -11604,7 +11614,7 @@ export const PHONICS_LIST = [
     phoneme: "ʒən",
     grapheme: "sion",
     graphemeType: "Other",
-    tips: "?",
+    tips: "sion 遇到元音",
     words: [
       {
         rank: 342,
