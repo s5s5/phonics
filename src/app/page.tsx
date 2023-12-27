@@ -45,7 +45,7 @@ export default function Home() {
         </span>
       </h1>
 
-      <div className="bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
+      <div className="rounded-b-xl bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
         {sort.map((type, index) => (
           <h2
             className={`flex-auto text-center cursor-pointer ${
