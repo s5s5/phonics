@@ -148,6 +148,7 @@ export const PHONICS_LIST = [
     phoneme: "k",
     grapheme: "c",
     graphemeType: "Alphabet",
+    pronunciation: "k",
     tips: "c 在单词开头",
     words: [
       {
@@ -427,6 +428,7 @@ export const PHONICS_LIST = [
     phoneme: "ɡ",
     grapheme: "g",
     graphemeType: "Alphabet",
+    pronunciation: "g",
     tips: "g 一般情况",
     words: [
       {
@@ -1456,6 +1458,7 @@ export const PHONICS_LIST = [
     phoneme: "ə",
     grapheme: "u",
     graphemeType: "Alphabet",
+    pronunciation: "uh",
     tips: "u 在 重读（多个元音时，重读的元音） 闭音节（元音字母被辅音字母关起来）",
     words: [
       {
@@ -1523,10 +1526,17 @@ export const PHONICS_LIST = [
         chinese_meanings: "嘿（表示疑问、惊讶或异议）",
       },
       {
-        rank: 192,
-        word: "minute",
-        pronunciation: [[{ style: "bold", text: "min" }, "-it"]],
-        chinese_meanings: "分，分钟，瞬间，片刻，备忘录，会议记录",
+        rank: 193,
+        word: "actually",
+        pronunciation: [
+          [
+            { style: "bold", text: "ak" },
+            "-choo-",
+            { style: "italic", text: "uh" },
+            "-lee",
+          ],
+        ],
+        chinese_meanings: "实际上，事实上，确实，竟",
       },
     ],
   },
@@ -1761,6 +1771,7 @@ export const PHONICS_LIST = [
     phoneme: "j",
     grapheme: "y",
     graphemeType: "Alphabet",
+    pronunciation: "y",
     tips: "y 在单词的开头",
     words: [
       {
@@ -3128,12 +3139,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "好的，上等的，纤细的，精致的，健康的，晴朗的",
       },
       {
-        rank: 192,
-        word: "minute",
-        pronunciation: [[{ style: "bold", text: "min" }, "-it"]],
-        chinese_meanings: "分，分钟，瞬间，片刻，备忘录，会议记录",
-      },
-      {
         rank: 299,
         word: "win",
         pronunciation: [["win"]],
@@ -3150,6 +3155,12 @@ export const PHONICS_LIST = [
         word: "dinner",
         pronunciation: [[{ style: "bold", text: "din" }, "-er"]],
         chinese_meanings: "正餐，主餐，宴会，晚餐",
+      },
+      {
+        rank: 396,
+        word: "finally",
+        pronunciation: [[{ style: "bold", text: "fahyn" }, "-l-ee"]],
+        chinese_meanings: "最后，终于，总算，末后，结果",
       },
     ],
   },
@@ -4676,12 +4687,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "但是，而是，除了，只因为",
       },
       {
-        rank: 192,
-        word: "minute",
-        pronunciation: [[{ style: "bold", text: "min" }, "-it"]],
-        chinese_meanings: "分，分钟，瞬间，片刻，备忘录，会议记录",
-      },
-      {
         rank: 344,
         word: "shut",
         pronunciation: [["shuht"]],
@@ -4732,6 +4737,20 @@ export const PHONICS_LIST = [
         word: "nut",
         pronunciation: [["nuht"]],
         chinese_meanings: "螺母，螺帽，坚果，坚果果仁，难对付的人，乐弓根",
+      },
+      {
+        rank: 1610,
+        word: "doughnut",
+        pronunciation: [
+          [
+            { style: "bold", text: "doh" },
+            "-n",
+            { style: "italic", text: "uh" },
+            "t",
+          ],
+          ["-nuht"],
+        ],
+        chinese_meanings: "炸面圈，圈饼，汽车轮胎，环状物，电子回旋加速室",
       },
     ],
   },
@@ -5055,6 +5074,7 @@ export const PHONICS_LIST = [
     phoneme: "ju",
     grapheme: "u_e",
     graphemeType: "LongVowel+",
+    pronunciation: "yoo",
     tips: "u_e 一般情况",
     words: [
       {
@@ -5062,12 +5082,6 @@ export const PHONICS_LIST = [
         word: "use",
         pronunciation: [["yooz"], ["yoost"]],
         chinese_meanings: "使用，使用权，功能",
-      },
-      {
-        rank: 192,
-        word: "minute",
-        pronunciation: [[{ style: "bold", text: "min" }, "-it"]],
-        chinese_meanings: "分，分钟，瞬间，片刻，备忘录，会议记录",
       },
       {
         rank: 290,
@@ -5148,12 +5162,19 @@ export const PHONICS_LIST = [
         chinese_meanings:
           "葬礼，丧礼，〈比喻〉不愉快的事，操心的事，有关系的事",
       },
+      {
+        rank: 2051,
+        word: "refuse",
+        pronunciation: [["ri-", { style: "bold", text: "fyooz" }]],
+        chinese_meanings: "拒绝，回绝，推却",
+      },
     ],
   },
   {
     phoneme: "u",
     grapheme: "u_e",
     graphemeType: "LongVowel+",
+    pronunciation: "oo",
     tips: "u_e 在 j , l , r , s 这四个字母后",
     words: [
       {
@@ -5747,6 +5768,7 @@ export const PHONICS_LIST = [
     phoneme: "i",
     grapheme: "y",
     graphemeType: "LongVowel+",
+    pronunciation: "ee",
     tips: "y 在多音节（两个元音+）单词的结尾",
     words: [
       {
@@ -6016,6 +6038,7 @@ export const PHONICS_LIST = [
     phoneme: "aɪ",
     grapheme: "y",
     graphemeType: "LongVowel+",
+    pronunciation: "ahy",
     tips: "y 在单音节（一个元音）单词的结尾",
     words: [
       {
@@ -6155,6 +6178,7 @@ export const PHONICS_LIST = [
     phoneme: "oʊ",
     grapheme: "ow",
     graphemeType: "LongVowel+",
+    pronunciation: "oh",
     tips: "ow 在单词结尾",
     words: [
       {
@@ -6294,6 +6318,7 @@ export const PHONICS_LIST = [
     phoneme: "ju",
     grapheme: "ue",
     graphemeType: "LongVowel+",
+    pronunciation: "yoo",
     tips: "ue 一船情况",
     words: [
       {
@@ -6349,6 +6374,7 @@ export const PHONICS_LIST = [
     phoneme: "u",
     grapheme: "ue",
     graphemeType: "LongVowel+",
+    pronunciation: "oo",
     tips: "ue 遇到字母 s , l",
     words: [
       {
@@ -6502,6 +6528,7 @@ export const PHONICS_LIST = [
     phoneme: "u",
     grapheme: "oo",
     graphemeType: "LongVowel+",
+    pronunciation: "oo",
     tips: "oo 一般情况",
     words: [
       {
@@ -8362,6 +8389,7 @@ export const PHONICS_LIST = [
     phoneme: "θ",
     grapheme: "th",
     graphemeType: "Consonant+",
+    pronunciation: "th",
     tips: "th 在单词开头和结尾时",
     words: [
       {
@@ -8429,6 +8457,7 @@ export const PHONICS_LIST = [
     phoneme: "ð",
     grapheme: "th",
     graphemeType: "Consonant+",
+    pronunciation: "_th",
     tips: "th 在 代、介、连、副、冠 词时；在单词中间时",
     words: [
       {
@@ -8917,6 +8946,7 @@ export const PHONICS_LIST = [
     phoneme: "s",
     grapheme: "c",
     graphemeType: "Consonant+",
+    pronunciation: "s",
     tips: "c 遇到字母 i , e , y",
     words: [
       {
@@ -8989,6 +9019,7 @@ export const PHONICS_LIST = [
     phoneme: "dʒ",
     grapheme: "g",
     graphemeType: "Consonant+",
+    pronunciation: "j",
     tips: "g 遇到字母 i , e , y",
     words: [
       {
@@ -9395,6 +9426,7 @@ export const PHONICS_LIST = [
     phoneme: "ɝ",
     grapheme: "or",
     graphemeType: "Other",
+    pronunciation: "aw",
     tips: "or 在单词结尾；在字母 w 后面",
     words: [
       {
@@ -9467,6 +9499,7 @@ export const PHONICS_LIST = [
     phoneme: "ɔɹ",
     grapheme: "or",
     graphemeType: "Other",
+    pronunciation: "awr",
     tips: "or 在单词中间",
     words: [
       {
@@ -9806,6 +9839,7 @@ export const PHONICS_LIST = [
     phoneme: "aʊ",
     grapheme: "ow",
     graphemeType: "Other",
+    pronunciation: "ou",
     tips: "ow 在单词中间",
     words: [
       {
@@ -10076,6 +10110,7 @@ export const PHONICS_LIST = [
     phoneme: "ɛɹ",
     grapheme: "ear",
     graphemeType: "Other",
+    pronunciation: "air",
     tips: "ear 在字母 b , p , w 后",
     words: [
       {
@@ -10188,6 +10223,7 @@ export const PHONICS_LIST = [
     phoneme: "ɪɹ",
     grapheme: "ear",
     graphemeType: "Other",
+    pronunciation: "eer",
     tips: "ear 在单词结尾",
     words: [
       {
@@ -10684,6 +10720,7 @@ export const PHONICS_LIST = [
     phoneme: "ʊ",
     grapheme: "oo",
     graphemeType: "Other",
+    pronunciation: "_oo",
     tips: "oo 在字母 k 前时；好、脚、站在、羊毛、木头 时",
     words: [
       {
@@ -10759,6 +10796,7 @@ export const PHONICS_LIST = [
     phoneme: "ʊ",
     grapheme: "u",
     graphemeType: "Other",
+    pronunciation: "_oo",
     tips: "u 在 推、拉、放、满 时",
     words: [
       {
@@ -11353,6 +11391,7 @@ export const PHONICS_LIST = [
     phoneme: "ʃən",
     grapheme: "sion",
     graphemeType: "Other",
+    pronunciation: "sh_uhn",
     tips: "sion 遇到辅音",
     words: [
       {
@@ -11503,6 +11542,7 @@ export const PHONICS_LIST = [
     phoneme: "ʒən",
     grapheme: "sion",
     graphemeType: "Other",
+    pronunciation: "zh_uhn",
     tips: "sion 遇到元音",
     words: [
       {

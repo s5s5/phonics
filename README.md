@@ -45,7 +45,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 10. [x] 连字符 https://github.com/cuzzo/Hyphenator
 11. [x] 连字符 https://github.com/ytiurin/hyphen
 12. [x] 发音重拼 https://github.com/Attacktive/ipa-to-pronunciation-respelling
-13. [ ] 发音和读单词一起
+13. [ ] 整理代码，管理端分离
 13. [ ] 整理代码，用起 lodash
 14. [ ] 整理代码成 TS
 15. [ ] 整理代码，用起 SSR

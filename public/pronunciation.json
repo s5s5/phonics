@@ -1129,15 +1129,6 @@
     "type": "div",
     "content": [
       "[ ",
-      { "type": "span", "content": ["min"], "attributes": { "class": "bold" } },
-      "-it  ]"
-    ],
-    "attributes": { "data": "minute" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
       { "type": "span", "content": ["nev"], "attributes": { "class": "bold" } },
       "-er  ]"
     ],
@@ -2540,6 +2531,19 @@
       "-er  ]"
     ],
     "attributes": { "data": "dinner" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      {
+        "type": "span",
+        "content": ["fahyn"],
+        "attributes": { "class": "bold" }
+      },
+      "-l-ee  ]"
+    ],
+    "attributes": { "data": "finally" }
   },
   {
     "type": "div",
@@ -4123,6 +4127,21 @@
   { "type": "div", "content": ["[ nuht  ]"], "attributes": { "data": "nut" } },
   {
     "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["doh"], "attributes": { "class": "bold" } },
+      "-n",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "t, -nuht  ]"
+    ],
+    "attributes": { "data": "doughnut" }
+  },
+  {
+    "type": "div",
     "content": ["[ muhst  ]"],
     "attributes": { "data": "must" }
   },
@@ -4526,6 +4545,19 @@
       "l  ]"
     ],
     "attributes": { "data": "funeral" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ri-",
+      {
+        "type": "span",
+        "content": ["fyooz"],
+        "attributes": { "class": "bold" }
+      },
+      "  ]"
+    ],
+    "attributes": { "data": "refuse" }
   },
   { "type": "div", "content": ["[ rool  ]"], "attributes": { "data": "rule" } },
   {

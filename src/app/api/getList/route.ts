@@ -155,7 +155,7 @@ export async function GET() {
   const newLIST = LIST.map((item: any) => {
     const { grapheme, phoneme } = item;
     const words = dict?.filter((item: any) => {
-      if (["blowjob"].includes(item.word)) return false;
+      if (["blowjob", "minute"].includes(item.word)) return false;
       // y and i
       if (grapheme === "y" && phoneme === "i") {
         const pIndex = item.american_phonetic.findIndex((p: string) =>

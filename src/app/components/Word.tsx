@@ -46,8 +46,8 @@ export default function Word({
     >
       <Image
         className="mx-auto my-5"
-        // src={`/api/getPicUrl?word=${word}`}
-        src={`/images/words/${word}.png`}
+        src={`/api/getPicUrl?word=${word}`}
+        // src={`/images/words/${word}.png`}
         width={60}
         height={60}
         alt={word}

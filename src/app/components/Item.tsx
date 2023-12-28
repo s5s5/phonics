@@ -17,7 +17,7 @@ const textSizes = [
 ];
 
 export default function Item({ item, play, voice, showMeaning }: ItemProps) {
-  const { phoneme, grapheme, words, tips } = item;
+  const { phoneme, grapheme, pronunciation, words, tips } = item;
 
   const content = useMemo(
     () =>
@@ -32,6 +32,19 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
       )),
     [words, voice, grapheme],
   );
+
+  const pronunciationText = useMemo(() => {
+    if (!pronunciation) return null;
+    if (!pronunciation.includes("_"))
+      return <div className="text-center text-xs">/{pronunciation}/</div>;
+    const [p1, p2] = pronunciation.split("_");
+    return (
+      <div className="text-center text-xs">
+        /{p1}
+        {<span className="italic">{p2}</span>}/
+      </div>
+    );
+  }, [pronunciation]);
 
   return (
     <div className="mb-4 text-gray-950 grid grid-cols-4 lg:grid-cols-11 content-visibility-auto">
@@ -51,7 +64,7 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
             {grapheme}
           </div>
         </div>
-        {tips && <div className="text-center text-xs">/{phoneme}/</div>}
+        {pronunciationText}
       </div>
       {content}
     </div>
