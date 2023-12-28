@@ -3376,7 +3376,6 @@
     "attributes": { "data": "lobster" }
   },
   { "type": "div", "content": ["[ rob  ]"], "attributes": { "data": "rob" } },
-  { "type": "div", "content": ["null"], "attributes": { "data": "blowjob" } },
   {
     "type": "div",
     "content": [
@@ -3411,6 +3410,15 @@
     "attributes": { "data": "object" }
   },
   { "type": "div", "content": ["[ mob  ]"], "attributes": { "data": "mob" } },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["hob"], "attributes": { "class": "bold" } },
+      "-ee  ]"
+    ],
+    "attributes": { "data": "hobby" }
+  },
   {
     "type": "div",
     "content": ["[ kluhb  ]"],
@@ -4519,11 +4527,6 @@
     ],
     "attributes": { "data": "funeral" }
   },
-  {
-    "type": "div",
-    "content": ["[ dood, dyood  ]"],
-    "attributes": { "data": "dude" }
-  },
   { "type": "div", "content": ["[ rool  ]"], "attributes": { "data": "rule" } },
   {
     "type": "div",
@@ -4558,18 +4561,91 @@
       "[ ",
       {
         "type": "span",
-        "content": ["stood"],
-        "attributes": { "class": "bold" }
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
       },
-      "-nt, ",
+      "-",
       {
         "type": "span",
-        "content": ["styood"],
+        "content": ["soom"],
         "attributes": { "class": "bold" }
       },
-      "-  ]"
+      "  ]"
     ],
-    "attributes": { "data": "student" }
+    "attributes": { "data": "assume" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["soo"], "attributes": { "class": "bold" } },
+      "-per  ]"
+    ],
+    "attributes": { "data": "super" }
+  },
+  { "type": "div", "content": ["[ rood  ]"], "attributes": { "data": "rude" } },
+  {
+    "type": "div",
+    "content": [
+      "[ in-",
+      {
+        "type": "span",
+        "content": ["klood"],
+        "attributes": { "class": "bold" }
+      },
+      "  ]"
+    ],
+    "attributes": { "data": "include" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["soo"], "attributes": { "class": "bold" } },
+      "-per-heer-oh  ]"
+    ],
+    "attributes": { "data": "superhero" }
+  },
+  {
+    "type": "div",
+    "content": ["[ floot  ]"],
+    "attributes": { "data": "flute" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["soo"], "attributes": { "class": "bold" } },
+      "-per-mahr-kit  ]"
+    ],
+    "attributes": { "data": "supermarket" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["ab"], "attributes": { "class": "bold" } },
+      "-s",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "-loot, ab-s",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "-",
+      {
+        "type": "span",
+        "content": ["loot"],
+        "attributes": { "class": "bold" }
+      },
+      "  ]"
+    ],
+    "attributes": { "data": "absolute" }
   },
   {
     "type": "div",
@@ -4876,42 +4952,6 @@
     ],
     "attributes": { "data": "journey" }
   },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["en"], "attributes": { "class": "bold" } },
-      "-ee  ]"
-    ],
-    "attributes": { "data": "any" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["en"], "attributes": { "class": "bold" } },
-      "-ee-thing  ]"
-    ],
-    "attributes": { "data": "anything" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["ohn"], "attributes": { "class": "bold" } },
-      "-lee  ]"
-    ],
-    "attributes": { "data": "only" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["bey"], "attributes": { "class": "bold" } },
-      "-bee  ]"
-    ],
-    "attributes": { "data": "baby" }
-  },
   { "type": "div", "content": ["[ dahy  ]"], "attributes": { "data": "die" } },
   { "type": "div", "content": ["[ lahy  ]"], "attributes": { "data": "lie" } },
   { "type": "div", "content": ["[ pahy  ]"], "attributes": { "data": "pie" } },
@@ -5070,34 +5110,10 @@
   },
   { "type": "div", "content": ["[ trahy  ]"], "attributes": { "data": "try" } },
   { "type": "div", "content": ["[ bahy  ]"], "attributes": { "data": "buy" } },
-  { "type": "div", "content": ["[ ahy  ]"], "attributes": { "data": "eye" } },
-  {
-    "type": "div",
-    "content": [
-      "[ mahy-",
-      {
-        "type": "span",
-        "content": ["self"],
-        "attributes": { "class": "bold" }
-      },
-      "  ]"
-    ],
-    "attributes": { "data": "myself" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      {
-        "type": "span",
-        "content": ["fahyn"],
-        "attributes": { "class": "bold" }
-      },
-      "-l-ee  ]"
-    ],
-    "attributes": { "data": "finally" }
-  },
-  { "type": "div", "content": ["[ bahy  ]"], "attributes": { "data": "bye" } },
+  { "type": "div", "content": ["[ krahy  ]"], "attributes": { "data": "cry" } },
+  { "type": "div", "content": ["[ flahy  ]"], "attributes": { "data": "fly" } },
+  { "type": "div", "content": ["[ skahy  ]"], "attributes": { "data": "sky" } },
+  { "type": "div", "content": ["[ drahy  ]"], "attributes": { "data": "dry" } },
   {
     "type": "div",
     "content": ["[ woh, hwoh  ]"],
@@ -5125,7 +5141,6 @@
   { "type": "div", "content": ["[ goht  ]"], "attributes": { "data": "goat" } },
   { "type": "div", "content": ["[ lohd  ]"], "attributes": { "data": "load" } },
   { "type": "div", "content": ["[ shoh  ]"], "attributes": { "data": "show" } },
-  { "type": "div", "content": ["[ ohn  ]"], "attributes": { "data": "own" } },
   {
     "type": "div",
     "content": [
@@ -5173,6 +5188,7 @@
     ],
     "attributes": { "data": "window" }
   },
+  { "type": "div", "content": ["[ loh  ]"], "attributes": { "data": "low" } },
   {
     "type": "div",
     "content": ["[ noo, nyoo  ]"],
@@ -5264,11 +5280,6 @@
   },
   {
     "type": "div",
-    "content": ["[ doo, dyoo  ]"],
-    "attributes": { "data": "due" }
-  },
-  {
-    "type": "div",
     "content": [
       "[ ",
       {
@@ -5285,15 +5296,6 @@
       "-  ]"
     ],
     "attributes": { "data": "Tuesday" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["val"], "attributes": { "class": "bold" } },
-      "-yoo  ]"
-    ],
-    "attributes": { "data": "value" }
   },
   {
     "type": "div",
@@ -5321,47 +5323,12 @@
     "type": "div",
     "content": [
       "[ ",
-      {
-        "type": "span",
-        "content": ["tish"],
-        "attributes": { "class": "bold" }
-      },
-      "-oo ",
-      {
-        "type": "span",
-        "content": ["or, especially British"],
-        "attributes": { "class": "luna-label italic" }
-      },
-      ", ",
-      { "type": "span", "content": ["tis"], "attributes": { "class": "bold" } },
-      "-yoo  ]"
-    ],
-    "attributes": { "data": "tissue" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
       { "type": "span", "content": ["res"], "attributes": { "class": "bold" } },
       "-kyoo  ]"
     ],
     "attributes": { "data": "rescue" }
   },
   { "type": "div", "content": ["[ kyoo  ]"], "attributes": { "data": "cue" } },
-  {
-    "type": "div",
-    "content": [
-      "[ yoo-",
-      {
-        "type": "span",
-        "content": ["neek"],
-        "attributes": { "class": "bold" }
-      },
-      "  ]"
-    ],
-    "attributes": { "data": "unique" }
-  },
-  { "type": "div", "content": ["[ troo  ]"], "attributes": { "data": "true" } },
   { "type": "div", "content": ["[ bloo  ]"], "attributes": { "data": "blue" } },
   {
     "type": "div",
@@ -5381,19 +5348,66 @@
     "attributes": { "data": "issue" }
   },
   { "type": "div", "content": ["[ soo  ]"], "attributes": { "data": "sue" } },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["val"], "attributes": { "class": "bold" } },
+      "-yoo  ]"
+    ],
+    "attributes": { "data": "value" }
+  },
   { "type": "div", "content": ["[ kloo  ]"], "attributes": { "data": "clue" } },
+  { "type": "div", "content": ["[ gloo  ]"], "attributes": { "data": "glue" } },
   {
     "type": "div",
     "content": [
       "[ ",
       {
         "type": "span",
-        "content": ["stach"],
+        "content": ["tish"],
         "attributes": { "class": "bold" }
       },
-      "-oo  ]"
+      "-oo ",
+      {
+        "type": "span",
+        "content": ["or, especially British"],
+        "attributes": { "class": "luna-label italic" }
+      },
+      ", ",
+      { "type": "span", "content": ["tis"], "attributes": { "class": "bold" } },
+      "-yoo  ]"
     ],
-    "attributes": { "data": "statue" }
+    "attributes": { "data": "tissue" }
+  },
+  {
+    "type": "div",
+    "content": ["[ blooz  ]"],
+    "attributes": { "data": "blues" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ per-",
+      { "type": "span", "content": ["soo"], "attributes": { "class": "bold" } },
+      "  ]"
+    ],
+    "attributes": { "data": "pursue" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["in"], "attributes": { "class": "bold" } },
+      "-floo-",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "ns  ]"
+    ],
+    "attributes": { "data": "influence" }
   },
   {
     "type": "div",
@@ -5690,7 +5704,6 @@
     ],
     "attributes": { "data": "closet" }
   },
-  { "type": "div", "content": ["[ flahy  ]"], "attributes": { "data": "fly" } },
   {
     "type": "div",
     "content": ["[ flawr  ]"],
@@ -5763,7 +5776,6 @@
     "content": ["[ gluhv  ]"],
     "attributes": { "data": "glove" }
   },
-  { "type": "div", "content": ["[ gloo  ]"], "attributes": { "data": "glue" } },
   {
     "type": "div",
     "content": [
@@ -6074,7 +6086,6 @@
     "attributes": { "data": "breathe" }
   },
   { "type": "div", "content": ["[ brah  ]"], "attributes": { "data": "bra" } },
-  { "type": "div", "content": ["[ krahy  ]"], "attributes": { "data": "cry" } },
   {
     "type": "div",
     "content": ["[ skroo  ]"],
@@ -6253,6 +6264,7 @@
     "content": ["[ fresh  ]"],
     "attributes": { "data": "fresh" }
   },
+  { "type": "div", "content": ["[ troo  ]"], "attributes": { "data": "true" } },
   {
     "type": "div",
     "content": ["[ street  ]"],
@@ -6713,7 +6725,6 @@
   },
   { "type": "div", "content": ["[ desk  ]"], "attributes": { "data": "desk" } },
   { "type": "div", "content": ["[ skin  ]"], "attributes": { "data": "skin" } },
-  { "type": "div", "content": ["[ skahy  ]"], "attributes": { "data": "sky" } },
   {
     "type": "div",
     "content": [
@@ -6918,20 +6929,22 @@
     "content": ["[ thing  ]"],
     "attributes": { "data": "thing" }
   },
+  { "type": "div", "content": ["null"], "attributes": { "data": "thanks" } },
   {
     "type": "div",
-    "content": [
-      "[ ",
-      {
-        "type": "span",
-        "content": ["nuhth"],
-        "attributes": { "class": "bold" }
-      },
-      "-ing  ]"
-    ],
-    "attributes": { "data": "nothing" }
+    "content": ["[ throo  ]"],
+    "attributes": { "data": "through" }
   },
-  { "type": "div", "content": ["null"], "attributes": { "data": "thanks" } },
+  {
+    "type": "div",
+    "content": ["[ bohth  ]"],
+    "attributes": { "data": "both" }
+  },
+  {
+    "type": "div",
+    "content": ["[ muhnth  ]"],
+    "attributes": { "data": "month" }
+  },
   {
     "type": "div",
     "content": [
@@ -7163,25 +7176,6 @@
   {
     "type": "div",
     "content": [
-      "[ dih-",
-      {
-        "type": "span",
-        "content": ["lahyt"],
-        "attributes": { "class": "bold" }
-      },
-      "-f",
-      {
-        "type": "span",
-        "content": ["uh"],
-        "attributes": { "class": "italic" }
-      },
-      "l  ]"
-    ],
-    "attributes": { "data": "delightful" }
-  },
-  {
-    "type": "div",
-    "content": [
       "[ ",
       { "type": "span", "content": ["laf"], "attributes": { "class": "bold" } },
       "-ter, ",
@@ -7198,19 +7192,6 @@
     "type": "div",
     "content": ["[ kawf, kof  ]"],
     "attributes": { "data": "cough" }
-  },
-  {
-    "type": "div",
-    "content": [
-      "[ ",
-      {
-        "type": "span",
-        "content": ["frahyt"],
-        "attributes": { "class": "bold" }
-      },
-      "-n  ]"
-    ],
-    "attributes": { "data": "frighten" }
   },
   { "type": "div", "content": ["[ pik  ]"], "attributes": { "data": "pick" } },
   { "type": "div", "content": ["[ fuhk  ]"], "attributes": { "data": "fuck" } },
@@ -7233,21 +7214,6 @@
   { "type": "div", "content": ["[ kik  ]"], "attributes": { "data": "kick" } },
   {
     "type": "div",
-    "content": [
-      "[ ",
-      { "type": "span", "content": ["sek"], "attributes": { "class": "bold" } },
-      "-",
-      {
-        "type": "span",
-        "content": ["uh"],
-        "attributes": { "class": "italic" }
-      },
-      "nd  ]"
-    ],
-    "attributes": { "data": "second" }
-  },
-  {
-    "type": "div",
     "content": ["[ wuhns  ]"],
     "attributes": { "data": "once" }
   },
@@ -7262,6 +7228,7 @@
     ],
     "attributes": { "data": "office" }
   },
+  { "type": "div", "content": ["[ feys  ]"], "attributes": { "data": "face" } },
   {
     "type": "div",
     "content": [
@@ -7622,19 +7589,24 @@
     "type": "div",
     "content": [
       "[ ",
-      { "type": "span", "content": ["awr"], "attributes": { "class": "bold" } },
-      "-der  ]"
+      { "type": "span", "content": ["fey"], "attributes": { "class": "bold" } },
+      "-ver  ]"
     ],
-    "attributes": { "data": "order" }
+    "attributes": { "data": "favor" }
+  },
+  {
+    "type": "div",
+    "content": ["[ wurth  ]"],
+    "attributes": { "data": "worth" }
   },
   {
     "type": "div",
     "content": [
-      "[ fawr-",
-      { "type": "span", "content": ["ev"], "attributes": { "class": "bold" } },
-      "-er, fer-  ]"
+      "[ ",
+      { "type": "span", "content": ["mey"], "attributes": { "class": "bold" } },
+      "-er, mair  ]"
     ],
-    "attributes": { "data": "forever" }
+    "attributes": { "data": "mayor" }
   },
   {
     "type": "div",
@@ -7713,8 +7685,18 @@
   },
   {
     "type": "div",
-    "content": ["[ dawr, dohr  ]"],
-    "attributes": { "data": "door" }
+    "content": ["[ stawr  ]"],
+    "attributes": { "data": "store" }
+  },
+  {
+    "type": "div",
+    "content": ["[ sawrt  ]"],
+    "attributes": { "data": "sort" }
+  },
+  {
+    "type": "div",
+    "content": ["[ lawrd  ]"],
+    "attributes": { "data": "lord" }
   },
   {
     "type": "div",
@@ -7944,7 +7926,6 @@
     ],
     "attributes": { "data": "mouth" }
   },
-  { "type": "div", "content": ["[ wou  ]"], "attributes": { "data": "wow" } },
   { "type": "div", "content": ["[ toun  ]"], "attributes": { "data": "town" } },
   {
     "type": "div",
@@ -7961,14 +7942,37 @@
       "[ ",
       {
         "type": "span",
+        "content": ["shou"],
+        "attributes": { "class": "bold" }
+      },
+      "-er  ]"
+    ],
+    "attributes": { "data": "shower" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["tou"], "attributes": { "class": "bold" } },
+      "-",
+      {
+        "type": "span",
         "content": ["uh"],
         "attributes": { "class": "italic" }
       },
-      "-",
-      { "type": "span", "content": ["lou"], "attributes": { "class": "bold" } },
-      "  ]"
+      "l, toul  ]"
     ],
-    "attributes": { "data": "allow" }
+    "attributes": { "data": "towel" }
+  },
+  {
+    "type": "div",
+    "content": ["[ broun  ]"],
+    "attributes": { "data": "brown" }
+  },
+  {
+    "type": "div",
+    "content": ["[ kroud  ]"],
+    "attributes": { "data": "crowd" }
   },
   {
     "type": "div",
@@ -7976,12 +7980,18 @@
       "[ ",
       {
         "type": "span",
-        "content": ["shou"],
+        "content": ["doun"],
         "attributes": { "class": "bold" }
       },
-      "-er  ]"
+      "-",
+      {
+        "type": "span",
+        "content": ["toun"],
+        "attributes": { "class": "bold" }
+      },
+      "  ]"
     ],
-    "attributes": { "data": "shower" }
+    "attributes": { "data": "downtown" }
   },
   { "type": "div", "content": ["[ hair  ]"], "attributes": { "data": "hair" } },
   { "type": "div", "content": ["[ fair  ]"], "attributes": { "data": "fair" } },
@@ -8187,7 +8197,6 @@
     ],
     "attributes": { "data": "underwear" }
   },
-  { "type": "div", "content": ["[ teer  ]"], "attributes": { "data": "tear" } },
   { "type": "div", "content": ["[ beer  ]"], "attributes": { "data": "beer" } },
   {
     "type": "div",
@@ -8292,6 +8301,7 @@
     "attributes": { "data": "appear" }
   },
   { "type": "div", "content": ["[ feer  ]"], "attributes": { "data": "fear" } },
+  { "type": "div", "content": ["[ teer  ]"], "attributes": { "data": "tear" } },
   { "type": "div", "content": ["[ neer  ]"], "attributes": { "data": "near" } },
   {
     "type": "div",
@@ -8854,15 +8864,132 @@
   {
     "type": "div",
     "content": [
-      "[ sh",
+      "[ p",
       {
         "type": "span",
         "content": ["oo"],
         "attributes": { "class": "italic" }
       },
-      "r, shur  ]"
+      "l  ]"
     ],
-    "attributes": { "data": "sure" }
+    "attributes": { "data": "pull" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ f",
+      {
+        "type": "span",
+        "content": ["oo"],
+        "attributes": { "class": "italic" }
+      },
+      "l  ]"
+    ],
+    "attributes": { "data": "full" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ p",
+      {
+        "type": "span",
+        "content": ["oo"],
+        "attributes": { "class": "italic" }
+      },
+      "sh  ]"
+    ],
+    "attributes": { "data": "push" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["uh"], "attributes": { "class": "bold" } },
+      "-oh  ]"
+    ],
+    "attributes": { "data": "uh-oh" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ in-tr",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "-",
+      {
+        "type": "span",
+        "content": ["doos"],
+        "attributes": { "class": "bold" }
+      },
+      ", -",
+      {
+        "type": "span",
+        "content": ["dyoos"],
+        "attributes": { "class": "bold" }
+      },
+      "  ]"
+    ],
+    "attributes": { "data": "introduce" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      {
+        "type": "span",
+        "content": [
+          "sh",
+          {
+            "type": "span",
+            "content": ["oo"],
+            "attributes": { "class": "italic" }
+          },
+          "g"
+        ],
+        "attributes": { "class": "bold" }
+      },
+      "-er  ]"
+    ],
+    "attributes": { "data": "sugar" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      {
+        "type": "span",
+        "content": [
+          "b",
+          {
+            "type": "span",
+            "content": ["oo"],
+            "attributes": { "class": "italic" }
+          },
+          "l"
+        ],
+        "attributes": { "class": "bold" }
+      },
+      "-ee  ]"
+    ],
+    "attributes": { "data": "bully" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["foh"], "attributes": { "class": "bold" } },
+      "-k",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "s  ]"
+    ],
+    "attributes": { "data": "focus" }
   },
   {
     "type": "div",
@@ -9980,6 +10107,47 @@
       "l  ]"
     ],
     "attributes": { "data": "helpful" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ dih-",
+      {
+        "type": "span",
+        "content": ["lahyt"],
+        "attributes": { "class": "bold" }
+      },
+      "-f",
+      {
+        "type": "span",
+        "content": ["uh"],
+        "attributes": { "class": "italic" }
+      },
+      "l  ]"
+    ],
+    "attributes": { "data": "delightful" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      { "type": "span", "content": ["en"], "attributes": { "class": "bold" } },
+      "-ee-thing  ]"
+    ],
+    "attributes": { "data": "anything" }
+  },
+  {
+    "type": "div",
+    "content": [
+      "[ ",
+      {
+        "type": "span",
+        "content": ["nuhth"],
+        "attributes": { "class": "bold" }
+      },
+      "-ing  ]"
+    ],
+    "attributes": { "data": "nothing" }
   },
   {
     "type": "div",

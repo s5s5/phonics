@@ -23,7 +23,7 @@ export default function useMeaning() {
       }
       return <span key={nanoid()}>{word}</span>;
     });
-    return <div className="text-2xl font-playpen font-bold">{wl}</div>;
+    return <div className="text-2xl font-playpen font-bold mx-1">{wl}</div>;
   }, [wordObj]);
 
   const pronunciationMain = useMemo(() => {
@@ -56,7 +56,7 @@ export default function useMeaning() {
   const meaningMain = useMemo(() => {
     const { chinese_meanings } = wordObj;
     if (!chinese_meanings) return null;
-    return <div>{chinese_meanings}</div>;
+    return <div className="mx-1">{chinese_meanings}</div>;
   }, [wordObj]);
 
   const showMeaning = useCallback((wordObj: any) => {
@@ -72,7 +72,7 @@ export default function useMeaning() {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-20 left-1 right-1 rounded p-1 bg-gray-950/75 text-white text-center">
+      <div className="fixed z-20 bottom-20 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
         {wordMain}
         {pronunciationMain}
         {meaningMain}

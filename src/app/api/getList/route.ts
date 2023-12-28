@@ -155,9 +155,164 @@ export async function GET() {
   const newLIST = LIST.map((item: any) => {
     const { grapheme, phoneme } = item;
     const words = dict?.filter((item: any) => {
+      if (["blowjob"].includes(item.word)) return false;
+      // y and i
+      if (grapheme === "y" && phoneme === "i") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /i$/.test(p),
+        );
+        return (
+          pIndex !== -1 && /y$/.test(item.word) && getVowels(item.word) > 1
+        );
+      }
+
+      // y and aɪ
+      if (grapheme === "y" && phoneme === "aɪ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /aɪ$/.test(p),
+        );
+        return pIndex !== -1 && /y$/.test(item.word);
+      }
+
+      // ow and oʊ
+      if (grapheme === "ow" && phoneme === "oʊ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /oʊ$/.test(p),
+        );
+        return pIndex !== -1 && /ow$/.test(item.word);
+      }
+
+      // ue and ju
+      if (grapheme === "ue" && phoneme === "ju") {
+        if (["due", "unique"].includes(item.word)) return false;
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ju/.test(p),
+        );
+        return (
+          pIndex !== -1 && /ue/.test(item.word) && !/[sl]ue/.test(item.word)
+        );
+      }
+
+      // ue and u
+      if (grapheme === "ue" && phoneme === "u") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /u/.test(p),
+        );
+        return pIndex !== -1 && /[sl]ue/.test(item.word);
+      }
+
+      // th and θ
+      if (grapheme === "th" && phoneme === "θ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /θ/.test(p),
+        );
+        return (
+          pIndex !== -1 && (/^th/.test(item.word) || /th$/.test(item.word))
+        );
+      }
+
+      // ue and u
+      if (grapheme === "ue" && phoneme === "u") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /u/.test(p),
+        );
+        return pIndex !== -1 && /[sl]ue/.test(item.word);
+      }
+
+      // gh and f
+      if (grapheme === "gh" && phoneme === "f") {
+        if (item.word.includes("f")) return false;
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /f/.test(p),
+        );
+        return pIndex !== -1 && /gh/.test(item.word);
+      }
+
+      // c and s
+      if (grapheme === "c" && phoneme === "s") {
+        if (item.word.includes("s")) return false;
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /s/.test(p),
+        );
+        return (
+          pIndex !== -1 &&
+          (/[iey]c/.test(item.word) || /c[iey]/.test(item.word))
+        );
+      }
+
+      // g and dʒ
+      if (grapheme === "g" && phoneme === "dʒ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /dʒ/.test(p),
+        );
+        return (
+          pIndex !== -1 &&
+          (/[iey]g/.test(item.word) || /g[iey]/.test(item.word))
+        );
+      }
+
+      // or and ɝ
+      if (grapheme === "or" && phoneme === "ɝ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ɝ/.test(p),
+        );
+        return (
+          pIndex !== -1 && (/wor/.test(item.word) || /or$/.test(item.word))
+        );
+      }
+
+      // or and ɔɹ
+      if (grapheme === "or" && phoneme === "ɔɹ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ɔɹ/.test(p),
+        );
+        return pIndex !== -1 && /(?<=\w)or(?=\w)/.test(item.word);
+      }
+
+      // ow and aʊ
+      if (grapheme === "ow" && phoneme === "aʊ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /aʊ/.test(p),
+        );
+        return pIndex !== -1 && /(?<=\w)ow(?=\w)/.test(item.word);
+      }
+
+      // ear and ɛɹ
+      if (grapheme === "ear" && phoneme === "ɛɹ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ɛɹ/.test(p),
+        );
+        return pIndex !== -1 && /[bpw]ear/.test(item.word);
+      }
+
+      // ear and ɪɹ
+      if (grapheme === "ear" && phoneme === "ɪɹ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ɪɹ/.test(p),
+        );
+        return pIndex !== -1 && /ear$/.test(item.word);
+      }
+
+      // u and ʊ
+      if (grapheme === "u" && phoneme === "ʊ") {
+        const pIndex = item.american_phonetic.findIndex((p: string) =>
+          /ʊ/.test(p),
+        );
+        return (
+          pIndex !== -1 &&
+          /u/.test(item.word) &&
+          !/ou/.test(item.word) &&
+          !/ur/.test(item.word)
+        );
+      }
+
       let testGrapheme = item.word.includes(grapheme);
       if (grapheme.includes("_")) {
-        const regex = new RegExp(grapheme.replace("_", "."), "gi");
+        let regex = new RegExp(grapheme.replace("_", "."), "gi");
+        // u_e and u
+        if (grapheme === "u_e" && phoneme === "u") {
+          regex = new RegExp(/[jlrs]u.e/, "gi");
+        }
         testGrapheme = regex.test(item.word);
       }
 
@@ -250,3 +405,8 @@ const sliceMeaning = (meaning: string, pos: string) => {
   }
   return [{ w: clearMeaning }];
 };
+
+function getVowels(str: string) {
+  var m = str.match(/[aeiou]/gi);
+  return m === null ? 0 : m.length;
+}

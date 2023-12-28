@@ -4089,7 +4089,6 @@ export const PHONICS_LIST = [
         pronunciation: [["rob"]],
         chinese_meanings: "抢劫，抢夺，掠夺，非法剥夺，使丧失",
       },
-      { rank: 3076, word: "blowjob" },
       {
         rank: 4445,
         word: "object",
@@ -4102,6 +4101,12 @@ export const PHONICS_LIST = [
         pronunciation: [["mob"]],
         chinese_meanings:
           "暴徒，犯罪团伙，黑手党，民众，乌合之众，〈美俚〉匪帮，一群罪犯",
+      },
+      {
+        rank: 3316,
+        word: "hobby",
+        pronunciation: [[{ style: "bold", text: "hob" }, "-ee"]],
+        chinese_meanings: "业余爱好，嗜好，兴趣，小马",
       },
     ],
   },
@@ -5050,6 +5055,7 @@ export const PHONICS_LIST = [
     phoneme: "ju",
     grapheme: "u_e",
     graphemeType: "LongVowel+",
+    tips: "u_e 一般情况",
     words: [
       {
         rank: 151,
@@ -5143,7 +5149,6 @@ export const PHONICS_LIST = [
           "葬礼，丧礼，〈比喻〉不愉快的事，操心的事，有关系的事",
       },
     ],
-    tips: "u_e 一般情况",
   },
   {
     phoneme: "u",
@@ -5151,36 +5156,6 @@ export const PHONICS_LIST = [
     graphemeType: "LongVowel+",
     tips: "u_e 在 j , l , r , s 这四个字母后",
     words: [
-      {
-        rank: 151,
-        word: "use",
-        pronunciation: [["yooz"], ["yoost"]],
-        chinese_meanings: "使用，使用权，功能",
-      },
-      {
-        rank: 192,
-        word: "minute",
-        pronunciation: [[{ style: "bold", text: "min" }, "-it"]],
-        chinese_meanings: "分，分钟，瞬间，片刻，备忘录，会议记录",
-      },
-      {
-        rank: 290,
-        word: "excuse",
-        pronunciation: [["ik-", { style: "bold", text: "skyooz" }]],
-        chinese_meanings: "原谅，为…申辩，免除，宽免，给…免去",
-      },
-      {
-        rank: 438,
-        word: "dude",
-        pronunciation: [["dood"], ["dyood"]],
-        chinese_meanings: "<美国、加拿大>纨绔子弟，花花公子，<俚>男人，家伙",
-      },
-      {
-        rank: 477,
-        word: "cute",
-        pronunciation: [["kyoot"]],
-        chinese_meanings: "漂亮的，娇小可爱的，机灵的，精明的，矫揉造作的",
-      },
       {
         rank: 2408,
         word: "rule",
@@ -5208,25 +5183,74 @@ export const PHONICS_LIST = [
         chinese_meanings: "绝对地，完全地，毫无疑问地，语独立地，分离地",
       },
       {
-        rank: 647,
-        word: "student",
+        rank: 1042,
+        word: "assume",
         pronunciation: [
-          [{ style: "bold", text: "stood" }, "-nt"],
-          [{ style: "bold", text: "styood" }, "-"],
+          [
+            { style: "italic", text: "uh" },
+            "-",
+            { style: "bold", text: "soom" },
+          ],
         ],
-        chinese_meanings: "学生，大学生，研究者，学者，中学生，<美俚>初学者",
+        chinese_meanings: "假定，认为，承担，装出，呈现",
       },
       {
-        rank: 680,
-        word: "huge",
-        pronunciation: [["hyooj"], ["yooj"]],
-        chinese_meanings: "巨大的，庞大的，极大的",
+        rank: 1206,
+        word: "super",
+        pronunciation: [[{ style: "bold", text: "soo" }, "-per"]],
+        chinese_meanings:
+          "超级的，极度的，过分的，超等的，极好的，面积的，平方的",
       },
       {
-        rank: 795,
-        word: "future",
-        pronunciation: [[{ style: "bold", text: "fyoo" }, "-cher"]],
-        chinese_meanings: "将来的，未来的，语法学将来时的",
+        rank: 1637,
+        word: "rude",
+        pronunciation: [["rood"]],
+        chinese_meanings: "粗鲁的，简陋的，狂暴的，近乎下流的",
+      },
+      {
+        rank: 2096,
+        word: "include",
+        pronunciation: [["in-", { style: "bold", text: "klood" }]],
+        chinese_meanings: "包括，包含，计入，包住",
+      },
+      {
+        rank: 2934,
+        word: "superhero",
+        pronunciation: [[{ style: "bold", text: "soo" }, "-per-heer-oh"]],
+        chinese_meanings: "超级英雄",
+      },
+      {
+        rank: 3252,
+        word: "flute",
+        pronunciation: [["floot"]],
+        chinese_meanings:
+          "长笛，长笛吹奏者，细长香槟杯，（柱上的）凹槽，（女服的）管状裙褶",
+      },
+      {
+        rank: 3441,
+        word: "supermarket",
+        pronunciation: [[{ style: "bold", text: "soo" }, "-per-mahr-kit"]],
+        chinese_meanings: "超级市场，自动售货商店",
+      },
+      {
+        rank: 3511,
+        word: "absolute",
+        pronunciation: [
+          [
+            { style: "bold", text: "ab" },
+            "-s",
+            { style: "italic", text: "uh" },
+            "-loot",
+          ],
+          [
+            "ab-s",
+            { style: "italic", text: "uh" },
+            "-",
+            { style: "bold", text: "loot" },
+          ],
+        ],
+        chinese_meanings:
+          "绝对的，完全的，不受任何限制约束的，无条件的，有无上权力或权威的",
       },
     ],
   },
@@ -5740,58 +5764,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "真，真正，实在，果真，实际上，事实上",
       },
       {
-        rank: 106,
-        word: "sorry",
-        pronunciation: [
-          [{ style: "bold", text: "sor" }, "-ee"],
-          [{ style: "bold", text: "sawr" }, "-ee"],
-        ],
-        chinese_meanings: "对不起的，无价值的，低等的，遗憾的，感到伤心的",
-      },
-      {
-        rank: 116,
-        word: "very",
-        pronunciation: [[{ style: "bold", text: "ver" }, "-ee"]],
-        chinese_meanings: "很，非常，恰好是，正是，十足的，特有的",
-      },
-      {
-        rank: 123,
-        word: "maybe",
-        pronunciation: [[{ style: "bold", text: "mey" }, "-bee"]],
-        chinese_meanings: "也许，可能，大概",
-      },
-      {
-        rank: 141,
-        word: "any",
-        pronunciation: [[{ style: "bold", text: "en" }, "-ee"]],
-        chinese_meanings: "任何的，一点，一些，普通的，任何，随便哪一个",
-      },
-      {
-        rank: 160,
-        word: "anything",
-        pronunciation: [[{ style: "bold", text: "en" }, "-ee-thing"]],
-        chinese_meanings:
-          "任何东西，（用于否定句、疑问句中以及if或whether和prevent、ban、avoid等动词后，代替something）任何东西，重要东西，重要事物",
-      },
-      {
-        rank: 161,
-        word: "only",
-        pronunciation: [[{ style: "bold", text: "ohn" }, "-lee"]],
-        chinese_meanings: "唯一的，仅有的，最好的，最适当的",
-      },
-      {
-        rank: 162,
-        word: "baby",
-        pronunciation: [[{ style: "bold", text: "bey" }, "-bee"]],
-        chinese_meanings: "婴儿，婴孩，幼崽，宝贝儿",
-      },
-      {
-        rank: 187,
-        word: "always",
-        pronunciation: [[{ style: "bold", text: "awl" }, "-weyz"], ["-weez"]],
-        chinese_meanings: "总是，老是，永远，始终，常常，不断地",
-      },
-      {
         rank: 193,
         word: "actually",
         pronunciation: [
@@ -5803,6 +5775,69 @@ export const PHONICS_LIST = [
           ],
         ],
         chinese_meanings: "实际上，事实上，确实，竟",
+      },
+      {
+        rank: 200,
+        word: "every",
+        pronunciation: [[{ style: "bold", text: "ev" }, "-ree"]],
+        chinese_meanings: "每个，每，所有可能的，充足的",
+      },
+      {
+        rank: 202,
+        word: "money",
+        pronunciation: [[{ style: "bold", text: "muhn" }, "-ee"]],
+        chinese_meanings: "钱，财富，薪水，款项",
+      },
+      {
+        rank: 239,
+        word: "family",
+        pronunciation: [
+          [
+            { style: "bold", text: "fam" },
+            "-",
+            { style: "italic", text: "uh" },
+            "-lee",
+          ],
+          [{ style: "bold", text: "fam" }, "-lee"],
+        ],
+        chinese_meanings: "家庭，家族，孩子，祖先",
+      },
+      {
+        rank: 246,
+        word: "everybody",
+        pronunciation: [
+          [{ style: "bold", text: "ev" }, "-ree-bod-ee"],
+          ["-buhd-ee"],
+        ],
+        chinese_meanings: "每人，人人，大伙儿，各位",
+      },
+      {
+        rank: 270,
+        word: "honey",
+        pronunciation: [[{ style: "bold", text: "huhn" }, "-ee"]],
+        chinese_meanings: "蜂蜜，<口>宝贝，可爱的人",
+      },
+      {
+        rank: 297,
+        word: "ready",
+        pronunciation: [[{ style: "bold", text: "red" }, "-ee"]],
+        chinese_meanings: "准备好的，现成的，即时的，敏捷的，情愿的，即将的",
+      },
+      {
+        rank: 303,
+        word: "already",
+        pronunciation: [["awl-", { style: "bold", text: "red" }, "-ee"]],
+        chinese_meanings: "早已，已经，先前",
+      },
+      {
+        rank: 320,
+        word: "somebody",
+        pronunciation: [
+          [{ style: "bold", text: "suhm" }, "-bod-ee"],
+          ["-buhd-ee"],
+          ["-b", { style: "italic", text: "uh" }, "-dee"],
+        ],
+        chinese_meanings: "某人，有人",
       },
     ],
   },
@@ -6022,28 +6057,29 @@ export const PHONICS_LIST = [
         chinese_meanings: "购买，购得",
       },
       {
-        rank: 325,
-        word: "eye",
-        pronunciation: [["ahy"]],
-        chinese_meanings: "眼睛，视力，眼状物，风纪扣扣眼",
+        rank: 524,
+        word: "cry",
+        pronunciation: [["krahy"]],
+        chinese_meanings: "哭，喊，叫",
       },
       {
-        rank: 335,
-        word: "myself",
-        pronunciation: [["mahy-", { style: "bold", text: "self" }]],
-        chinese_meanings: "我自己，亲自",
+        rank: 612,
+        word: "fly",
+        pronunciation: [["flahy"]],
+        chinese_meanings: "飞，飞行，（旗）飘荡，过得快",
       },
       {
-        rank: 396,
-        word: "finally",
-        pronunciation: [[{ style: "bold", text: "fahyn" }, "-l-ee"]],
-        chinese_meanings: "最后，终于，总算，末后，结果",
+        rank: 1528,
+        word: "sky",
+        pronunciation: [["skahy"]],
+        chinese_meanings: "天（空）",
       },
       {
-        rank: 457,
-        word: "bye",
-        pronunciation: [["bahy"]],
-        chinese_meanings: "再见，回头见",
+        rank: 1692,
+        word: "dry",
+        pronunciation: [["drahy"]],
+        chinese_meanings:
+          "干的干燥的，干旱的，干旱的，口渴的，干咳的，无趣味的，枯燥的",
       },
     ],
   },
@@ -6134,12 +6170,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "给…看，表现出，显露出，上演",
       },
       {
-        rank: 1026,
-        word: "own",
-        pronunciation: [["ohn"]],
-        chinese_meanings: "自己的事物，自己人",
-      },
-      {
         rank: 314,
         word: "tomorrow",
         pronunciation: [
@@ -6184,6 +6214,12 @@ export const PHONICS_LIST = [
         word: "window",
         pronunciation: [[{ style: "bold", text: "win" }, "-doh"]],
         chinese_meanings: "窗，窗户，窗口，〈美俚〉眼镜",
+      },
+      {
+        rank: 1145,
+        word: "low",
+        pronunciation: [["loh"]],
+        chinese_meanings: "低的，矮小的，楼下的，低洼的，沮丧的，下贱的",
       },
     ],
   },
@@ -6275,12 +6311,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "持续，逗留，维持原状",
       },
       {
-        rank: 1520,
-        word: "due",
-        pronunciation: [["doo"], ["dyoo"]],
-        chinese_meanings: "由于，适当的，预定，到期",
-      },
-      {
         rank: 1665,
         word: "Tuesday",
         pronunciation: [
@@ -6288,12 +6318,6 @@ export const PHONICS_LIST = [
           ["-dee"],
           [{ style: "bold", text: "tyooz" }, "-"],
         ],
-      },
-      {
-        rank: 3589,
-        word: "value",
-        pronunciation: [[{ style: "bold", text: "val" }, "-yoo"]],
-        chinese_meanings: "价值，价格，意义，涵义，重要性，（邮票的）面值",
       },
       {
         rank: 2613,
@@ -6308,15 +6332,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "烤架，户外烧烤",
       },
       {
-        rank: 2885,
-        word: "tissue",
-        pronunciation: [
-          [{ style: "bold", text: "tish" }, "-oo"],
-          [{ style: "bold", text: "tis" }, "-yoo"],
-        ],
-        chinese_meanings: "薄纸，棉纸，生组织，一套",
-      },
-      {
         rank: 3021,
         word: "rescue",
         pronunciation: [[{ style: "bold", text: "res" }, "-kyoo"]],
@@ -6328,13 +6343,6 @@ export const PHONICS_LIST = [
         pronunciation: [["kyoo"]],
         chinese_meanings: "暗示，提示，线索，台球杆，情绪，心情",
       },
-      {
-        rank: 5054,
-        word: "unique",
-        pronunciation: [["yoo-", { style: "bold", text: "neek" }]],
-        chinese_meanings:
-          "唯一的，仅有的，独一无二的，独特的，不平常的，特别的，超绝",
-      },
     ],
   },
   {
@@ -6343,7 +6351,6 @@ export const PHONICS_LIST = [
     graphemeType: "LongVowel+",
     tips: "ue 遇到字母 s , l",
     words: [
-      { rank: 354, word: "true", pronunciation: [["troo"]] },
       {
         rank: 764,
         word: "blue",
@@ -6361,40 +6368,11 @@ export const PHONICS_LIST = [
         chinese_meanings: "问题，（报刊的）期，号，发行物，流出",
       },
       {
-        rank: 1142,
-        word: "continue",
-        pronunciation: [
-          [
-            "k",
-            { style: "italic", text: "uh" },
-            "n-",
-            { style: "bold", text: "tin" },
-            "-yoo",
-          ],
-        ],
-        chinese_meanings: "持续，逗留，维持原状",
-      },
-      {
         rank: 1477,
         word: "sue",
         pronunciation: [["soo"]],
         chinese_meanings:
           "控告，控诉，和…打官司，请求，起诉，提起（诉讼）要求判决",
-      },
-      {
-        rank: 1520,
-        word: "due",
-        pronunciation: [["doo"], ["dyoo"]],
-        chinese_meanings: "由于，适当的，预定，到期",
-      },
-      {
-        rank: 1665,
-        word: "Tuesday",
-        pronunciation: [
-          [{ style: "bold", text: "tooz" }, "-dey"],
-          ["-dee"],
-          [{ style: "bold", text: "tyooz" }, "-"],
-        ],
       },
       {
         rank: 3589,
@@ -6410,10 +6388,39 @@ export const PHONICS_LIST = [
           "线索，提示，（帮助警方破案的）线索，（纵横填字谜、游戏或问题的）提示词语",
       },
       {
-        rank: 2106,
-        word: "statue",
-        pronunciation: [[{ style: "bold", text: "stach" }, "-oo"]],
-        chinese_meanings: "雕像，塑像",
+        rank: 2635,
+        word: "glue",
+        pronunciation: [["gloo"]],
+        chinese_meanings: "胶合，紧附于",
+      },
+      {
+        rank: 2885,
+        word: "tissue",
+        pronunciation: [
+          [{ style: "bold", text: "tish" }, "-oo"],
+          [{ style: "bold", text: "tis" }, "-yoo"],
+        ],
+        chinese_meanings: "薄纸，棉纸，生组织，一套",
+      },
+      { rank: 3884, word: "blues", pronunciation: [["blooz"]] },
+      {
+        rank: 4398,
+        word: "pursue",
+        pronunciation: [["per-", { style: "bold", text: "soo" }]],
+        chinese_meanings: "继续，追求，进行，追捕",
+      },
+      {
+        rank: 4440,
+        word: "influence",
+        pronunciation: [
+          [
+            { style: "bold", text: "in" },
+            "-floo-",
+            { style: "italic", text: "uh" },
+            "ns",
+          ],
+        ],
+        chinese_meanings: "影响，势力，有影响的人（或事物），占星学星力",
       },
     ],
   },
@@ -8376,29 +8383,10 @@ export const PHONICS_LIST = [
         chinese_meanings: "事件，形势，东西，事物，家伙，事业",
       },
       {
-        rank: 98,
-        word: "something",
-        pronunciation: [[{ style: "bold", text: "suhm" }, "-thing"]],
-        chinese_meanings: "某物，某事，重要的事物人，有一定意义的事物",
-      },
-      {
         rank: 119,
         word: "thank",
         pronunciation: [["thangk"]],
         chinese_meanings: "谢谢，感谢，责怪，把…归于",
-      },
-      {
-        rank: 160,
-        word: "anything",
-        pronunciation: [[{ style: "bold", text: "en" }, "-ee-thing"]],
-        chinese_meanings:
-          "任何东西，（用于否定句、疑问句中以及if或whether和prevent、ban、avoid等动词后，代替something）任何东西，重要东西，重要事物",
-      },
-      {
-        rank: 176,
-        word: "nothing",
-        pronunciation: [[{ style: "bold", text: "nuhth" }, "-ing"]],
-        chinese_meanings: "没有东西，没有事情，无关紧要的东西，毫无趣味的事",
       },
       {
         rank: 188,
@@ -8412,10 +8400,28 @@ export const PHONICS_LIST = [
         chinese_meanings: "感谢，谢谢，感谢，谢谢，道谢的话(thank的名词复数)",
       },
       {
-        rank: 201,
-        word: "everything",
-        pronunciation: [[{ style: "bold", text: "ev" }, "-ree-thing"]],
-        chinese_meanings: "每件事物，最重要的东西，（有关的）一切，万事",
+        rank: 236,
+        word: "through",
+        pronunciation: [["throo"]],
+        chinese_meanings: "通过，穿过，经由，透过，凭借",
+      },
+      {
+        rank: 331,
+        word: "throw",
+        pronunciation: [["throh"]],
+        chinese_meanings: "投掷，丢，抛",
+      },
+      {
+        rank: 347,
+        word: "both",
+        pronunciation: [["bohth"]],
+        chinese_meanings: "二者，两者都",
+      },
+      {
+        rank: 376,
+        word: "month",
+        pronunciation: [["muhnth"]],
+        chinese_meanings: "月，月份，一个月的时间",
       },
     ],
   },
@@ -8726,12 +8732,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "足够地，充足地，十分地",
       },
       {
-        rank: 453,
-        word: "fight",
-        pronunciation: [["fahyt"]],
-        chinese_meanings: "战斗，斗争，打架，吵架",
-      },
-      {
         rank: 575,
         word: "laugh",
         pronunciation: [["laf"], ["lahf"]],
@@ -8745,31 +8745,11 @@ export const PHONICS_LIST = [
           "坚强的，坚韧的，不屈不挠的，艰苦的，困难的，难办的，牢固的，强壮的，粗暴的",
       },
       {
-        rank: 1128,
-        word: "flight",
-        pronunciation: [["flahyt"]],
-        chinese_meanings: "（物体的）飞行，航班，飞翔，楼梯的一段",
-      },
-      {
         rank: 1747,
         word: "rough",
         pronunciation: [["ruhf"]],
         chinese_meanings:
           "粗糙的，崎岖不平的，粗鲁的，狂暴的，汹涌的，未经加工的",
-      },
-      {
-        rank: 2631,
-        word: "delightful",
-        pronunciation: [
-          [
-            "dih-",
-            { style: "bold", text: "lahyt" },
-            "-f",
-            { style: "italic", text: "uh" },
-            "l",
-          ],
-        ],
-        chinese_meanings: "令人非常高兴的，讨人喜欢的，令人愉快的，宜人",
       },
       {
         rank: 3085,
@@ -8786,12 +8766,6 @@ export const PHONICS_LIST = [
         word: "cough",
         pronunciation: [["kawf"], ["kof"]],
         chinese_meanings: "咳嗽，（引擎等）发噗噗声，咳出",
-      },
-      {
-        rank: 3309,
-        word: "frighten",
-        pronunciation: [[{ style: "bold", text: "frahyt" }, "-n"]],
-        chinese_meanings: "使惊恐，使恐慌，吓走，赶走",
       },
     ],
   },
@@ -8958,53 +8932,10 @@ export const PHONICS_LIST = [
         chinese_meanings: "位，地方，职位，座位",
       },
       {
-        rank: 210,
-        word: "school",
-        pronunciation: [["skool"]],
-        chinese_meanings: "学校，上学，学院，群",
-      },
-      {
-        rank: 252,
-        word: "course",
-        pronunciation: [["kawrs"], ["kohrs"]],
-        chinese_meanings: "课程，航线，行动方向，一道菜",
-      },
-      {
-        rank: 930,
-        word: "second",
-        pronunciation: [
-          [
-            { style: "bold", text: "sek" },
-            "-",
-            { style: "italic", text: "uh" },
-            "nd",
-          ],
-        ],
-        chinese_meanings: "秒，瞬间，次货，第二份食物",
-      },
-      {
-        rank: 290,
-        word: "excuse",
-        pronunciation: [["ik-", { style: "bold", text: "skyooz" }]],
-        chinese_meanings: "原谅，为…申辩，免除，宽免，给…免去",
-      },
-      {
         rank: 319,
         word: "once",
         pronunciation: [["wuhns"]],
         chinese_meanings: "一次，一趟，一倍，曾经，一旦",
-      },
-      {
-        rank: 324,
-        word: "such",
-        pronunciation: [["suhch"]],
-        chinese_meanings: "这样的，如此的，这么大的，非常的",
-      },
-      {
-        rank: 330,
-        word: "since",
-        pronunciation: [["sins"]],
-        chinese_meanings: "从…以来，自从…之后，自从",
       },
       {
         rank: 350,
@@ -9014,6 +8945,43 @@ export const PHONICS_LIST = [
           [{ style: "bold", text: "of" }, "-is"],
         ],
         chinese_meanings: "办公室，办公楼，问询处，重要官职",
+      },
+      {
+        rank: 473,
+        word: "face",
+        pronunciation: [["feys"]],
+        chinese_meanings: "面容，表面，脸，方面",
+      },
+      {
+        rank: 434,
+        word: "city",
+        pronunciation: [[{ style: "bold", text: "sit" }, "-ee"]],
+        chinese_meanings:
+          "城市，全市居民，（由国王或女王授予特权，通常有大教堂的）特许市，（由政府授予特权的）特权市",
+      },
+      {
+        rank: 444,
+        word: "dance",
+        pronunciation: [["dans"], ["dahns"]],
+        chinese_meanings: "跳舞，舞会，舞蹈艺术，舞曲",
+      },
+      {
+        rank: 450,
+        word: "chance",
+        pronunciation: [["chans"], ["chahns"]],
+        chinese_meanings: "机会，机遇，概率，可能性，偶然，运气",
+      },
+      {
+        rank: 469,
+        word: "decide",
+        pronunciation: [["dih-", { style: "bold", text: "sahyd" }]],
+        chinese_meanings: "决定，决心，解决，裁决",
+      },
+      {
+        rank: 547,
+        word: "piece",
+        pronunciation: [["pees"]],
+        chinese_meanings: "块，片，段，部分，部件，文章，音乐作品",
       },
     ],
   },
@@ -9427,7 +9395,7 @@ export const PHONICS_LIST = [
     phoneme: "ɝ",
     grapheme: "or",
     graphemeType: "Other",
-    tips: "or 在单词结尾",
+    tips: "or 在单词结尾；在字母 w 后面",
     words: [
       {
         rank: 26,
@@ -9454,12 +9422,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "世界，地球，领域，尘世",
       },
       {
-        rank: 256,
-        word: "forget",
-        pronunciation: [["fer-", { style: "bold", text: "get" }]],
-        chinese_meanings: "忘记，忘却，忽略，疏忽，遗落，忘掉",
-      },
-      {
         rank: 261,
         word: "doctor",
         pronunciation: [[{ style: "bold", text: "dok" }, "-ter"]],
@@ -9481,19 +9443,23 @@ export const PHONICS_LIST = [
         chinese_meanings: "单词，话语，诺言，消息",
       },
       {
-        rank: 523,
-        word: "order",
-        pronunciation: [[{ style: "bold", text: "awr" }, "-der"]],
-        chinese_meanings: "命令，秩序，规则，制度，次序",
+        rank: 767,
+        word: "favor",
+        pronunciation: [[{ style: "bold", text: "fey" }, "-ver"]],
+        chinese_meanings: "好感，宠爱，关切，欢心",
       },
       {
-        rank: 677,
-        word: "forever",
-        pronunciation: [
-          ["fawr-", { style: "bold", text: "ev" }, "-er"],
-          ["fer-"],
-        ],
-        chinese_meanings: "永远，不断地，无休止地，老是，经常",
+        rank: 781,
+        word: "worth",
+        pronunciation: [["wurth"]],
+        chinese_meanings: "值得的，有…的价值，等值的，有…的财产",
+      },
+      {
+        rank: 865,
+        word: "mayor",
+        pronunciation: [[{ style: "bold", text: "mey" }, "-er"], ["mair"]],
+        chinese_meanings:
+          "市长，镇长，（英格兰、威尔士和北爱尔兰由议员选举产生的）镇长，（民选的）市长",
       },
     ],
   },
@@ -9503,18 +9469,6 @@ export const PHONICS_LIST = [
     graphemeType: "Other",
     tips: "or 在单词中间",
     words: [
-      {
-        rank: 26,
-        word: "for",
-        pronunciation: [["fawr"]],
-        chinese_meanings: "为，为了，倾向于，关于，当作",
-      },
-      {
-        rank: 95,
-        word: "or",
-        pronunciation: [["awr"]],
-        chinese_meanings: "或，或者，还是，不然，否则，左右",
-      },
       {
         rank: 110,
         word: "more",
@@ -9561,90 +9515,29 @@ export const PHONICS_LIST = [
         chinese_meanings: "（不）再，目前，现在，今后",
       },
       {
-        rank: 371,
-        word: "door",
-        pronunciation: [["dawr"], ["dohr"]],
-        chinese_meanings: "门，户，出入口，一家户，通道",
-      },
-      {
         rank: 400,
         word: "important",
         pronunciation: [["im-", { style: "bold", text: "pawr" }, "-tnt"]],
         chinese_meanings: "重要的，权威的，有势力的，有地位的",
       },
-    ],
-  },
-  {
-    phoneme: "ɝ",
-    grapheme: "or",
-    graphemeType: "Other",
-    tips: "or 在字母 w 后面",
-    words: [
       {
-        rank: 26,
-        word: "for",
-        pronunciation: [["fawr"]],
-        chinese_meanings: "为，为了，倾向于，关于，当作",
+        rank: 470,
+        word: "store",
+        pronunciation: [["stawr"]],
+        chinese_meanings: "商店，贮存物，仓库，大量",
       },
       {
-        rank: 95,
-        word: "or",
-        pronunciation: [["awr"]],
-        chinese_meanings: "或，或者，还是，不然，否则，左右",
+        rank: 2777,
+        word: "sort",
+        pronunciation: [["sawrt"]],
+        chinese_meanings: "分类，类别，品质，本性，方法，一群",
       },
       {
-        rank: 118,
-        word: "work",
-        pronunciation: [["wurk"]],
-        chinese_meanings: "使工作，使运作，操作，使产生效果",
-      },
-      {
-        rank: 231,
-        word: "world",
-        pronunciation: [["wurld"]],
-        chinese_meanings: "世界，地球，领域，尘世",
-      },
-      {
-        rank: 256,
-        word: "forget",
-        pronunciation: [["fer-", { style: "bold", text: "get" }]],
-        chinese_meanings: "忘记，忘却，忽略，疏忽，遗落，忘掉",
-      },
-      {
-        rank: 261,
-        word: "doctor",
-        pronunciation: [[{ style: "bold", text: "dok" }, "-ter"]],
-        chinese_meanings: "医生，大夫，博士，神学家，医疗设备",
-      },
-      {
-        rank: 280,
-        word: "worry",
-        pronunciation: [
-          [{ style: "bold", text: "wur" }, "-ee"],
-          [{ style: "bold", text: "wuhr" }, "-ee"],
-        ],
-        chinese_meanings: "烦恼，忧虑，担心，撕咬",
-      },
-      {
-        rank: 294,
-        word: "word",
-        pronunciation: [["wurd"]],
-        chinese_meanings: "单词，话语，诺言，消息",
-      },
-      {
-        rank: 523,
-        word: "order",
-        pronunciation: [[{ style: "bold", text: "awr" }, "-der"]],
-        chinese_meanings: "命令，秩序，规则，制度，次序",
-      },
-      {
-        rank: 677,
-        word: "forever",
-        pronunciation: [
-          ["fawr-", { style: "bold", text: "ev" }, "-er"],
-          ["fer-"],
-        ],
-        chinese_meanings: "永远，不断地，无休止地，老是，经常",
+        rank: 701,
+        word: "lord",
+        pronunciation: [["lawrd"]],
+        chinese_meanings:
+          "主，领主，上帝，（英国用以称呼法官、主教或某些男性贵族成员，表示尊敬）大人",
       },
     ],
   },
@@ -9916,19 +9809,6 @@ export const PHONICS_LIST = [
     tips: "ow 在单词中间",
     words: [
       {
-        rank: 47,
-        word: "now",
-        pronunciation: [["nou"]],
-        chinese_meanings:
-          "现在，其时，立刻，（改变话题或要对方做某事前，引起对方注意）喂",
-      },
-      {
-        rank: 54,
-        word: "how",
-        pronunciation: [["hou"]],
-        chinese_meanings: "怎样，健康状况如何，到何种地步，以任何方式",
-      },
-      {
         rank: 111,
         word: "down",
         pronunciation: [["doun"]],
@@ -9936,35 +9816,16 @@ export const PHONICS_LIST = [
           "（坐、倒、躺）下，向下，（表示范围或顺序的限度）下至",
       },
       {
-        rank: 189,
-        word: "wow",
-        pronunciation: [["wou"]],
-        chinese_meanings: "哇！呀！",
-      },
-      {
         rank: 345,
         word: "town",
         pronunciation: [["toun"]],
         chinese_meanings: "城镇，市镇，小村庄，城镇居民，商业中心",
       },
-      { rank: 379, word: "ow", pronunciation: [["ou"]] },
       {
         rank: 3860,
         word: "power",
         pronunciation: [[{ style: "bold", text: "pou" }, "-er"]],
         chinese_meanings: "机动力，功率，力量，政权，权力，强国，大国",
-      },
-      {
-        rank: 676,
-        word: "allow",
-        pronunciation: [
-          [
-            { style: "italic", text: "uh" },
-            "-",
-            { style: "bold", text: "lou" },
-          ],
-        ],
-        chinese_meanings: "允许，承认，给予，准许（做某事）",
       },
       {
         rank: 861,
@@ -9978,6 +9839,50 @@ export const PHONICS_LIST = [
         word: "shower",
         pronunciation: [[{ style: "bold", text: "shou" }, "-er"]],
         chinese_meanings: "阵雨，淋浴，淋浴器，一大批",
+      },
+      {
+        rank: 1024,
+        word: "flower",
+        pronunciation: [[{ style: "bold", text: "flou" }, "-er"]],
+        chinese_meanings: "花，精华，开花植物",
+      },
+      {
+        rank: 1181,
+        word: "towel",
+        pronunciation: [
+          [
+            { style: "bold", text: "tou" },
+            "-",
+            { style: "italic", text: "uh" },
+            "l",
+          ],
+          ["toul"],
+        ],
+        chinese_meanings: "毛巾，手巾，纸巾",
+      },
+      {
+        rank: 1408,
+        word: "brown",
+        pronunciation: [["broun"]],
+        chinese_meanings: "棕色的，褐色的，被晒黑的，未去壳的",
+      },
+      {
+        rank: 1575,
+        word: "crowd",
+        pronunciation: [["kroud"]],
+        chinese_meanings: "人群，群众，一群",
+      },
+      {
+        rank: 1679,
+        word: "downtown",
+        pronunciation: [
+          [
+            { style: "bold", text: "doun" },
+            "-",
+            { style: "bold", text: "toun" },
+          ],
+        ],
+        chinese_meanings: "市中心区，（市中）商业区",
       },
     ],
   },
@@ -10197,12 +10102,6 @@ export const PHONICS_LIST = [
         pronunciation: [[{ style: "bold", text: "uhn" }, "-der-wair"]],
         chinese_meanings: "衬衣，内衣",
       },
-      {
-        rank: 1262,
-        word: "tear",
-        pronunciation: [["teer"]],
-        chinese_meanings: "撕裂，拉掉，挣开，拉伤",
-      },
     ],
   },
   {
@@ -10326,12 +10225,6 @@ export const PHONICS_LIST = [
           ],
         ],
         chinese_meanings: "出现，显现，出庭，出场，演出，发表",
-      },
-      {
-        rank: 1009,
-        word: "clearly",
-        pronunciation: [[{ style: "bold", text: "kleer" }, "-lee"]],
-        chinese_meanings: "明亮地，明净地，明确地，显然地",
       },
       {
         rank: 2512,
@@ -10869,79 +10762,11 @@ export const PHONICS_LIST = [
     tips: "u 在 推、拉、放、满 时",
     words: [
       {
-        rank: 29,
-        word: "your",
-        pronunciation: [
-          ["y", { style: "italic", text: "oo" }, "r"],
-          ["yawr"],
-          ["yohr"],
-        ],
-        chinese_meanings: "你的，你们的，尊，玉，乃",
-      },
-      {
-        rank: 41,
-        word: "out",
-        pronunciation: [["out"]],
-        chinese_meanings: "出局，在外，在外部，完全，彻底，出版",
-      },
-      {
-        rank: 42,
-        word: "about",
-        pronunciation: [
-          [
-            { style: "italic", text: "uh" },
-            "-",
-            { style: "bold", text: "bout" },
-          ],
-        ],
-        chinese_meanings: "关于，大约，在…周围",
-      },
-      {
-        rank: 81,
-        word: "our",
-        pronunciation: [
-          ["ou", { style: "italic", text: "uh" }, "r"],
-          [{ style: "bold", text: "ou" }, "-er"],
-        ],
-        chinese_meanings: "我们的，we的所有格形式，<口>我们家，敝",
-      },
-      {
-        rank: 127,
-        word: "sure",
-        pronunciation: [["sh", { style: "italic", text: "oo" }, "r"], ["shur"]],
-        chinese_meanings: "确信的，确实的，有把握的，无疑的，一定的",
-      },
-      {
         rank: 132,
         word: "put",
         pronunciation: [["p", { style: "italic", text: "oo" }, "t"]],
         chinese_meanings:
           "放，表达，给予（重视、信任、价值等），使处于（某种状态）",
-      },
-      {
-        rank: 182,
-        word: "around",
-        pronunciation: [
-          [
-            { style: "italic", text: "uh" },
-            "-",
-            { style: "bold", text: "round" },
-          ],
-        ],
-        chinese_meanings: "大约，旋转，到处，四处，在周围",
-      },
-      {
-        rank: 207,
-        word: "house",
-        pronunciation: [["hous"]],
-        chinese_meanings:
-          "房屋，全家人，（从事某种生意的）公司，（英国）下议院",
-      },
-      {
-        rank: 271,
-        word: "sound",
-        pronunciation: [["sound"]],
-        chinese_meanings: "声音，声响，音调，声调，声波，嘈杂声",
       },
       {
         rank: 274,
@@ -10955,6 +10780,70 @@ export const PHONICS_LIST = [
           ],
         ],
         chinese_meanings: "假定，猜想，推测，认为，让（用于祈祷语气）",
+      },
+      {
+        rank: 465,
+        word: "pull",
+        pronunciation: [["p", { style: "italic", text: "oo" }, "l"]],
+        chinese_meanings: "拉，扯，拉过来，划（船）",
+      },
+      {
+        rank: 483,
+        word: "full",
+        pronunciation: [["f", { style: "italic", text: "oo" }, "l"]],
+        chinese_meanings: "满的，装满的，完全的，完整的，丰富的，详尽的",
+      },
+      {
+        rank: 698,
+        word: "push",
+        pronunciation: [["p", { style: "italic", text: "oo" }, "sh"]],
+        chinese_meanings: "推，推动",
+      },
+      {
+        rank: 829,
+        word: "uh-oh",
+        pronunciation: [[{ style: "bold", text: "uh" }, "-oh"]],
+        chinese_meanings: "呃喔",
+      },
+      {
+        rank: 1230,
+        word: "introduce",
+        pronunciation: [
+          [
+            "in-tr",
+            { style: "italic", text: "uh" },
+            "-",
+            { style: "bold", text: "doos" },
+          ],
+          ["-", { style: "bold", text: "dyoos" }],
+        ],
+        chinese_meanings: "提出，介绍，引进，作为…的开头",
+      },
+      {
+        rank: 1313,
+        word: "sugar",
+        pronunciation: [[{ style: "bold", text: "shoog" }, "-er"]],
+        chinese_meanings: "食糖，一匙糖，宝贝儿，亲爱的",
+      },
+      {
+        rank: 3338,
+        word: "bully",
+        pronunciation: [[{ style: "bold", text: "bool" }, "-ee"]],
+        chinese_meanings: "恐吓，威逼，盛气凌人，以强凌弱",
+      },
+      {
+        rank: 1827,
+        word: "focus",
+        pronunciation: [
+          [
+            { style: "bold", text: "foh" },
+            "-k",
+            { style: "italic", text: "uh" },
+            "s",
+          ],
+        ],
+        chinese_meanings:
+          "（使）集中，（使）聚集，调整（镜头，眼睛）焦点焦距以便看清",
       },
     ],
   },
