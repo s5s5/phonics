@@ -72,7 +72,7 @@ export default function useMeaning() {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-20 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
+      <div className="fixed z-20 bottom-1/2 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
         {wordMain}
         {pronunciationMain}
         {meaningMain}

@@ -40,7 +40,7 @@ export default function Home() {
     <main className="font-sans bg-paper pb-20">
       <h1 className="text-center text-3xl lg:text-6xl font-doodle">
         ✨ Phonics
-        <span className="text-2xl lg:text-4xl ml-4 inline-block">
+        <span className="text-2xl lg:text-4xl ml-4">
           /<span className="font-bold underline">fon</span>-iks/
         </span>
       </h1>
@@ -49,7 +49,7 @@ export default function Home() {
         {sort.map((type, index) => (
           <h2
             className={`flex-auto text-center cursor-pointer ${
-              type === nav && "underline decoration-double"
+              type === nav && "underline decoration-double font-bold"
             } hover:underline`}
             key={nanoid()}
             onClick={() => {

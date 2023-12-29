@@ -7,6 +7,10 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      md: "700px",
+      lg: "1030px",
+    },
     extend: {
       fontFamily: {
         doodle: ["Rubik Doodle Shadow"],

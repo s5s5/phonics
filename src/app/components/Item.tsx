@@ -47,7 +47,7 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
   }, [pronunciation]);
 
   return (
-    <div className="mb-4 text-gray-950 grid grid-cols-4 lg:grid-cols-11 content-visibility-auto">
+    <div className="mb-4 text-gray-950 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-11 content-visibility-auto">
       <div
         className="m-1 rounded-xl border-4 border-transparent transition duration-300 hover:bg-indigo-500 hover:text-white cursor-pointer"
         onClick={() => {
