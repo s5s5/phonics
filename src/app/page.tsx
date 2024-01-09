@@ -76,6 +76,8 @@ export default function Home() {
         <div className="mt-3">
           <VoiceSelector onVoiceChange={setVoice} />
         </div>
+        <div className="font-doodle text-xl">Contact</div>
+        <a href="mailto:s5s5cn@gmail.com">s5s5cn@gmail.com</a>
       </div>
 
       {meaningContent}
