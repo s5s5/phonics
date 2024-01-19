@@ -1691,12 +1691,6 @@ export const PHONICS_LIST = [
     graphemeType: "Alphabet",
     words: [
       {
-        rank: 272,
-        word: "sex",
-        pronunciation: [["seks"]],
-        chinese_meanings: "性别，两性之一，性，性特征，性活动",
-      },
-      {
         rank: 315,
         word: "next",
         pronunciation: [["nekst"]],
@@ -1733,12 +1727,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "固定，准备，修理，使牢固",
       },
       {
-        rank: 867,
-        word: "sexy",
-        pronunciation: [[{ style: "bold", text: "sek" }, "-see"]],
-        chinese_meanings: "性感的，色情的，引起性欲的，诱人的，迷人的，时髦的",
-      },
-      {
         rank: 951,
         word: "excellent",
         pronunciation: [
@@ -1764,6 +1752,18 @@ export const PHONICS_LIST = [
           ],
         ],
         chinese_meanings: "额外的，补充的，附加的，特大的，特别的",
+      },
+      {
+        rank: 1341,
+        word: "mix",
+        pronunciation: [["miks"]],
+        chinese_meanings: "混合，（使）结交，相容，平安相处",
+      },
+      {
+        rank: 1396,
+        word: "text",
+        pronunciation: [["tekst"]],
+        chinese_meanings: "文本，原文，课文，教科书，主题，版本",
       },
     ],
   },
@@ -2313,16 +2313,16 @@ export const PHONICS_LIST = [
         chinese_meanings: "冠军，捍卫者，拥护者，战士",
       },
       {
-        rank: 1921,
-        word: "dammit",
-        pronunciation: [[{ style: "bold", text: "dam" }, "-it"]],
-        chinese_meanings: "该死，真他妈的",
-      },
-      {
         rank: 1969,
         word: "champagne",
         pronunciation: [["sham-", { style: "bold", text: "peyn" }]],
         chinese_meanings: "香槟酒，香槟酒色，平原，平野",
+      },
+      {
+        rank: 2353,
+        word: "stamp",
+        pronunciation: [["stamp"]],
+        chinese_meanings: "邮票，标志，印记，跺脚，特征",
       },
     ],
   },
@@ -3482,10 +3482,10 @@ export const PHONICS_LIST = [
           "城市，全市居民，（由国王或女王授予特权，通常有大教堂的）特许市，（由政府授予特权的）特权市",
       },
       {
-        rank: 4056,
-        word: "bitch",
-        pronunciation: [["bich"]],
-        chinese_meanings: "母狗，淫妇，牢骚事，坏女人",
+        rank: 551,
+        word: "white",
+        pronunciation: [["wahyt"], ["hwahyt"]],
+        chinese_meanings: "白色的，纯洁的，无色的，透明的，白衣的，白种人的",
       },
     ],
   },
@@ -4286,17 +4286,24 @@ export const PHONICS_LIST = [
         chinese_meanings: "（关系、联盟的）终止，解散，别离，瓦解",
       },
       {
-        rank: 1979,
-        word: "cupcake",
-        pronunciation: [[{ style: "bold", text: "kuhp" }, "-keyk"]],
-        chinese_meanings:
-          "纸杯蛋糕，（经常用于称呼语中）指有魅力的女人，指软弱和女性化的男人或男孩",
-      },
-      {
         rank: 2223,
         word: "makeup",
         pronunciation: [[{ style: "bold", text: "meyk" }, "-uhp"]],
         chinese_meanings: "化妆，补充，构造，体格",
+      },
+      {
+        rank: 2385,
+        word: "ketchup",
+        pronunciation: [
+          [
+            { style: "bold", text: "kech" },
+            "-",
+            { style: "italic", text: "uh" },
+            "p",
+          ],
+          [{ style: "bold", text: "kach" }, "-"],
+        ],
+        chinese_meanings: "番茄酱",
       },
     ],
   },
@@ -7048,12 +7055,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "睡着的，休眠的，麻木的，已死的",
       },
       {
-        rank: 2130,
-        word: "slut",
-        pronunciation: [["sluht"]],
-        chinese_meanings: "荡妇，懒妇，母狗",
-      },
-      {
         rank: 2275,
         word: "slave",
         pronunciation: [["sleyv"]],
@@ -7066,6 +7067,12 @@ export const PHONICS_LIST = [
         pronunciation: [[{ style: "bold", text: "sloh" }, "-lee"]],
         chinese_meanings:
           "缓慢地，慢吞吞地，慢腾腾地，慢条斯理地，不慌不忙地，袅袅，迟钝，痴痴呆呆地，逐步",
+      },
+      {
+        rank: 2375,
+        word: "slide",
+        pronunciation: [["slahyd"]],
+        chinese_meanings: "滑落，下跌，打滑，棒球滑垒",
       },
     ],
   },
@@ -7480,13 +7487,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "男朋友，情郎",
       },
       {
-        rank: 629,
-        word: "freak",
-        pronunciation: [["freek"]],
-        chinese_meanings:
-          "反常的事，突然的念头，怪异物，俚吸毒（成瘾）者；颓废派成员；性变态者",
-      },
-      {
         rank: 976,
         word: "fresh",
         pronunciation: [["fresh"]],
@@ -7497,6 +7497,12 @@ export const PHONICS_LIST = [
         word: "freeze",
         pronunciation: [["freez"]],
         chinese_meanings: "使结冰，使冻僵，冷藏，吓呆，冻结（存款，工资等）",
+      },
+      {
+        rank: 1370,
+        word: "friendship",
+        pronunciation: [[{ style: "bold", text: "frend" }, "-ship"]],
+        chinese_meanings: "友情，友谊，友善的关系，友善，好意",
       },
     ],
   },
@@ -7898,13 +7904,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "直的，连续的，直率的，整齐的",
       },
       {
-        rank: 1593,
-        word: "stripper",
-        pronunciation: [[{ style: "bold", text: "strip" }, "-er"]],
-        chinese_meanings:
-          "脱衣舞表演者，脱衣舞女，分离相片负像或正像的人，剥皮剂，低产井",
-      },
-      {
         rank: 1691,
         word: "strike",
         pronunciation: [["strahyk"]],
@@ -7927,6 +7926,12 @@ export const PHONICS_LIST = [
         word: "stranger",
         pronunciation: [[{ style: "bold", text: "streyn" }, "-jer"]],
         chinese_meanings: "陌生人，不认识的人，外地人，局外人，门外汉",
+      },
+      {
+        rank: 2091,
+        word: "strength",
+        pronunciation: [["strengkth"], ["strength"], ["strenth"]],
+        chinese_meanings: "力量，优点，长处，（光、声、色等的）力度，人力数",
       },
     ],
   },
@@ -8685,12 +8690,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "赶上，接住，引起，看见",
       },
       {
-        rank: 4056,
-        word: "bitch",
-        pronunciation: [["bich"]],
-        chinese_meanings: "母狗，淫妇，牢骚事，坏女人",
-      },
-      {
         rank: 912,
         word: "kitchen",
         pronunciation: [
@@ -8746,6 +8745,12 @@ export const PHONICS_LIST = [
         word: "stretch",
         pronunciation: [["strech"]],
         chinese_meanings: "伸展，延伸，持续，包括",
+      },
+      {
+        rank: 2409,
+        word: "scotch",
+        pronunciation: [["skoch"]],
+        chinese_meanings: "扑灭，使…受伤，切开，划开，制止转动",
       },
     ],
   },
@@ -8822,13 +8827,6 @@ export const PHONICS_LIST = [
         chinese_meanings: "挑选，挑拣，挖，采，摘，剔，扒，挑剔",
       },
       {
-        rank: 421,
-        word: "fuck",
-        pronunciation: [["fuhk"]],
-        chinese_meanings:
-          "与（某人）性交，（表示气愤、厌恶、惊奇的粗话）他妈的",
-      },
-      {
         rank: 432,
         word: "suck",
         pronunciation: [["suhk"]],
@@ -8864,6 +8862,19 @@ export const PHONICS_LIST = [
         word: "kick",
         pronunciation: [["kik"]],
         chinese_meanings: "踢",
+      },
+      {
+        rank: 596,
+        word: "chicken",
+        pronunciation: [
+          [
+            { style: "bold", text: "chik" },
+            "-",
+            { style: "italic", text: "uh" },
+            "n",
+          ],
+        ],
+        chinese_meanings: "鸡，鸡肉，胆小鬼，懦夫",
       },
     ],
   },
@@ -10206,16 +10217,24 @@ export const PHONICS_LIST = [
         chinese_meanings: "啦啦队队长，（强有力的）支持者",
       },
       {
-        rank: 3396,
-        word: "queer",
-        pronunciation: [["kweer"]],
-        chinese_meanings: "古怪的，可疑的，不适的，〈俚〉同性恋的",
-      },
-      {
         rank: 4229,
         word: "reindeer",
         pronunciation: [[{ style: "bold", text: "reyn" }, "-deer"]],
         chinese_meanings: "<动>驯鹿",
+      },
+      {
+        rank: 4265,
+        word: "engineer",
+        pronunciation: [
+          [
+            "en-j",
+            { style: "italic", text: "uh" },
+            "-",
+            { style: "bold", text: "neer" },
+          ],
+        ],
+        chinese_meanings:
+          "工程师，技师，（轮船的）机师，〈美〉（火车的）司机，，（陆军的）工兵",
       },
     ],
   },
