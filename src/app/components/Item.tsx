@@ -5,6 +5,7 @@ import { useCallback, useMemo } from "react";
 
 import Grapheme from "@/app/components/Grapheme";
 import Word from "@/app/components/Word";
+import { MeaningType } from "@/app/hooks/useMeaning";
 
 export type ItemProps = any;
 
@@ -15,10 +16,10 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
     () =>
       words?.map((word: any) => (
         <Word
-          wordObj={word}
+          wordObject={word}
           voice={voice}
           grapheme={grapheme}
-          showMeaning={showMeaning}
+          onClick={showMeaning}
           key={nanoid()}
         />
       )),
@@ -26,7 +27,7 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
   );
 
   const onClickGrapheme = useCallback(
-    ({ phoneme, meaning }: { phoneme: string; meaning: string }) => {
+    ({ phoneme, meaning }: { phoneme: string; meaning: MeaningType }) => {
       play(phoneme);
       showMeaning(meaning);
     },

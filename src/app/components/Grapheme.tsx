@@ -2,11 +2,14 @@
 
 import { useMemo } from "react";
 
-type GraphemeProps = {
+export type GraphemeType = {
   phoneme: string;
   grapheme: string;
-  pronunciation: string;
-  tips: string;
+  pronunciation?: string;
+  tips?: string;
+};
+
+type GraphemeProps = GraphemeType & {
   onClick: Function;
 };
 
@@ -50,7 +53,7 @@ export default function Grapheme({
   return (
     <div
       className="m-1 rounded-xl border-4 border-transparent transition duration-300 hover:bg-indigo-500 hover:text-white cursor-pointer"
-      onClick={() => onClick({ phoneme, meaning })}
+      onClick={() => onClick({ grapheme, phoneme, meaning })}
     >
       <div className="h-16 overflow-visible mt-8 mb-2 text-center font-doodle flex content-center justify-items-center">
         <div className={`flex-1 text-center ${textSizes[grapheme.length]}`}>

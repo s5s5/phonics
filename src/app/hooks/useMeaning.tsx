@@ -5,15 +5,22 @@ import { POS } from "@/app/constants";
 
 const END_TIME = 5000;
 
+export type MeaningType = {
+  word?: string;
+  wordList?: { word: string; highLight?: boolean }[];
+  pronunciation?: (string | { style: string; text: string })[][];
+  chinese_meanings?: string;
+};
+
 export default function useMeaning() {
-  const [wordObj, setWordObj] = useState<any>({});
+  const [meaning, setMeaning] = useState<MeaningType>({});
   const [show, setShow] = useState(false);
   const [endTime, setEndTime] = useState(Date.now() + END_TIME);
 
   const wordMain = useMemo(() => {
-    const { wordList } = wordObj;
+    const { wordList } = meaning;
     if (!wordList) return null;
-    const wl = wordList.map(({ word, highLight }: any) => {
+    const wl = wordList.map(({ word, highLight }) => {
       if (highLight) {
         return (
           <span className="text-red-500 font-bold underline" key={nanoid()}>
@@ -24,14 +31,14 @@ export default function useMeaning() {
       return <span key={nanoid()}>{word}</span>;
     });
     return <div className="text-2xl font-playpen font-bold mx-1">{wl}</div>;
-  }, [wordObj]);
+  }, [meaning]);
 
   const pronunciationMain = useMemo(() => {
-    const { pronunciation } = wordObj;
+    const { pronunciation } = meaning;
 
     if (!pronunciation) return null;
-    const ap = pronunciation.map((phonetic: any) => {
-      const phoneticElemnet = phonetic.map((p: any) => {
+    const ap = pronunciation.map((phonetic) => {
+      const phoneticElemnet = phonetic.map((p) => {
         if (typeof p === "object") {
           const className =
             p.style === "italic" ? "italic" : "font-bold underline";
@@ -51,18 +58,18 @@ export default function useMeaning() {
     });
 
     return <div>{ap}</div>;
-  }, [wordObj]);
+  }, [meaning]);
 
   const meaningMain = useMemo(() => {
-    const { chinese_meanings } = wordObj;
+    const { chinese_meanings } = meaning;
     if (!chinese_meanings) return null;
     return <div className="mx-1">{chinese_meanings}</div>;
-  }, [wordObj]);
+  }, [meaning]);
 
-  const showMeaning = useCallback((wordObj: any) => {
+  const showMeaning = useCallback((meaning: MeaningType) => {
     setEndTime(Date.now() + END_TIME);
     setShow(true);
-    setWordObj(wordObj);
+    setMeaning(meaning);
   }, []);
 
   const hideMeaning = useCallback(() => {

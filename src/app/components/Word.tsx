@@ -5,20 +5,27 @@ import useThrottledCallback from "beautiful-react-hooks/useThrottledCallback";
 import { nanoid } from "nanoid";
 import Image from "next/image";
 
-export type WordProps = {
-  wordObj: any;
+export type WordType = {
+  rank: number;
+  word: string;
+  pronunciation: (string | { style: string; text: string })[][];
+  chinese_meanings: string;
+};
+
+type WordProps = {
+  wordObject: WordType;
   grapheme: string;
-  voice: SpeechSynthesisVoice;
-  showMeaning: Function;
+  voice?: SpeechSynthesisVoice;
+  onClick: Function;
 };
 
 export default function Word({
-  wordObj,
+  wordObject,
   grapheme,
   voice,
-  showMeaning,
+  onClick,
 }: WordProps) {
-  const { word } = wordObj;
+  const { word } = wordObject;
 
   let speech = { speak: () => {} };
   if (
@@ -33,7 +40,7 @@ export default function Word({
   const speakWord = useThrottledCallback(
     () => {
       speech.speak();
-      showMeaning({ ...wordObj, wordList });
+      onClick({ ...wordObject, wordList });
     },
     [speech],
     1000,
@@ -69,7 +76,10 @@ export default function Word({
   );
 }
 
-function splitWord(word: string, grapheme: string) {
+function splitWord(
+  word: string,
+  grapheme: string,
+): { word: string; highLight?: boolean }[] {
   if (grapheme.includes("_")) {
     const regex = new RegExp(grapheme.replace("_", "."), "gi");
     const index = word.search(regex);
