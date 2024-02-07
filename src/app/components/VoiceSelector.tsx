@@ -62,7 +62,7 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   //   <div className="content-visibility-auto">
   //     {options.map(({ voice, index }) => (
   //       <div key={nanoid()}>
-  //         <span onClick={() => setVoice(index)}>
+  //         <span playSound={() => setVoice(index)}>
   //           {voice.name} ({voice.lang})
   //           {current === index ? <span className="text-xl">📣</span> : ""}
   //         </span>

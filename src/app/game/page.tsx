@@ -1,13 +1,14 @@
 "use client";
 
-import { nanoid } from "nanoid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Grapheme, { GraphemeType } from "@/app/components/Grapheme";
-import Word from "@/app/components/Word";
+import GraphemeBlindBox from "@/app/components/GraphemeBlindBox";
+import Word, { WordProps, WordType } from "@/app/components/Word";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning, { MeaningType } from "@/app/hooks/useMeaning";
+import useWordBlindBox from "@/app/hooks/useWordBlindBox";
 
 export default function Page() {
   const { play } = useHowler();
@@ -45,55 +46,51 @@ export default function Page() {
   );
 
   const { wordList, graphemeList, testDict } = useMemo(() => {
-    const wordList: any[] = [];
+    const wordList: WordProps[] = [];
     const graphemeList: GraphemeType[] = [];
     const testDict: any = {};
     PHONICS_LIST.map(({ phoneme, grapheme, pronunciation, tips, words }) => {
       const { word } = words[0];
-      wordList.push({ word: words[0], grapheme });
+      wordList.push({ wordInfo: words[0] as WordType, grapheme });
       graphemeList.push({ phoneme, grapheme, pronunciation, tips });
       testDict[grapheme] = word;
     });
     return { wordList, graphemeList, testDict };
   }, []);
 
+  const { WordBlindBox, setWordIndex } = useWordBlindBox({
+    wordList,
+    voice,
+    onClick: (obj: MeaningType) => {
+      onClickWord(obj);
+    },
+  });
+
   console.log("word", word);
   console.log("grapheme", grapheme);
   useEffect(() => {
-    if (word && grapheme) {
+    if (word && grapheme && testDict[grapheme] === word) {
       console.log("test", testDict[grapheme] === word);
+      setWordIndex((prev: number) =>
+        prev + 1 > wordList.length ? prev : prev + 1,
+      );
     }
-  }, [grapheme, testDict, word]);
+  }, [grapheme, setWordIndex, testDict, word, wordList.length]);
 
   return (
     <>
       <div className="flex ">
         <div className="basis-1/2 text-center">
-          {graphemeList.map(({ phoneme, grapheme, pronunciation, tips }) => {
-            return (
-              <Grapheme
-                phoneme={phoneme}
-                grapheme={grapheme}
-                pronunciation={pronunciation}
-                tips={tips}
-                onClick={onClickGrapheme}
-                key={nanoid()}
-              />
-            );
-          })}
+          <GraphemeBlindBox
+            graphemeList={graphemeList}
+            onClickGrapheme={onClickGrapheme}
+            onClick={() => {
+              // TODO remove onClick
+            }}
+          />
         </div>
         <div className="basis-1/2  text-center">
-          {wordList.map(({ word, grapheme }) => {
-            return (
-              <Word
-                wordObject={word}
-                voice={voice}
-                grapheme={grapheme}
-                onClick={onClickWord}
-                key={nanoid()}
-              />
-            );
-          })}
+          <WordBlindBox />
         </div>
       </div>
       {meaningContent}

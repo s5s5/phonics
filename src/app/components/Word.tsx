@@ -12,20 +12,20 @@ export type WordType = {
   chinese_meanings: string;
 };
 
-type WordProps = {
-  wordObject: WordType;
+export type WordProps = {
+  wordInfo: WordType;
   grapheme: string;
   voice?: SpeechSynthesisVoice;
-  onClick: Function;
+  playSound?: Function;
 };
 
 export default function Word({
-  wordObject,
+  wordInfo,
   grapheme,
   voice,
-  onClick,
+  playSound,
 }: WordProps) {
-  const { word } = wordObject;
+  const { word } = wordInfo;
 
   let speech = { speak: () => {} };
   if (
@@ -40,7 +40,7 @@ export default function Word({
   const speakWord = useThrottledCallback(
     () => {
       speech.speak();
-      onClick({ ...wordObject, wordList });
+      if (playSound) playSound({ ...wordInfo, wordList });
     },
     [speech],
     1000,

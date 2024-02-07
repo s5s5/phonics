@@ -16,10 +16,10 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
     () =>
       words?.map((word: any) => (
         <Word
-          wordObject={word}
+          wordInfo={word}
           voice={voice}
           grapheme={grapheme}
-          onClick={showMeaning}
+          playSound={showMeaning}
           key={nanoid()}
         />
       )),
@@ -41,7 +41,7 @@ export default function Item({ item, play, voice, showMeaning }: ItemProps) {
         grapheme={grapheme}
         pronunciation={pronunciation}
         tips={tips}
-        onClick={onClickGrapheme}
+        playSound={onClickGrapheme}
       />
       {content}
     </div>
