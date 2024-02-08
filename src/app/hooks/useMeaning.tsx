@@ -10,6 +10,7 @@ export type MeaningType = {
   wordList?: { word: string; highLight?: boolean }[];
   pronunciation?: (string | { style: string; text: string })[][];
   chinese_meanings?: string;
+  boxIndex?: number;
 };
 
 export default function useMeaning() {

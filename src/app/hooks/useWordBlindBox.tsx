@@ -6,12 +6,14 @@ type WordBlindBoxProps = {
   wordList: WordProps[];
   voice?: SpeechSynthesisVoice;
   onClick: Function;
+  boxIndex: number;
 };
 
 export default function useWordBlindBox({
   wordList: wordListProp,
   voice,
   onClick,
+  boxIndex,
 }: WordBlindBoxProps) {
   const [wordList, setWordList] = useState<WordProps[]>(wordListProp);
   const [wordIndex, setWordIndex] = useState(0);
@@ -22,8 +24,7 @@ export default function useWordBlindBox({
   );
 
   const onClickWord = (obj: any) => {
-    onClick(obj);
-    // setWordIndex((prev) => (prev + 1 > wordList.length ? prev : prev + 1));
+    onClick({ ...obj, boxIndex });
   };
 
   const WordBlindBox = () => (

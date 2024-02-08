@@ -6,12 +6,14 @@ type GraphemeBlindBoxProps = {
   graphemeList: GraphemeType[];
   onClickGrapheme: Function;
   onClick: Function;
+  boxIndex: number;
 };
 
-export default function GraphemeBlindBox({
+export default function useGraphemeBlindBox({
   graphemeList: wordListProp,
   onClickGrapheme,
   onClick,
+  boxIndex,
 }: GraphemeBlindBoxProps) {
   const [graphemeList, setGraphemeList] =
     useState<GraphemeType[]>(wordListProp);
@@ -24,13 +26,13 @@ export default function GraphemeBlindBox({
 
   const onClick0 = (obj: any) => {
     onClickGrapheme(obj);
-    onClick(obj);
+    onClick({ ...obj, boxIndex });
     // setGraphemeIndex((prev) =>
     //   prev + 1 > graphemeList.length ? prev : prev + 1,
     // );
   };
 
-  return (
+  const GraphemeBlindBox = () => (
     <Grapheme
       phoneme={phoneme}
       grapheme={grapheme}
@@ -39,4 +41,6 @@ export default function GraphemeBlindBox({
       playSound={onClick0}
     />
   );
+
+  return { GraphemeBlindBox, setGraphemeIndex };
 }
