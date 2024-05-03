@@ -1,11 +1,9 @@
 import { nanoid } from "nanoid";
-import { useCallback, useEffect, useMemo, useState } from "react";
-
-import { POS } from "@/app/constants";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const END_TIME = 5000;
 
-export type MeaningType = {
+type MeaningType = {
   word?: string;
   wordList?: { word: string; highLight?: boolean }[];
   pronunciation?: (string | { style: string; text: string })[][];
@@ -13,10 +11,10 @@ export type MeaningType = {
   boxIndex?: number;
 };
 
-export default function useMeaning() {
-  const [meaning, setMeaning] = useState<MeaningType>({});
+const Meaning = ({ meaning }: { meaning: MeaningType }) => {
   const [show, setShow] = useState(false);
-  const [endTime, setEndTime] = useState(Date.now() + END_TIME);
+
+  const timerRef = useRef<number>();
 
   const wordMain = useMemo(() => {
     const { wordList } = meaning;
@@ -67,33 +65,30 @@ export default function useMeaning() {
     return <div className="mx-1">{chinese_meanings}</div>;
   }, [meaning]);
 
-  const showMeaning = useCallback((meaning: MeaningType) => {
-    setEndTime(Date.now() + END_TIME);
-    setShow(true);
-    setMeaning(meaning);
-  }, []);
-
-  const hideMeaning = useCallback(() => {
-    Date.now() - endTime > 0 && setShow(false);
-  }, [endTime]);
-
-  const meaningContent = useMemo(() => {
-    if (!show) return null;
-    return (
-      <div className="fixed z-20 bottom-1/2 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
-        {wordMain}
-        {pronunciationMain}
-        {meaningMain}
-      </div>
-    );
-  }, [meaningMain, pronunciationMain, show, wordMain]);
-
   useEffect(() => {
-    const id = window.setInterval(() => {
-      hideMeaning();
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [hideMeaning]);
+    if (show && timerRef.current) {
+      window.clearTimeout(timerRef.current);
+    }
 
-  return { meaningContent, showMeaning };
-}
+    setShow(true);
+    timerRef.current = window.setTimeout(() => {
+      setShow(false);
+    }, END_TIME);
+
+    return () => {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+      }
+    };
+  }, [show]);
+
+  return show ? (
+    <div className="fixed z-20 bottom-1/2 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
+      {wordMain}
+      {pronunciationMain}
+      {meaningMain}
+    </div>
+  ) : null;
+};
+
+export { Meaning, type MeaningType };

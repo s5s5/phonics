@@ -3,38 +3,64 @@
 import { nanoid } from "nanoid";
 import { useMemo, useState } from "react";
 
-import List from "@/app/components/List";
+import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
+import { Navigation, navigationTypes } from "@/app/components/Navigation";
 import { VoiceSelector } from "@/app/components/VoiceSelector";
+import { splitWord } from "@/app/components/WordCard";
 import { PHONICS_LIST } from "@/app/constants/list";
+import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
-import useRemember from "@/app/hooks/useRemember";
 
-const sort = ["Alphabet", "ShortVowel+", "LongVowel+", "Consonant+", "Other"];
+const Page = () => {
+  const [navigationType, setNavigationType] = useState(navigationTypes[0]);
 
-export default function Home() {
-  const [nav, setNav] = useState(sort[0]);
-  const { remember } = useRemember({ nav, setNav });
-
+  const { play } = useHowler();
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
-
   const { meaningContent, showMeaning } = useMeaning();
 
-  const listContent = useMemo(
-    () =>
-      sort.map((type, index) => (
+  const phonicsList = useMemo(() => {
+    return PHONICS_LIST.filter(
+      ({ graphemeType }) => graphemeType === navigationType,
+    ).map((item) => {
+      const { phoneme, grapheme, pronunciation, words, tips } = item;
+      const graphemeCard = {
+        grapheme,
+        pronunciation,
+        onClick: () => {
+          play(phoneme);
+          showMeaning({
+            wordList: [{ word: grapheme }],
+            chinese_meanings: tips,
+          });
+        },
+      };
+
+      const wordCards = words.map((word) => {
+        return {
+          voice,
+          grapheme,
+          word: word.word,
+          onClick: () => {
+            showMeaning({
+              word: word.word,
+              pronunciation: word.pronunciation,
+              chinese_meanings: word.chinese_meanings,
+              wordList: splitWord(word.word, grapheme),
+            });
+          },
+        };
+      });
+
+      return (
         <div key={nanoid()}>
-          {type === nav && (
-            <List
-              list={PHONICS_LIST}
-              voice={voice}
-              showMeaning={showMeaning}
-              type={type}
-            />
-          )}
+          <GraphemeWithWords
+            graphemeCard={graphemeCard}
+            wordCards={wordCards}
+          />
         </div>
-      )),
-    [nav, voice],
-  );
+      );
+    });
+  }, [navigationType, play, showMeaning, voice]);
 
   return (
     <main className="font-sans bg-paper pb-20">
@@ -45,26 +71,14 @@ export default function Home() {
         </span>
       </h1>
 
-      <div className="rounded-b-xl bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
-        {sort.map((type, index) => (
-          <h2
-            className={`flex-auto text-center cursor-pointer ${
-              type === nav && "underline decoration-double font-bold"
-            } hover:underline`}
-            key={nanoid()}
-            onClick={() => {
-              setNav(type);
-              remember();
-            }}
-          >
-            {type}
-          </h2>
-        ))}
-      </div>
+      <Navigation
+        navigationType={navigationType}
+        setNavigationType={setNavigationType}
+      />
 
-      {listContent}
+      {phonicsList}
 
-      <div className="text-center text-xs font-playpen content-visibility-auto">
+      <footer className="text-center text-xs font-playpen content-visibility-auto">
         <div className="font-doodle text-xl">Thanks</div>
         <a
           href="https://www.flaticon.com/free-stickers/speech"
@@ -73,14 +87,18 @@ export default function Home() {
         >
           All stickers created by Gohsantosadrive - Flaticon
         </a>
+
         <div className="mt-3">
           <VoiceSelector onVoiceChange={setVoice} />
         </div>
+
         <div className="font-doodle text-xl">Contact</div>
         <a href="mailto:s5s5cn@gmail.com">s5s5cn@gmail.com</a>
-      </div>
+      </footer>
 
       {meaningContent}
     </main>
   );
-}
+};
+
+export default Page;

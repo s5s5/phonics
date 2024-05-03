@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import { GraphemeCard, GraphemeCardProps } from "@/app/components/Grapheme2";
+import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { WordCard, WordCardProps } from "@/app/components/WordCard";
 
 type GraphemeWithWordsProps = {
