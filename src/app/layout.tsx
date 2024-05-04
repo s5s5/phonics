@@ -5,8 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import DatadogInit from "@/app/components/DatadogInit";
-
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "✨ Phonics /fon-iks/",
@@ -21,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body className={inter.className}>
-        <DatadogInit />
         {children}
         <Analytics />
         <SpeedInsights />

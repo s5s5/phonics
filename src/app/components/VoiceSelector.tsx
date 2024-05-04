@@ -8,7 +8,7 @@ type VoiceSelectorProps = {
   onVoiceChange: Function;
 };
 
-export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
+const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   const [current, setVoice] = useState(0);
   const [isAutoSet, setIsAutoSet] = useState(false);
 
@@ -71,3 +71,5 @@ export const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   //   </div>
   // );
 };
+
+export { VoiceSelector };

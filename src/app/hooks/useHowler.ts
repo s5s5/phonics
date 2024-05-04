@@ -1,7 +1,7 @@
 import { Howl } from "howler";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-export default function useHowler() {
+const useHowler = () => {
   const [sound, setSound] = useState<Howl | undefined>(undefined);
   const [phoneme, setPhoneme] = useState<string | undefined>(undefined);
 
@@ -33,4 +33,6 @@ export default function useHowler() {
   }, [sound]);
 
   return { play };
-}
+};
+
+export default useHowler;

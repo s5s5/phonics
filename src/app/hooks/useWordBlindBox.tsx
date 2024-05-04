@@ -1,40 +1,36 @@
 import { useMemo, useState } from "react";
 
-import Word, { WordProps } from "@/app/components/Word";
+import { WordCard, WordCardProps } from "@/app/components/WordCard";
 
 type WordBlindBoxProps = {
-  wordList: WordProps[];
-  voice?: SpeechSynthesisVoice;
-  onClick: Function;
+  wordCardList: WordCardProps[];
+  onClick: (boxIndex: number) => void;
   boxIndex: number;
 };
 
-export default function useWordBlindBox({
-  wordList: wordListProp,
-  voice,
+const useWordBlindBox = ({
+  wordCardList,
   onClick,
   boxIndex,
-}: WordBlindBoxProps) {
-  const [wordList, setWordList] = useState<WordProps[]>(wordListProp);
+}: WordBlindBoxProps) => {
   const [wordIndex, setWordIndex] = useState(0);
 
-  const { wordInfo, grapheme } = useMemo(
-    () => wordList[wordIndex],
-    [wordIndex, wordList],
+  const wordCardProps = useMemo(
+    () => wordCardList[wordIndex],
+    [wordIndex, wordCardList],
   );
 
-  const onClickWord = (obj: any) => {
-    onClick({ ...obj, boxIndex });
-  };
-
   const WordBlindBox = () => (
-    <Word
-      wordInfo={wordInfo}
-      grapheme={grapheme}
-      voice={voice}
-      playSound={onClickWord}
+    <WordCard
+      {...wordCardProps}
+      onClick={() => {
+        wordCardProps.onClick();
+        onClick(boxIndex);
+      }}
     />
   );
 
   return { WordBlindBox, setWordIndex };
-}
+};
+
+export default useWordBlindBox;

@@ -5,7 +5,7 @@ import { POS } from "@/app/constants";
 
 const END_TIME = 5000;
 
-export type MeaningType = {
+type MeaningType = {
   word?: string;
   wordList?: { word: string; highLight?: boolean }[];
   pronunciation?: (string | { style: string; text: string })[][];
@@ -13,7 +13,7 @@ export type MeaningType = {
   boxIndex?: number;
 };
 
-export default function useMeaning() {
+const useMeaning = () => {
   const [meaning, setMeaning] = useState<MeaningType>({});
   const [show, setShow] = useState(false);
   const [endTime, setEndTime] = useState(Date.now() + END_TIME);
@@ -96,4 +96,7 @@ export default function useMeaning() {
   }, [hideMeaning]);
 
   return { meaningContent, showMeaning };
-}
+};
+
+export default useMeaning;
+export { type MeaningType };
