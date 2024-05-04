@@ -5,18 +5,19 @@ import { useMemo, useState } from "react";
 
 import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
 import { Navigation, navigationTypes } from "@/app/components/Navigation";
-import { VoiceSelector } from "@/app/components/VoiceSelector";
 import { splitWord } from "@/app/components/WordCard";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
+import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
 const Page = () => {
   const [navigationType, setNavigationType] = useState(navigationTypes[0]);
-
-  const { play } = useHowler();
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+
   const { meaningContent, showMeaning } = useMeaning();
+  const { play } = useHowler();
+  useVoiceSelector(setVoice);
 
   const phonicsList = useMemo(() => {
     return PHONICS_LIST.filter(
@@ -60,7 +61,7 @@ const Page = () => {
         </div>
       );
     });
-  }, [navigationType, showMeaning, voice]);
+  }, [navigationType, voice]); // do not add `play`, `showMeaning`
 
   return (
     <main className="font-sans bg-paper pb-20">
@@ -87,10 +88,6 @@ const Page = () => {
         >
           All stickers created by Gohsantosadrive - Flaticon
         </a>
-
-        <div className="mt-3">
-          <VoiceSelector onVoiceChange={setVoice} />
-        </div>
 
         <div className="font-doodle text-xl">Contact</div>
         <a href="mailto:s5s5cn@gmail.com">s5s5cn@gmail.com</a>

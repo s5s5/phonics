@@ -1,28 +1,26 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { GraphemeCardProps } from "@/app/components/GraphemeCard";
-import { VoiceSelector } from "@/app/components/VoiceSelector";
 import { splitWord, WordCardProps } from "@/app/components/WordCard";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useGraphemeBlindBox from "@/app/hooks/useGraphemeBlindBox";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
+import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 import useWordBlindBox from "@/app/hooks/useWordBlindBox";
 
 const Page = () => {
-  const { play } = useHowler();
-
+  const [word, setWord] = useState<string | undefined>(undefined);
+  const [grapheme, setGrapheme] = useState<string | undefined>(undefined);
+  const [wordBoxIndex, setWordBoxIndex] = useState(0);
+  const [graphemeBoxIndex, setGraphemeBoxIndex] = useState(0);
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
   const { meaningContent, showMeaning } = useMeaning();
-
-  const [word, setWord] = useState<string | undefined>(undefined);
-  const [grapheme, setGrapheme] = useState<string | undefined>(undefined);
-
-  const [wordBoxIndex, setWordBoxIndex] = useState(0);
-  const [graphemeBoxIndex, setGraphemeBoxIndex] = useState(0);
+  const { play } = useHowler();
+  useVoiceSelector(setVoice);
 
   const { wordList, graphemeList, testDict } = useMemo(() => {
     const wordList: WordCardProps[] = [];
@@ -59,7 +57,7 @@ const Page = () => {
       testDict[phoneme + grapheme] = word;
     });
     return { wordList, graphemeList, testDict };
-  }, []);
+  }, [voice]); // do not add `play`, `showMeaning`
 
   const graphemeArr = useMemo(() => {
     const array: GraphemeCardProps[][] = [[], [], [], [], []];
@@ -269,7 +267,6 @@ const Page = () => {
         </div>
       </div>
       {meaningContent}
-      <VoiceSelector onVoiceChange={setVoice} />
     </>
   );
 };
