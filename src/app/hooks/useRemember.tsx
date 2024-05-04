@@ -41,10 +41,8 @@ const useRemember = ({
 
   useEffect(() => {
     if (isFirstOpen && cookieValue !== undefined) {
-      const { navigationType, top } = JSON.parse(
-        cookieValue!,
-      ) as unknown as cookieType;
-      setNavigationType(navigationType);
+      const { navigationType, top } = JSON.parse(cookieValue);
+      setNavigationType(navigationType || "Alphabet");
       window.setTimeout(() => {
         setIsFirstOpen(false);
         scrollTo(top);

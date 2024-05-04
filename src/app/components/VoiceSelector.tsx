@@ -1,8 +1,4 @@
-"use client";
-
-// import { nanoid } from "nanoid";
-import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type VoiceSelectorProps = {
   onVoiceChange: Function;
@@ -16,23 +12,6 @@ const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
   if (typeof window !== "undefined") {
     voices = window.speechSynthesis.getVoices() ?? [];
   }
-
-  let speech = { speak: () => {} };
-  if (typeof window !== "undefined") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const speech = useSpeechSynthesis("Phonics");
-  }
-
-  // const options = useMemo(
-  //   () =>
-  //     voices
-  //       .map((voice, index) => ({
-  //         voice,
-  //         index,
-  //       }))
-  //       .filter(({ voice }) => voice.lang === "en-US"),
-  //   [voices],
-  // );
 
   useEffect(() => {
     if (voices.length > 0 && !isAutoSet) {
@@ -51,25 +30,9 @@ const VoiceSelector = ({ onVoiceChange }: VoiceSelectorProps) => {
 
   useEffect(() => {
     onVoiceChange(voices[current]);
-    speech.speak();
-  }, [current, onVoiceChange, speech, voices]);
+  }, [current, onVoiceChange, voices]);
 
   return null;
-
-  // if (options.length === 0) return null;
-
-  // return (
-  //   <div className="content-visibility-auto">
-  //     {options.map(({ voice, index }) => (
-  //       <div key={nanoid()}>
-  //         <span playSound={() => setVoice(index)}>
-  //           {voice.name} ({voice.lang})
-  //           {current === index ? <span className="text-xl">📣</span> : ""}
-  //         </span>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 };
 
 export { VoiceSelector };
