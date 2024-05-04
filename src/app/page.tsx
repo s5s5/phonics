@@ -60,7 +60,7 @@ const Page = () => {
         </div>
       );
     });
-  }, [navigationType, play, showMeaning, voice]);
+  }, [navigationType, showMeaning, voice]);
 
   return (
     <main className="font-sans bg-paper pb-20">
