@@ -23,7 +23,7 @@ const WordCard = ({ word, grapheme, voice, onClick }: WordCardProps) => {
 
   return (
     <div
-      className="m-1 rounded-xl border-4 border-gray-700 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
+      className="m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
       onClick={() => {
         speech.speak();
         onClick();
@@ -38,7 +38,7 @@ const WordCard = ({ word, grapheme, voice, onClick }: WordCardProps) => {
         alt={word}
       />
 
-      <div className="text-center mb-6 font-playpen text-base">
+      <div className="text-center mb-3 font-playpen text-base">
         {wordList.map(({ word, highLight }) => {
           if (highLight) {
             return (

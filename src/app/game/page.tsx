@@ -36,35 +36,37 @@ const Page = () => {
   const { wordGroups, graphemeGroups } = useMemo(() => {
     const wordList: WordCardProps[] = [];
     const graphemeList: GraphemeCardProps[] = [];
-    PHONICS_LIST.map(({ phoneme, grapheme, pronunciation, tips, words }) => {
-      const word = words[Math.floor(Math.random() * (words.length - 1))];
-      wordList.push({
-        voice,
-        grapheme,
-        word: word.word,
-        onClick: () => {
-          setSelectedWord(grapheme);
-          showMeaning({
-            word: word.word,
-            pronunciation: word.pronunciation,
-            chinese_meanings: word.chinese_meanings,
-            wordList: splitWord(word.word, grapheme),
-          });
-        },
+    PHONICS_LIST.sort(() => 0.5 - Math.random())
+      .slice(0, 28)
+      .map(({ phoneme, grapheme, pronunciation, tips, words }) => {
+        const word = words[Math.floor(Math.random() * words.length)];
+        wordList.push({
+          voice,
+          grapheme,
+          word: word.word,
+          onClick: () => {
+            setSelectedWord(grapheme);
+            showMeaning({
+              word: word.word,
+              pronunciation: word.pronunciation,
+              chinese_meanings: word.chinese_meanings,
+              wordList: splitWord(word.word, grapheme),
+            });
+          },
+        });
+        graphemeList.push({
+          grapheme,
+          pronunciation,
+          onClick: () => {
+            setSelectedGrapheme(grapheme);
+            play(phoneme);
+            showMeaning({
+              wordList: [{ word: grapheme }],
+              chinese_meanings: tips,
+            });
+          },
+        });
       });
-      graphemeList.push({
-        grapheme,
-        pronunciation,
-        onClick: () => {
-          setSelectedGrapheme(grapheme);
-          play(phoneme);
-          showMeaning({
-            wordList: [{ word: grapheme }],
-            chinese_meanings: tips,
-          });
-        },
-      });
-    });
 
     const wordGroups: WordCardProps[][] = [[], [], [], []];
     const wordDistribution = distribute(wordList);
@@ -111,7 +113,7 @@ const Page = () => {
     ) {
       setGraphemeGroupIndex((prev) => {
         if (
-          graphemeGroups[selectedGraphemeGroup!].length - 1 ===
+          graphemeGroups[selectedGraphemeGroup!].length ===
           prev[selectedGraphemeGroup!]
         ) {
           return prev;
@@ -122,8 +124,7 @@ const Page = () => {
       });
       setWordGroupIndex((prev) => {
         if (
-          wordGroups[selectedWordGroup!].length - 1 ===
-          prev[selectedWordGroup!]
+          wordGroups[selectedWordGroup!].length === prev[selectedWordGroup!]
         ) {
           return prev;
         }
@@ -147,9 +148,28 @@ const Page = () => {
 
   return (
     <>
+      <h1 className="text-center text-3xl lg:text-6xl font-doodle mb-3">
+        {graphemeGroupIndex.reduce((previousValue, currentValue) => {
+          return previousValue + currentValue;
+        }, 0)}
+        <span className="text-2xl lg:text-4xl ml-4">
+          /
+          {graphemeGroups.reduce((previousValue, currentValue) => {
+            return previousValue + currentValue.length;
+          }, 0)}
+        </span>
+      </h1>
+
       <div className="flex flex-row mx-auto w-1/3">
         <div className="basis-1/2">
           {graphemeList.map((props, index) => {
+            if (!props) {
+              return (
+                <div key={"grapheme" + index} className="h-40 grid">
+                  OK
+                </div>
+              );
+            }
             return (
               <div key={"grapheme" + index} className="h-40 grid">
                 <GraphemeCard {...props} />
@@ -159,6 +179,13 @@ const Page = () => {
         </div>
         <div className="basis-1/2">
           {wordList.map((props, index) => {
+            if (!props) {
+              return (
+                <div key={"grapheme" + index} className="h-40 grid">
+                  OK
+                </div>
+              );
+            }
             return (
               <div key={"word" + index} className="h-40 grid">
                 <WordCard {...props} />
