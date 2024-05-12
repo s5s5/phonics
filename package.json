@@ -16,6 +16,7 @@
     "howler": "^2.2.4",
     "html-to-json-parser": "^2.0.1",
     "lodash": "^4.17.21",
+    "mouse-firework": "^0.0.5",
     "nanoid": "^5.0.7",
     "next": "^14.2.3",
     "react": "^18",

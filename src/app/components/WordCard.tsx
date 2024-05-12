@@ -9,9 +9,10 @@ type WordCardProps = {
   word: string;
   grapheme: string;
   onClick: () => void;
+  selected?: boolean;
 };
 
-const WordCard = ({ word, grapheme, onClick }: WordCardProps) => {
+const WordCard = ({ word, grapheme, onClick, selected }: WordCardProps) => {
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
   useVoiceSelector(setVoice);
@@ -28,7 +29,9 @@ const WordCard = ({ word, grapheme, onClick }: WordCardProps) => {
 
   return (
     <div
-      className="m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
+      className={`${
+        selected ? "bg-indigo-500 text-white border-white" : ""
+      } m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer`}
       onClick={() => {
         speech.speak();
         onClick();

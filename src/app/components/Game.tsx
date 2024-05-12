@@ -217,7 +217,10 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               }
               return (
                 <div key={"grapheme" + index} className="h-40 grid">
-                  <GraphemeCard {...props} />
+                  <GraphemeCard
+                    {...props}
+                    selected={props.grapheme === selectedGrapheme}
+                  />
                 </div>
               );
             })}
@@ -231,7 +234,10 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               }
               return (
                 <div key={"word" + index} className="h-40 grid">
-                  <WordCard {...props} />
+                  <WordCard
+                    {...props}
+                    selected={props.grapheme === selectedWord}
+                  />
                 </div>
               );
             })}
