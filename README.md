@@ -1,69 +1,34 @@
 # Phonics
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This project is dedicated to helping you master English pronunciation through the study of phonics.
 
-## Getting Started
+Visit our website at https://phonics.misuisui.com/ for more information and to use our interactive learning tools.
 
-First, run the development server:
+## What is Phonics?
 
-```bash
-npm run dev
-```
+Phonics is a method employed to teach reading and writing in the English language. Young children are taught the English phonics rules, so they can begin to decode words based on their sounds.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Why Phonics?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+As a parent teaching English to my kids, I found a lot of phonics resources in print and video. However, I noticed the lack of a simple, straightforward website that allowed me to quickly find out how to pronounce a certain combination of letters. This inspired me to create this project for learning Phonics.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Learn Through Play
 
-## Learn More
+Our project offers a fun and engaging matching game. This game is designed to reinforce the phonics rules and pronunciation learned through the interactive sessions.
 
-To learn more about Next.js, take a look at the following resources:
+### How to Play
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The game presents you with a set of cards, each representing a different phonics sound. Your task is to match each sound with its corresponding phonics rule. This not only helps to reinforce what you've learned but also makes the learning process more enjoyable and engaging.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Remember, learning English pronunciation can be fun too!
 
-## Deploy on Vercel
+## How to Start the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In this project, we use `npm scripts` to manage common development tasks. Here are some commands you might need:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `npm run dev`: Starts the development server with hot reloading.
+- `npm run build`: Builds the application for production.
+- `npm run start`: Starts the application in production mode.
+- `npm run lint`: Runs ESLint to check for issues in the code.
 
-## TODO List
-
-1. [x] 整理自然拼读 MP3
-2. [x] 从自然拼读提取音标
-3. [x] 发音
-4. [x] 加音标
-5. [x] KK音标 https://zh.wikipedia.org/wiki/KK%E9%9F%B3%E6%A8%99
-6. [x] IPA和ARPAbet https://github.com/chdzq/ARPAbetAndIPAConvertor
-7. [x] TTS https://github.com/jankapunkt/easy-speech
-8. [x] 弹幕显示翻译
-9. [x] 记忆上次位置
-10. [x] 连字符 https://github.com/cuzzo/Hyphenator
-11. [x] 连字符 https://github.com/ytiurin/hyphen
-12. [x] 发音重拼 https://github.com/Attacktive/ipa-to-pronunciation-respelling
-13. [ ] 整理代码，管理端分离
-13. [ ] 整理代码，用起 lodash
-14. [ ] 整理代码成 TS
-15. [ ] 整理代码，用起 SSR
-16. [ ] 图片不用 vercel 了
-17. [ ] 开源
-
-
-### TTS online
-
-* https://study.zwjjiaozhu.top/jz-translator/advance/pronunciation-interface.html
-* https://dict.youdao.com/dictvoice?le={lang}&audio={text}
-* https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang={lang}&from=translateweb&speaker=6
-* https://fanyi.baidu.com/gettts?lan={lang}&text={text}&spd=3&source=wise
-* https://fanyi.baidu.com/gettts?lan=en&text=have&spd=3&source=web
-
-### 转音标
-
-* https://www.internationalphoneticalphabet.org/english-to-ipa-translator/
-
-
-
+Before running these commands, make sure you have installed all dependencies. You can install them by running `npm install`.
