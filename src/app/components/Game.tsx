@@ -1,17 +1,20 @@
-"use client";
-
 import { useEffect, useMemo, useState } from "react";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { splitWord, WordCard, WordCardProps } from "@/app/components/WordCard";
-import { PHONICS_LIST } from "@/app/constants/list";
-import useHowler from "@/app/hooks/useHowler";
-import useMeaning from "@/app/hooks/useMeaning";
-import useVoiceSelector from "@/app/hooks/useVoiceSelector";
+import { Phonics } from "@/app/constants/list";
+import { MeaningType } from "@/app/hooks/useMeaning";
 
-const Page = () => {
-  const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+const PHONICS_DISPLAY_LIMIT = 28;
 
+type GameProps = {
+  phonicsList: Phonics[];
+  play: (phoneme: string) => void;
+  showMeaning: (meaning: MeaningType) => void;
+  voice?: SpeechSynthesisVoice;
+};
+
+const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
   const [selectedWord, setSelectedWord] = useState<string | undefined>(
     undefined,
   );
@@ -29,15 +32,16 @@ const Page = () => {
   const [wordGroupIndex, setWordGroupIndex] = useState([0, 0, 0, 0]);
   const [graphemeGroupIndex, setGraphemeGroupIndex] = useState([0, 0, 0, 0]);
 
-  const { meaningContent, showMeaning } = useMeaning();
-  const { play } = useHowler();
-  useVoiceSelector(setVoice);
-
   const { wordGroups, graphemeGroups } = useMemo(() => {
+    if (!voice) {
+      return { wordGroups: [[], [], [], []], graphemeGroups: [[], [], [], []] };
+    }
     const wordList: WordCardProps[] = [];
     const graphemeList: GraphemeCardProps[] = [];
-    PHONICS_LIST.sort(() => 0.5 - Math.random())
-      .slice(0, 28)
+    const list = [...phonicsList];
+    list
+      .sort(() => 0.5 - Math.random())
+      .slice(0, PHONICS_DISPLAY_LIMIT)
       .map(({ phoneme, grapheme, pronunciation, tips, words }) => {
         const word = words[Math.floor(Math.random() * words.length)];
         wordList.push({
@@ -92,6 +96,8 @@ const Page = () => {
       });
     });
 
+    console.log("voice", voice);
+    console.log("fuck");
     return { wordGroups, graphemeGroups };
   }, [voice]); // do not add `play`, `showMeaning`
 
@@ -148,27 +154,23 @@ const Page = () => {
 
   return (
     <>
-      <h1 className="text-center text-3xl lg:text-6xl font-doodle mb-3">
+      <h2 className="text-center text-2xl lg:text-4xl font-doodle mb-3">
         {graphemeGroupIndex.reduce((previousValue, currentValue) => {
           return previousValue + currentValue;
         }, 0)}
-        <span className="text-2xl lg:text-4xl ml-4">
+        <span className="text-xl lg:text-2xl ml-4">
           /
           {graphemeGroups.reduce((previousValue, currentValue) => {
             return previousValue + currentValue.length;
           }, 0)}
         </span>
-      </h1>
+      </h2>
 
-      <div className="flex flex-row mx-auto w-1/3">
+      <div className="flex flex-row mx-auto lg:w-1/3">
         <div className="basis-1/2">
           {graphemeList.map((props, index) => {
             if (!props) {
-              return (
-                <div key={"grapheme" + index} className="h-40 grid">
-                  OK
-                </div>
-              );
+              return <div key={"grapheme" + index} className="h-40 grid"></div>;
             }
             return (
               <div key={"grapheme" + index} className="h-40 grid">
@@ -180,11 +182,7 @@ const Page = () => {
         <div className="basis-1/2">
           {wordList.map((props, index) => {
             if (!props) {
-              return (
-                <div key={"grapheme" + index} className="h-40 grid">
-                  OK
-                </div>
-              );
+              return <div key={"grapheme" + index} className="h-40 grid"></div>;
             }
             return (
               <div key={"word" + index} className="h-40 grid">
@@ -194,7 +192,6 @@ const Page = () => {
           })}
         </div>
       </div>
-      {meaningContent}
     </>
   );
 };
@@ -209,4 +206,4 @@ const distribute = (list: WordCardProps[] | GraphemeCardProps[]) => {
     .flatMap(() => shuffle());
 };
 
-export default Page;
+export { Game };

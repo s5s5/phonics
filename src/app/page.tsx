@@ -1,67 +1,22 @@
 "use client";
 
-import { nanoid } from "nanoid";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
-import { Navigation, navigationTypes } from "@/app/components/Navigation";
-import { splitWord } from "@/app/components/WordCard";
+import { Game } from "@/app/components/Game";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
 import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
+import { Poster } from "./components/Poster";
+
 const Page = () => {
-  const [navigationType, setNavigationType] = useState(navigationTypes[0]);
+  const [showGame, setShowGame] = useState(true);
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
   const { meaningContent, showMeaning } = useMeaning();
   const { play } = useHowler();
   useVoiceSelector(setVoice);
-
-  const phonicsList = useMemo(() => {
-    return PHONICS_LIST.filter(
-      ({ graphemeType }) => graphemeType === navigationType,
-    ).map((item) => {
-      const { phoneme, grapheme, pronunciation, words, tips } = item;
-      const graphemeCard = {
-        grapheme,
-        pronunciation,
-        onClick: () => {
-          play(phoneme);
-          showMeaning({
-            wordList: [{ word: grapheme }],
-            chinese_meanings: tips,
-          });
-        },
-      };
-
-      const wordCards = words.map((word) => {
-        return {
-          voice,
-          grapheme,
-          word: word.word,
-          onClick: () => {
-            showMeaning({
-              word: word.word,
-              pronunciation: word.pronunciation,
-              chinese_meanings: word.chinese_meanings,
-              wordList: splitWord(word.word, grapheme),
-            });
-          },
-        };
-      });
-
-      return (
-        <div key={nanoid()}>
-          <GraphemeWithWords
-            graphemeCard={graphemeCard}
-            wordCards={wordCards}
-          />
-        </div>
-      );
-    });
-  }, [navigationType, voice]); // do not add `play`, `showMeaning`
 
   return (
     <main className="font-sans bg-paper pb-20">
@@ -72,12 +27,31 @@ const Page = () => {
         </span>
       </h1>
 
-      <Navigation
-        navigationType={navigationType}
-        setNavigationType={setNavigationType}
-      />
+      <button
+        onClick={() => {
+          setShowGame((prev) => !prev);
+        }}
+      >
+        {showGame ? "🎮" : "🀨"}
+      </button>
 
-      {phonicsList}
+      {showGame && voice && (
+        <Game
+          phonicsList={PHONICS_LIST}
+          play={play}
+          voice={voice}
+          showMeaning={showMeaning}
+        />
+      )}
+
+      {!showGame && voice && (
+        <Poster
+          phonicsList={PHONICS_LIST}
+          play={play}
+          voice={voice}
+          showMeaning={showMeaning}
+        />
+      )}
 
       <footer className="text-center text-xs font-playpen content-visibility-auto">
         <div className="font-doodle text-xl">Thanks</div>

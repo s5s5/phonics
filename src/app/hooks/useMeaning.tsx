@@ -80,7 +80,7 @@ const useMeaning = () => {
   const meaningContent = useMemo(() => {
     if (!show) return null;
     return (
-      <div className="fixed z-20 bottom-1/2 left-1 right-1 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
+      <div className="fixed z-20 bottom-10 left-10 right-10 rounded pt-1 pb-2 bg-gray-950/75 text-white text-center">
         {wordMain}
         {pronunciationMain}
         {meaningMain}
