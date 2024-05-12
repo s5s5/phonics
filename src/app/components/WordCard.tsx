@@ -31,7 +31,7 @@ const WordCard = ({ word, grapheme, onClick, selected }: WordCardProps) => {
     <div
       className={`${
         selected ? "bg-indigo-500 text-white border-white" : ""
-      } m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer`}
+      } m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:border-white cursor-pointer`}
       onClick={() => {
         speech.speak();
         onClick();
