@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
 import { Navigation, navigationTypes } from "@/app/components/Navigation";
 import { splitWord } from "@/app/components/WordCard";
-import { Phonics } from "@/app/constants/list";
+import { Phonics } from "@/app/constants";
 import { MeaningType } from "@/app/hooks/useMeaning";
 
 type PosterProps = {

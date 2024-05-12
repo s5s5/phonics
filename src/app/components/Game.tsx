@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { splitWord, WordCard, WordCardProps } from "@/app/components/WordCard";
-import { Phonics } from "@/app/constants/list";
+import { Phonics } from "@/app/constants";
 import { MeaningType } from "@/app/hooks/useMeaning";
 
 const PHONICS_DISPLAY_LIMIT = 28;

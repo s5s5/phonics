@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Game } from "@/app/components/Game";
-import { PHONICS_LIST } from "@/app/constants/list";
+import { PHONICS_LIST } from "@/app/constants";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
 

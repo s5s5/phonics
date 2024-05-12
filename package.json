@@ -1,7 +1,6 @@
 {
   "name": "phonics",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
   "scripts": {
     "dev": "node_modules/.bin/next dev",
     "build": "node_modules/.bin/next build",
@@ -12,9 +11,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "beautiful-react-hooks": "^5.0.1",
-    "cheerio": "^1.0.0-rc.12",
     "howler": "^2.2.4",
-    "html-to-json-parser": "^2.0.1",
     "lodash": "^4.17.21",
     "mouse-firework": "^0.0.5",
     "nanoid": "^5.0.7",
