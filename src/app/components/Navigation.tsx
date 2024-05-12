@@ -17,7 +17,7 @@ const Navigation = ({ navigationType, setNavigationType }: NavigationProps) => {
   const { remember } = useRemember({ navigationType, setNavigationType });
 
   return (
-    <div className="rounded-b-xl bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-5">
+    <div className="rounded-b-xl bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
       {navigationTypes.map((type) => (
         <h2
           className={`flex-auto text-center cursor-pointer ${

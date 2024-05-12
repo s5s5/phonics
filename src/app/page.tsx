@@ -61,7 +61,7 @@ const Page = () => {
       </h1>
 
       <button
-        className="fixed top-2 left-2 z-10 cursor-pointer grid px-1 font-bold pb-1 text lg:text-2xl font-doodle border-2 border-gray-800 border-dotted rounded hover:bg-indigo-500 hover:text-white hover:border-white"
+        className="fixed top-2 left-2 z-30 cursor-pointer grid px-1 font-bold pb-1 text lg:text-2xl font-doodle border-2 border-gray-800 border-dotted rounded hover:bg-indigo-500 hover:text-white hover:border-white"
         onClick={() => {
           setShowGame((prev) => !prev);
         }}
