@@ -11,10 +11,9 @@ type PosterProps = {
   phonicsList: Phonics[];
   play: (phoneme: string) => void;
   showMeaning: (meaning: MeaningType) => void;
-  voice?: SpeechSynthesisVoice;
 };
 
-const Poster = ({ phonicsList, play, showMeaning, voice }: PosterProps) => {
+const Poster = ({ phonicsList, play, showMeaning }: PosterProps) => {
   const [navigationType, setNavigationType] = useState(navigationTypes[0]);
 
   const cards = useMemo(() => {
@@ -36,7 +35,6 @@ const Poster = ({ phonicsList, play, showMeaning, voice }: PosterProps) => {
 
         const wordCards = words.map((word) => {
           return {
-            voice,
             grapheme,
             word: word.word,
             onClick: () => {
@@ -59,7 +57,7 @@ const Poster = ({ phonicsList, play, showMeaning, voice }: PosterProps) => {
           </div>
         );
       });
-  }, [navigationType, voice]); // do not add `play`, `showMeaning`
+  }, [navigationType]); // do not add `play`, `showMeaning`
 
   return (
     <>

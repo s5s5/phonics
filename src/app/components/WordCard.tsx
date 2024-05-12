@@ -1,16 +1,21 @@
 import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
 import { nanoid } from "nanoid";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+
+import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
 type WordCardProps = {
   word: string;
   grapheme: string;
-  voice?: SpeechSynthesisVoice;
   onClick: () => void;
 };
 
-const WordCard = ({ word, grapheme, voice, onClick }: WordCardProps) => {
+const WordCard = ({ word, grapheme, onClick }: WordCardProps) => {
+  const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+
+  useVoiceSelector(setVoice);
+
   let speech = { speak: () => {} };
   if (
     typeof window !== "undefined" &&

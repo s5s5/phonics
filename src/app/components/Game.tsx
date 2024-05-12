@@ -11,10 +11,9 @@ type GameProps = {
   phonicsList: Phonics[];
   play: (phoneme: string) => void;
   showMeaning: (meaning: MeaningType) => void;
-  voice?: SpeechSynthesisVoice;
 };
 
-const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
+const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
   const [selectedWord, setSelectedWord] = useState<string | undefined>(
     undefined,
   );
@@ -32,10 +31,9 @@ const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
   const [wordGroupIndex, setWordGroupIndex] = useState([0, 0, 0, 0]);
   const [graphemeGroupIndex, setGraphemeGroupIndex] = useState([0, 0, 0, 0]);
 
+  const [resetCount, setResetCount] = useState(0);
+
   const { wordGroups, graphemeGroups } = useMemo(() => {
-    if (!voice) {
-      return { wordGroups: [[], [], [], []], graphemeGroups: [[], [], [], []] };
-    }
     const wordList: WordCardProps[] = [];
     const graphemeList: GraphemeCardProps[] = [];
     const list = [...phonicsList];
@@ -45,7 +43,6 @@ const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
       .map(({ phoneme, grapheme, pronunciation, tips, words }) => {
         const word = words[Math.floor(Math.random() * words.length)];
         wordList.push({
-          voice,
           grapheme,
           word: word.word,
           onClick: () => {
@@ -96,10 +93,8 @@ const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
       });
     });
 
-    console.log("voice", voice);
-    console.log("fuck");
     return { wordGroups, graphemeGroups };
-  }, [voice]); // do not add `play`, `showMeaning`
+  }, [resetCount]); // do not add `play`, `showMeaning`
 
   const graphemeList = useMemo(
     () => graphemeGroups.map((list, index) => list[graphemeGroupIndex[index]]),
@@ -110,6 +105,38 @@ const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
     () => wordGroups.map((list, index) => list[wordGroupIndex[index]]),
     [wordGroups, wordGroupIndex],
   );
+
+  const completedCount = useMemo(
+    () =>
+      graphemeGroupIndex.reduce((previousValue, currentValue) => {
+        return previousValue + currentValue;
+      }, 0),
+    [graphemeGroupIndex],
+  );
+
+  const totalCount = useMemo(
+    () =>
+      graphemeGroups.reduce((previousValue, currentValue) => {
+        return previousValue + currentValue.length;
+      }, 0),
+    [graphemeGroups],
+  );
+
+  const progress = useMemo(
+    () =>
+      completedCount === 0 ? "1%" : `${(completedCount / totalCount) * 100}%`,
+    [completedCount, totalCount],
+  );
+
+  const resetGame = () => {
+    setGraphemeGroupIndex([0, 0, 0, 0]);
+    setWordGroupIndex([0, 0, 0, 0]);
+    setSelectedWord(undefined);
+    setSelectedGrapheme(undefined);
+    setSelectedWordGroup(undefined);
+    setSelectedGraphemeGroup(undefined);
+    setResetCount((prev) => prev + 1);
+  };
 
   useEffect(() => {
     if (
@@ -154,44 +181,63 @@ const Game = ({ phonicsList, play, voice, showMeaning }: GameProps) => {
 
   return (
     <>
-      <h2 className="text-center text-2xl lg:text-4xl font-doodle mb-3">
-        {graphemeGroupIndex.reduce((previousValue, currentValue) => {
-          return previousValue + currentValue;
-        }, 0)}
-        <span className="text-xl lg:text-2xl ml-4">
-          /
-          {graphemeGroups.reduce((previousValue, currentValue) => {
-            return previousValue + currentValue.length;
-          }, 0)}
-        </span>
-      </h2>
-
-      <div className="flex flex-row mx-auto lg:w-1/3">
-        <div className="basis-1/2">
-          {graphemeList.map((props, index) => {
-            if (!props) {
-              return <div key={"grapheme" + index} className="h-40 grid"></div>;
-            }
-            return (
-              <div key={"grapheme" + index} className="h-40 grid">
-                <GraphemeCard {...props} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="basis-1/2">
-          {wordList.map((props, index) => {
-            if (!props) {
-              return <div key={"grapheme" + index} className="h-40 grid"></div>;
-            }
-            return (
-              <div key={"word" + index} className="h-40 grid">
-                <WordCard {...props} />
-              </div>
-            );
-          })}
+      <div className="bg-transparent relative my-2 border-4 border-gray-300 border-dotted">
+        <div
+          className="bg-yellow-400 absolute top-0 left-0 bottom-0"
+          style={{ width: progress }}
+        ></div>
+        <div className="text-center text-2xl lg:text-4xl font-doodle relative">
+          {completedCount}
+          <span className="text-xl lg:text-2xl ml-4">/{totalCount}</span>
         </div>
       </div>
+
+      {completedCount === totalCount && (
+        <div className="text-center pb-96">
+          <h3 className="text-2xl lg:text-4xl font-doodle my-16">
+            🎉 Congratulations! 🎉
+          </h3>
+          <button
+            className="font-doodle text-3xl p-3 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
+            onClick={resetGame}
+          >
+            Restart
+          </button>
+        </div>
+      )}
+
+      {completedCount < totalCount && (
+        <div className="flex flex-row gap-x-5 mx-auto lg:w-1/3">
+          <div className="basis-1/2">
+            {graphemeList.map((props, index) => {
+              if (!props) {
+                return (
+                  <div key={"grapheme" + index} className="h-40 grid"></div>
+                );
+              }
+              return (
+                <div key={"grapheme" + index} className="h-40 grid">
+                  <GraphemeCard {...props} />
+                </div>
+              );
+            })}
+          </div>
+          <div className="basis-1/2">
+            {wordList.map((props, index) => {
+              if (!props) {
+                return (
+                  <div key={"grapheme" + index} className="h-40 grid"></div>
+                );
+              }
+              return (
+                <div key={"word" + index} className="h-40 grid">
+                  <WordCard {...props} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 };

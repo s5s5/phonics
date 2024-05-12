@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { POS } from "@/app/constants";
 
-const END_TIME = 5000;
+const END_TIME = 3000;
 
 type MeaningType = {
   word?: string;

@@ -6,17 +6,14 @@ import { Game } from "@/app/components/Game";
 import { PHONICS_LIST } from "@/app/constants/list";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
-import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
 import { Poster } from "./components/Poster";
 
 const Page = () => {
   const [showGame, setShowGame] = useState(true);
-  const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
   const { meaningContent, showMeaning } = useMeaning();
   const { play } = useHowler();
-  useVoiceSelector(setVoice);
 
   return (
     <main className="font-sans bg-paper pb-20">
@@ -28,6 +25,7 @@ const Page = () => {
       </h1>
 
       <button
+        className="fixed top-2 left-2 z-10 cursor-pointer grid px-1 font-bold pb-1 text lg:text-2xl font-doodle border-2 border-gray-800 border-dotted rounded hover:bg-indigo-500 hover:text-white hover:border-white"
         onClick={() => {
           setShowGame((prev) => !prev);
         }}
@@ -35,25 +33,23 @@ const Page = () => {
         {showGame ? "🎮" : "🀨"}
       </button>
 
-      {showGame && voice && (
+      {showGame && (
         <Game
           phonicsList={PHONICS_LIST}
           play={play}
-          voice={voice}
           showMeaning={showMeaning}
         />
       )}
 
-      {!showGame && voice && (
+      {!showGame && (
         <Poster
           phonicsList={PHONICS_LIST}
           play={play}
-          voice={voice}
           showMeaning={showMeaning}
         />
       )}
 
-      <footer className="text-center text-xs font-playpen content-visibility-auto">
+      <footer className="text-center text-xs font-playpen content-visibility-auto my-16">
         <div className="font-doodle text-xl">Thanks</div>
         <a
           href="https://www.flaticon.com/free-stickers/speech"
