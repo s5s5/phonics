@@ -1,5 +1,5 @@
 import { Howl } from "howler";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useHowler = () => {
   const [sound, setSound] = useState<Howl | undefined>(undefined);
@@ -10,7 +10,7 @@ const useHowler = () => {
       if (!newPhoneme) return;
       if (newPhoneme !== phoneme) {
         const newSound = new Howl({
-          src: [`/audio/${newPhoneme}.mp3`],
+          src: [`/sound/${newPhoneme}.mp3`],
           autoplay: true,
         });
         setSound(newSound);
