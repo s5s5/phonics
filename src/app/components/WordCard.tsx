@@ -2,6 +2,7 @@ import useSpeechSynthesis from "beautiful-react-hooks/useSpeechSynthesis";
 import { nanoid } from "nanoid";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
@@ -10,9 +11,16 @@ type WordCardProps = {
   grapheme: string;
   onClick: () => void;
   selected?: boolean;
+  nodeRef?: React.RefObject<HTMLDivElement>;
 };
 
-const WordCard = ({ word, grapheme, onClick, selected }: WordCardProps) => {
+const WordCard = ({
+  word,
+  grapheme,
+  onClick,
+  selected,
+  nodeRef,
+}: WordCardProps) => {
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
 
   useVoiceSelector(setVoice);
@@ -28,36 +36,49 @@ const WordCard = ({ word, grapheme, onClick, selected }: WordCardProps) => {
   const wordList = useMemo(() => splitWord(word, grapheme), [word, grapheme]);
 
   return (
-    <div
-      className={`${
-        selected ? "bg-indigo-500 text-white border-white" : ""
-      } m-1 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:border-white cursor-pointer`}
-      onClick={() => {
-        speech.speak();
-        onClick();
-      }}
-    >
-      <Image
-        className="mx-auto my-5"
-        src={`/images/words/${word}.png`}
-        width={60}
-        height={60}
-        alt={word}
-      />
+    <SwitchTransition>
+      <CSSTransition
+        key={grapheme + word}
+        nodeRef={nodeRef}
+        timeout={1000}
+        classNames="item"
+      >
+        <div
+          className={`m-1 rounded-xl border-4 border-gray-300 border-dotted transition duration-300 lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:border-white cursor-pointer ${
+            selected ? "bg-indigo-500 text-white border-white" : ""
+          }`}
+          onClick={() => {
+            speech.speak();
+            onClick();
+          }}
+          ref={nodeRef}
+        >
+          <Image
+            className="mx-auto my-1"
+            src={`/images/words/${word}.png`}
+            width={60}
+            height={60}
+            alt={word}
+          />
 
-      <div className="text-center mb-3 font-playpen text-base">
-        {wordList.map(({ word, highLight }) => {
-          if (highLight) {
-            return (
-              <span className="text-red-500 font-bold underline" key={nanoid()}>
-                {word}
-              </span>
-            );
-          }
-          return <span key={nanoid()}>{word}</span>;
-        })}
-      </div>
-    </div>
+          <div className="text-center mb-1 font-playpen text-base">
+            {wordList.map(({ word, highLight }) => {
+              if (highLight) {
+                return (
+                  <span
+                    className="text-red-500 font-bold underline"
+                    key={nanoid()}
+                  >
+                    {word}
+                  </span>
+                );
+              }
+              return <span key={nanoid()}>{word}</span>;
+            })}
+          </div>
+        </div>
+      </CSSTransition>
+    </SwitchTransition>
   );
 };
 

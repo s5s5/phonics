@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo, useState } from "react";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { splitWord, WordCard, WordCardProps } from "@/app/components/WordCard";
@@ -54,6 +54,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               wordList: splitWord(word.word, grapheme),
             });
           },
+          nodeRef: createRef(),
         });
         graphemeList.push({
           grapheme,
@@ -66,6 +67,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               chinese_meanings: tips,
             });
           },
+          nodeRef: createRef(),
         });
       });
 
@@ -212,11 +214,11 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
             {graphemeList.map((props, index) => {
               if (!props) {
                 return (
-                  <div key={"grapheme" + index} className="h-40 grid"></div>
+                  <div key={"grapheme" + index} className="h-28 grid"></div>
                 );
               }
               return (
-                <div key={"grapheme" + index} className="h-40 grid">
+                <div key={"grapheme" + index} className="h-28 grid">
                   <GraphemeCard
                     {...props}
                     selected={props.grapheme === selectedGrapheme}
@@ -229,11 +231,11 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
             {wordList.map((props, index) => {
               if (!props) {
                 return (
-                  <div key={"grapheme" + index} className="h-40 grid"></div>
+                  <div key={"grapheme" + index} className="h-28 grid"></div>
                 );
               }
               return (
-                <div key={"word" + index} className="h-40 grid">
+                <div key={"word" + index} className="h-28 grid">
                   <WordCard
                     {...props}
                     selected={props.grapheme === selectedWord}
