@@ -4,6 +4,10 @@ This project is dedicated to helping you master English pronunciation through th
 
 Visit our website at https://phonics.misuisui.com/ for more information and to use our interactive learning tools.
 
+## Demo
+
+![Phonics Demo](./demo.gif)
+
 ## What is Phonics?
 
 Phonics is a method employed to teach reading and writing in the English language. Young children are taught the English phonics rules, so they can begin to decode words based on their sounds.

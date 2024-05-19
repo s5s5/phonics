@@ -1,11 +1,13 @@
+import { motion } from "framer-motion";
 import { createRef, useEffect, useMemo, useState } from "react";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
+import { Line } from "@/app/components/Line";
 import { splitWord, WordCard, WordCardProps } from "@/app/components/WordCard";
 import { Phonics } from "@/app/constants";
 import { MeaningType } from "@/app/hooks/useMeaning";
 
-const PHONICS_DISPLAY_LIMIT = 28;
+const PHONICS_DISPLAY_LIMIT = 16;
 
 type GameProps = {
   phonicsList: Phonics[];
@@ -184,10 +186,10 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
   return (
     <>
       <div className="bg-transparent relative my-2 border-4 border-gray-300 border-dotted">
-        <div
+        <motion.div
           className="bg-yellow-400 absolute top-0 left-0 bottom-0"
-          style={{ width: progress }}
-        ></div>
+          animate={{ width: progress }}
+        />
         <div className="text-center text-2xl lg:text-4xl font-doodle relative">
           {completedCount}
           <span className="text-xl lg:text-2xl ml-4">/{totalCount}</span>
@@ -196,21 +198,34 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
 
       {completedCount === totalCount && (
         <div className="text-center pb-96">
-          <h3 className="text-2xl lg:text-4xl font-doodle my-16">
+          <motion.h3
+            className="text-2xl lg:text-4xl font-doodle my-16"
+            initial={{ opacity: 0, scale: 0.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             🎉 Congratulations! 🎉
-          </h3>
-          <button
+          </motion.h3>
+          <motion.button
             className="font-doodle text-3xl p-3 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
             onClick={resetGame}
+            initial={{ opacity: 0.5 }}
+            animate={{ opacity: 1 }}
+            transition={{ repeat: Infinity, repeatType: "reverse" }}
           >
-            Restart
-          </button>
+            PLAY AGAIN
+          </motion.button>
         </div>
       )}
 
       {completedCount < totalCount && (
-        <div className="flex flex-row gap-x-5 mx-auto lg:w-1/3">
-          <div className="basis-1/2">
+        <div className="flex flex-row gap-x-5 mx-auto relative lg:w-1/3">
+          <Line
+            from={selectedGraphemeGroup}
+            to={selectedWordGroup}
+            completedCount={completedCount}
+          />
+          <div className="basis-1/2 relative">
             {graphemeList.map((props, index) => {
               if (!props) {
                 return (
@@ -227,7 +242,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               );
             })}
           </div>
-          <div className="basis-1/2">
+          <div className="basis-1/2 relative">
             {wordList.map((props, index) => {
               if (!props) {
                 return (

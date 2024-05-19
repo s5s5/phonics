@@ -52,7 +52,7 @@ const Page = () => {
   }, []);
 
   return (
-    <main className="font-sans bg-paper pb-20">
+    <main className="font-sans bg-paper pb-52">
       <h1 className="text-center text-3xl lg:text-6xl font-doodle">
         ✨ Phonics
         <span className="text-2xl lg:text-4xl ml-4">
