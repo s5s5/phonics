@@ -29,11 +29,11 @@ const GraphemeCard = ({
     if (!pronunciation) return null;
     if (!pronunciation.includes("_"))
       return <div className="text-center text-xs">/{pronunciation}/</div>;
-    const [p1, p2] = pronunciation.split("_");
+    const [partOne, partTwo] = pronunciation.split("_");
     return (
       <div className="text-center text-xs">
-        /{p1}
-        {<span className="italic">{p2}</span>}/
+        /{partOne}
+        {<span className="italic">{partTwo}</span>}/
       </div>
     );
   }, [pronunciation]);

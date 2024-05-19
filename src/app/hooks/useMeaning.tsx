@@ -19,7 +19,7 @@ const useMeaning = () => {
   const wordMain = useMemo(() => {
     const { wordList } = meaning;
     if (!wordList) return null;
-    const wl = wordList.map(({ word, highLight }) => {
+    const wordElements = wordList.map(({ word, highLight }) => {
       if (highLight) {
         return (
           <span className="text-red-500 font-bold underline" key={nanoid()}>
@@ -29,25 +29,27 @@ const useMeaning = () => {
       }
       return <span key={nanoid()}>{word}</span>;
     });
-    return <div className="text-2xl font-playpen font-bold mx-1">{wl}</div>;
+    return (
+      <div className="text-2xl font-playpen font-bold mx-1">{wordElements}</div>
+    );
   }, [meaning]);
 
   const pronunciationMain = useMemo(() => {
     const { pronunciation } = meaning;
 
     if (!pronunciation) return null;
-    const ap = pronunciation.map((phonetic) => {
-      const phoneticElemnet = phonetic.map((p) => {
-        if (typeof p === "object") {
+    const phoneticElements = pronunciation.map((phonetic) => {
+      const phoneticElemnet = phonetic.map((phoneticItem) => {
+        if (typeof phoneticItem === "object") {
           const className =
-            p.style === "italic" ? "italic" : "font-bold underline";
+            phoneticItem.style === "italic" ? "italic" : "font-bold underline";
           return (
             <span className={className} key={nanoid()}>
-              {p.text}
+              {phoneticItem.text}
             </span>
           );
         }
-        return <span key={nanoid()}>{p}</span>;
+        return <span key={nanoid()}>{phoneticItem}</span>;
       });
       return (
         <span className="mx-1 font-playpen text-xs" key={nanoid()}>
@@ -56,7 +58,7 @@ const useMeaning = () => {
       );
     });
 
-    return <div>{ap}</div>;
+    return <div>{phoneticElements}</div>;
   }, [meaning]);
 
   const meaningMain = useMemo(() => {
