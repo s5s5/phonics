@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { createRef, useEffect, useMemo, useState } from "react";
+import { Client } from "react-hydration-provider";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { Line } from "@/app/components/Line";
@@ -219,47 +220,49 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
       )}
 
       {completedCount < totalCount && (
-        <div className="flex flex-row gap-x-5 mx-auto relative lg:w-1/3">
-          <Line
-            from={selectedGraphemeGroup}
-            to={selectedWordGroup}
-            completedCount={completedCount}
-          />
-          <div className="basis-1/2 relative">
-            {graphemeList.map((props, index) => {
-              if (!props) {
+        <Client>
+          <div className="flex flex-row gap-x-5 mx-auto relative lg:w-1/3">
+            <Line
+              from={selectedGraphemeGroup}
+              to={selectedWordGroup}
+              completedCount={completedCount}
+            />
+            <div className="basis-1/2 relative">
+              {graphemeList.map((props, index) => {
+                if (!props) {
+                  return (
+                    <div key={"grapheme" + index} className="h-28 grid"></div>
+                  );
+                }
                 return (
-                  <div key={"grapheme" + index} className="h-28 grid"></div>
+                  <div key={"grapheme" + index} className="h-28 grid">
+                    <GraphemeCard
+                      {...props}
+                      selected={props.grapheme === selectedGrapheme}
+                    />
+                  </div>
                 );
-              }
-              return (
-                <div key={"grapheme" + index} className="h-28 grid">
-                  <GraphemeCard
-                    {...props}
-                    selected={props.grapheme === selectedGrapheme}
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <div className="basis-1/2 relative">
-            {wordList.map((props, index) => {
-              if (!props) {
+              })}
+            </div>
+            <div className="basis-1/2 relative">
+              {wordList.map((props, index) => {
+                if (!props) {
+                  return (
+                    <div key={"grapheme" + index} className="h-28 grid"></div>
+                  );
+                }
                 return (
-                  <div key={"grapheme" + index} className="h-28 grid"></div>
+                  <div key={"word" + index} className="h-28 grid">
+                    <WordCard
+                      {...props}
+                      selected={props.grapheme === selectedWord}
+                    />
+                  </div>
                 );
-              }
-              return (
-                <div key={"word" + index} className="h-28 grid">
-                  <WordCard
-                    {...props}
-                    selected={props.grapheme === selectedWord}
-                  />
-                </div>
-              );
-            })}
+              })}
+            </div>
           </div>
-        </div>
+        </Client>
       )}
     </>
   );
