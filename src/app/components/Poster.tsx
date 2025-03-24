@@ -57,6 +57,7 @@ const Poster = ({ phonicsList, play, showMeaning }: PosterProps) => {
           </div>
         );
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigationType]); // do not add `play`, `showMeaning`
 
   return (

@@ -57,7 +57,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               wordList: splitWord(word.word, grapheme),
             });
           },
-          nodeRef: createRef(),
+          nodeRef: createRef() as React.RefObject<HTMLDivElement>,
         });
         graphemeList.push({
           grapheme,
@@ -70,7 +70,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
               chinese_meanings: tips,
             });
           },
-          nodeRef: createRef(),
+          nodeRef: createRef() as React.RefObject<HTMLDivElement>,
         });
       });
 
@@ -99,6 +99,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
     });
 
     return { wordGroups, graphemeGroups };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetCount]); // do not add `play`, `showMeaning`
 
   const graphemeList = useMemo(
@@ -279,3 +280,4 @@ const distribute = (list: WordCardProps[] | GraphemeCardProps[]) => {
 };
 
 export { Game };
+
