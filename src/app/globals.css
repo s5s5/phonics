@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Playpen+Sans&family=Rubik+Doodle+Shadow&display=swap");
+@import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
