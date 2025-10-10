@@ -6,37 +6,51 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-rgb: 255, 255, 255;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
 }
 
 .bg-paper {
-  background-image: url("/images/bg.webp");
+    background-image: url("/images/bg.webp");
 }
 
 .content-visibility-auto {
-  content-visibility: auto;
+    content-visibility: auto;
 }
 
 .item-enter {
-  opacity: 0;
+    opacity: 0;
 }
 
 .item-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-out;
+    opacity: 1;
+    transition: opacity 1000ms ease-out;
 }
 
 .item-exit {
-  opacity: 1;
+    opacity: 1;
 }
 
 .item-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms ease-in;
+    opacity: 0;
+    transition: opacity 1000ms ease-in;
+}
+
+
+.font-playpen {
+    font-family: "Playpen Sans", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-doodle {
+    font-family: "Rubik Doodle Shadow", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
