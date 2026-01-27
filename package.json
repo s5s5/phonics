@@ -12,7 +12,7 @@
     "beautiful-react-hooks": "^5.0.3",
     "framer-motion": "^12.23.24",
     "howler": "^2.2.4",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mouse-firework": "^0.1.1",
     "nanoid": "^5.1.6",
     "next": "^16.0.10",
