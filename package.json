@@ -15,7 +15,7 @@
     "lodash": "^4.17.23",
     "mouse-firework": "^0.1.1",
     "nanoid": "^5.1.6",
-    "next": "^16.0.10",
+    "next": "^16.1.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hydration-provider": "^2.1.0",
