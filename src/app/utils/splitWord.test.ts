@@ -47,9 +47,9 @@ describe("splitWord — compound grapheme with underscore", () => {
     expect(result[3]).toEqual({ word: "k", highLight: true });
   });
 
-  it("middle segment contains characters between highlighted parts", () => {
+  it("middle segment is empty when pattern has no characters between the two parts", () => {
     const result = splitWord("clock", "c_k");
-    // regex c.k matches "coc" at index 1 in "clock"; after removing "c" and "k", middle is ""
+    // /c.k/ does not match "clock"; search() returns -1, slice(−1, 2) yields ""
     expect(result[2].word).toBe("");
     expect(result[2].highLight).toBeUndefined();
   });
