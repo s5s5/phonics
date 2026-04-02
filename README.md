@@ -56,7 +56,7 @@ npm run build
 # Start production server
 npm run start
 
-# Run unit tests (Vitest + React Testing Library)
+# Run unit tests
 npm test
 npm run test:watch    # Watch mode
 npm run test:coverage # With coverage report
