@@ -54,9 +54,6 @@ npm run build
 
 # Start production server
 npm run start
-
-# Run code linter
-npm run lint
 ```
 
 ---
