@@ -16,12 +16,13 @@ So I built one 🚀
 
 ## 🎮 Learn Through Interactive Play
 
-### Interactive Learning
+### Interactive Learning (`/poster/*`)
 - 👀 Quickly browse pronunciation rules for any letter combination
 - 🎵 Native speaker pronunciation with audio and visual reinforcement
 - 📱 Responsive design - works on phones, tablets, and computers
+- 🔗 Shareable URLs for each category (e.g. `/poster/shortvowel`)
 
-### Fun Matching Game
+### Fun Matching Game (`/`)
 Reinforce learning through an engaging card matching game:
 - 🎴 Match sounds with their corresponding phonics rules
 - 🏆 Strengthen memory through play
