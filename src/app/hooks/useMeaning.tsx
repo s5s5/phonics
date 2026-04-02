@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const END_TIME = 3000;
@@ -14,20 +13,19 @@ type MeaningType = {
 const useMeaning = () => {
   const [meaning, setMeaning] = useState<MeaningType>({});
   const [show, setShow] = useState(false);
-  const [endTime, setEndTime] = useState(Date.now() + END_TIME);
 
   const wordMain = useMemo(() => {
     const { wordList } = meaning;
     if (!wordList) return null;
-    const wordElements = wordList.map(({ word, highLight }) => {
+    const wordElements = wordList.map(({ word, highLight }, index) => {
       if (highLight) {
         return (
-          <span className="text-red-500 font-bold underline" key={nanoid()}>
+          <span className="text-red-500 font-bold underline" key={index}>
             {word}
           </span>
         );
       }
-      return <span key={nanoid()}>{word}</span>;
+      return <span key={index}>{word}</span>;
     });
     return (
       <div className="text-2xl font-playpen font-bold mx-1">{wordElements}</div>
@@ -38,21 +36,21 @@ const useMeaning = () => {
     const { pronunciation } = meaning;
 
     if (!pronunciation) return null;
-    const phoneticElements = pronunciation.map((phonetic) => {
-      const phoneticElemnet = phonetic.map((phoneticItem) => {
+    const phoneticElements = pronunciation.map((phonetic, phoneticIndex) => {
+      const phoneticElemnet = phonetic.map((phoneticItem, itemIndex) => {
         if (typeof phoneticItem === "object") {
           const className =
             phoneticItem.style === "italic" ? "italic" : "font-bold underline";
           return (
-            <span className={className} key={nanoid()}>
+            <span className={className} key={itemIndex}>
               {phoneticItem.text}
             </span>
           );
         }
-        return <span key={nanoid()}>{phoneticItem}</span>;
+        return <span key={itemIndex}>{phoneticItem}</span>;
       });
       return (
-        <span className="mx-1 font-playpen text-xs" key={nanoid()}>
+        <span className="mx-1 font-playpen text-xs" key={phoneticIndex}>
           /{phoneticElemnet}/
         </span>
       );
@@ -68,14 +66,9 @@ const useMeaning = () => {
   }, [meaning]);
 
   const showMeaning = useCallback((meaning: MeaningType) => {
-    setEndTime(Date.now() + END_TIME);
     setShow(true);
     setMeaning(meaning);
   }, []);
-
-  const hideMeaning = useCallback(() => {
-    Date.now() - endTime > 0 && setShow(false);
-  }, [endTime]);
 
   const meaningContent = useMemo(() => {
     if (!show) return null;
@@ -89,11 +82,10 @@ const useMeaning = () => {
   }, [meaningMain, pronunciationMain, show, wordMain]);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      hideMeaning();
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [hideMeaning]);
+    if (!show) return;
+    const id = window.setTimeout(() => setShow(false), END_TIME);
+    return () => window.clearTimeout(id);
+  }, [show, meaning]);
 
   return { meaningContent, showMeaning };
 };

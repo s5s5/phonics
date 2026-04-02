@@ -1,5 +1,3 @@
-import { nanoid } from "nanoid";
-
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
 import { WordCard, WordCardProps } from "@/app/components/WordCard";
 
@@ -16,7 +14,7 @@ const GraphemeWithWords = ({
     <div className="mb-4 text-gray-950 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-11 content-visibility-auto">
       <GraphemeCard {...graphemeCard} />
       {wordCards.map((wordCard) => (
-        <WordCard {...wordCard} key={nanoid()} />
+        <WordCard {...wordCard} key={wordCard.word} />
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 type GraphemeCardProps = {
@@ -25,6 +25,9 @@ const GraphemeCard = ({
   selected,
   nodeRef,
 }: GraphemeCardProps) => {
+  const internalRef = useRef<HTMLDivElement>(null);
+  const ref = nodeRef ?? internalRef;
+
   const pronunciationText = useMemo(() => {
     if (!pronunciation) return null;
     if (!pronunciation.includes("_"))
@@ -42,7 +45,7 @@ const GraphemeCard = ({
     <SwitchTransition>
       <CSSTransition
         key={grapheme}
-        nodeRef={nodeRef}
+        nodeRef={ref}
         timeout={1000}
         classNames="item"
       >
@@ -51,7 +54,7 @@ const GraphemeCard = ({
             selected ? "bg-indigo-500 text-white border-transparent" : ""
           }`}
           onClick={onClick}
-          ref={nodeRef}
+          ref={ref}
         >
           <div className="h-12 overflow-visible mt-4 mb-1 text-center font-doodle flex content-center justify-items-center">
             <div className={`flex-1 text-center ${textSizes[grapheme.length]}`}>

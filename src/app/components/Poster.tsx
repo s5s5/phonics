@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useMemo, useState } from "react";
 
 import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
@@ -49,7 +48,7 @@ const Poster = ({ phonicsList, play, showMeaning }: PosterProps) => {
         });
 
         return (
-          <div key={nanoid()}>
+          <div key={`${item.phoneme}-${item.grapheme}`}>
             <GraphemeWithWords
               graphemeCard={graphemeCard}
               wordCards={wordCards}

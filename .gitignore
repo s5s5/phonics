@@ -40,3 +40,5 @@ yarn-error.log*
 /.vscode
 /.idea
 
+# AI
+CLAUDE.md

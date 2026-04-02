@@ -1,8 +1,8 @@
-import useCookie from "beautiful-react-hooks/useCookie";
-import isEqual from "lodash/isEqual";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 
-type cookieType = {
+const STORAGE_KEY = "phonics";
+
+type SavedState = {
   navigationType: string;
   top: number;
 };
@@ -14,41 +14,31 @@ const useRemember = ({
   navigationType: string;
   setNavigationType: (type: string) => void;
 }) => {
-  const [isFirstOpen, setIsFirstOpen] = useState(true);
-  const { cookieValue, updateCookie } = useCookie("phonics", {
-    path: "/",
-    defaultValue: '{"navigationType":"Alphabet","top":0}',
-  });
+  useEffect(() => {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    try {
+      const saved: SavedState = JSON.parse(raw);
+      setNavigationType(saved.navigationType ?? "Alphabet");
+      window.setTimeout(() => window.scrollTo({ top: saved.top ?? 0 }), 0);
+    } catch {}
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const remember = useCallback(() => {
-    const top = window.scrollY;
-    const value = JSON.stringify({ navigationType, top });
-    if (!isEqual(value, cookieValue) && !isFirstOpen) {
-      updateCookie(JSON.stringify({ navigationType, top }));
-    }
-  }, [cookieValue, isFirstOpen, navigationType, updateCookie]);
-
-  const scrollTo = useCallback((top: number) => {
-    window.scrollTo({ top });
-  }, []);
+    const value: SavedState = { navigationType, top: window.scrollY };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+  }, [navigationType]);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      remember();
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [remember]);
-
-  useEffect(() => {
-    if (isFirstOpen && cookieValue !== undefined) {
-      const { navigationType, top } = JSON.parse(cookieValue);
-      setNavigationType(navigationType || "Alphabet");
-      window.setTimeout(() => {
-        setIsFirstOpen(false);
-        scrollTo(top);
-      }, 1);
-    }
-  }, [cookieValue, isFirstOpen, scrollTo, setNavigationType]);
+    const handleScroll = () => {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ navigationType, top: window.scrollY }),
+      );
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [navigationType]);
 
   return { remember };
 };

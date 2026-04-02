@@ -9,12 +9,9 @@
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "beautiful-react-hooks": "^5.0.3",
     "framer-motion": "^12.38.0",
     "howler": "^2.2.4",
-    "lodash": "^4.18.1",
     "mouse-firework": "^0.2.0",
-    "nanoid": "^5.1.7",
     "next": "^16.2.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
