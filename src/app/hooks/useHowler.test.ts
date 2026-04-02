@@ -88,4 +88,23 @@ describe("useHowler", () => {
     expect(MockHowl.__stop).toHaveBeenCalled();
     expect(MockHowl.__unload).toHaveBeenCalled();
   });
+
+  it("logs a console.warn when audio fails to load", async () => {
+    const MockHowl = await getHowlMock();
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const { result } = renderHook(() => useHowler());
+    act(() => { result.current.play("æ"); });
+
+    // Retrieve the onloaderror callback passed to the Howl constructor
+    const constructorOptions = MockHowl.mock.calls[0][0] as {
+      onloaderror: (id: number, err: unknown) => void;
+    };
+    constructorOptions.onloaderror(1, "network error");
+
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('"æ"'),
+      "network error",
+    );
+    warnSpy.mockRestore();
+  });
 });

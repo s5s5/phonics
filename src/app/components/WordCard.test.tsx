@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { WordCard } from "@/app/components/WordCard";
+import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
 vi.mock("next/image", () => ({
   default: ({
@@ -130,5 +131,35 @@ describe("WordCard", () => {
     card.focus();
     await user.keyboard(" ");
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("sets utter.voice and utter.rate=0.7 when a voice is available", async () => {
+    // Capture the setVoice callback from the component
+    let capturedSetVoice: ((v: SpeechSynthesisVoice) => void) | undefined;
+    (useVoiceSelector as ReturnType<typeof vi.fn>).mockImplementationOnce(
+      (setVoice: (v: SpeechSynthesisVoice) => void) => {
+        capturedSetVoice = setVoice;
+      },
+    );
+
+    const capturedUtterances: SpeechSynthesisUtterance[] = [];
+    window.speechSynthesis.speak = vi.fn((u: SpeechSynthesisUtterance) =>
+      capturedUtterances.push(u),
+    );
+
+    const user = userEvent.setup();
+    render(<WordCard word="rain" grapheme="ai" onClick={vi.fn()} />);
+
+    // Trigger voice selection via the captured setter
+    const mockVoice = { name: "Test Voice" } as SpeechSynthesisVoice;
+    act(() => {
+      capturedSetVoice!(mockVoice);
+    });
+
+    await user.click(screen.getByRole("button", { name: "Word rain" }));
+
+    expect(capturedUtterances[0]).toBeDefined();
+    expect(capturedUtterances[0].voice).toBe(mockVoice);
+    expect(capturedUtterances[0].rate).toBe(0.7);
   });
 });

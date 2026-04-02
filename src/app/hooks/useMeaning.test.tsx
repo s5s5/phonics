@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react";
+import { render, renderHook, act } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import useMeaning from "@/app/hooks/useMeaning";
 
@@ -50,5 +50,76 @@ describe("useMeaning", () => {
     const first = result.current.showMeaning;
     rerender();
     expect(result.current.showMeaning).toBe(first);
+  });
+});
+
+describe("useMeaning — wordList rendering", () => {
+  it("renders highlighted word parts when highLight is true", () => {
+    const { result } = renderHook(() => useMeaning());
+    act(() => {
+      result.current.showMeaning({
+        wordList: [
+          { word: "r" },
+          { word: "ai", highLight: true },
+          { word: "n" },
+        ],
+      });
+    });
+    const { container } = render(<>{result.current.meaningContent}</>);
+    const highlighted = container.querySelector("span.text-red-500");
+    expect(highlighted).toBeTruthy();
+    expect(highlighted?.textContent).toBe("ai");
+  });
+
+  it("renders non-highlighted word parts without red class", () => {
+    const { result } = renderHook(() => useMeaning());
+    act(() => {
+      result.current.showMeaning({
+        wordList: [{ word: "rain", highLight: false }],
+      });
+    });
+    const { container } = render(<>{result.current.meaningContent}</>);
+    const redSpan = container.querySelector("span.text-red-500");
+    expect(redSpan).toBeNull();
+    expect(container.textContent).toContain("rain");
+  });
+});
+
+describe("useMeaning — pronunciation rendering", () => {
+  it("renders string pronunciation items as plain spans", () => {
+    const { result } = renderHook(() => useMeaning());
+    act(() => {
+      result.current.showMeaning({
+        pronunciation: [["r", "eɪ", "n"]],
+      });
+    });
+    const { container } = render(<>{result.current.meaningContent}</>);
+    expect(container.textContent).toContain("reɪn");
+  });
+
+  it("renders object pronunciation items with italic class", () => {
+    const { result } = renderHook(() => useMeaning());
+    act(() => {
+      result.current.showMeaning({
+        pronunciation: [[{ style: "italic", text: "eɪ" }]],
+      });
+    });
+    const { container } = render(<>{result.current.meaningContent}</>);
+    const italicSpan = container.querySelector("span.italic");
+    expect(italicSpan).toBeTruthy();
+    expect(italicSpan?.textContent).toBe("eɪ");
+  });
+
+  it("renders object pronunciation items with bold-underline class for non-italic style", () => {
+    const { result } = renderHook(() => useMeaning());
+    act(() => {
+      result.current.showMeaning({
+        pronunciation: [[{ style: "bold", text: "æ" }]],
+      });
+    });
+    const { container } = render(<>{result.current.meaningContent}</>);
+    const boldSpan = container.querySelector("span.font-bold.underline");
+    expect(boldSpan).toBeTruthy();
+    expect(boldSpan?.textContent).toBe("æ");
   });
 });
