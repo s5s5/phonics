@@ -32,6 +32,18 @@ Reinforce learning through an engaging card matching game:
 
 Phonics is a core method for teaching English reading and writing. Once children master phonics rules, they can decode and spell words based on sounds, building a solid foundation for independent reading.
 
+## 🧪 Testing
+
+Unit tests are written with [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/).
+
+```bash
+npm test                 # Run all tests
+npm run test:watch       # Watch mode
+npm run test:coverage    # Run with coverage report
+```
+
+Test files are co-located with source files (e.g. `splitWord.test.ts` next to `splitWord.ts`). Coverage includes utils, constants, Zustand store, hooks, and key components.
+
 ## 🤝 Contributing
 
 We welcome contributions! Whether you want to report bugs, suggest features, or submit code improvements, your help is appreciated.
