@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import useVoiceSelector from "@/app/hooks/useVoiceSelector";
@@ -20,6 +20,7 @@ const WordCard = ({
   nodeRef,
 }: WordCardProps) => {
   const [voice, setVoice] = useState<SpeechSynthesisVoice>();
+  const [imgError, setImgError] = useState(false);
 
   useVoiceSelector(setVoice);
 
@@ -35,6 +36,14 @@ const WordCard = ({
 
   const wordList = useMemo(() => splitWord(word, grapheme), [word, grapheme]);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      speak();
+      onClick();
+    }
+  };
+
   return (
     <SwitchTransition>
       <CSSTransition
@@ -44,6 +53,10 @@ const WordCard = ({
         classNames="item"
       >
         <div
+          role="button"
+          tabIndex={0}
+          aria-label={`Word ${word}`}
+          aria-pressed={selected}
           className={`m-1 rounded-xl border-4 border-gray-300 border-dotted transition duration-300 lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:border-white cursor-pointer ${
             selected ? "bg-indigo-500 text-white border-white" : ""
           }`}
@@ -51,15 +64,23 @@ const WordCard = ({
             speak();
             onClick();
           }}
+          onKeyDown={handleKeyDown}
           ref={nodeRef}
         >
-          <Image
-            className="mx-auto my-1"
-            src={`/images/words/${word}.png`}
-            width={60}
-            height={60}
-            alt={word}
-          />
+          {imgError ? (
+            <div className="mx-auto my-1 h-[60px] flex items-center justify-center text-gray-400 text-sm">
+              {word}
+            </div>
+          ) : (
+            <Image
+              className="mx-auto my-1"
+              src={`/images/words/${word}.png`}
+              width={60}
+              height={60}
+              alt={word}
+              onError={() => setImgError(true)}
+            />
+          )}
 
           <div className="text-center mb-1 font-playpen text-base">
             {wordList.map(({ word, highLight }, index) => {
@@ -115,4 +136,5 @@ const splitWord = (
   ];
 };
 
-export { splitWord, WordCard, type WordCardProps };
+const MemoWordCard = memo(WordCard);
+export { splitWord, MemoWordCard as WordCard, type WordCardProps };

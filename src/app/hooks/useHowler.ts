@@ -9,9 +9,15 @@ const useHowler = () => {
     (newPhoneme: string) => {
       if (!newPhoneme) return;
       if (newPhoneme !== phoneme) {
+        // Unload previous sound before creating a new one
+        sound?.stop();
+        sound?.unload();
         const newSound = new Howl({
           src: [`/sound/${newPhoneme}.mp3`],
           autoplay: true,
+          onloaderror: (_id: number, err: unknown) => {
+            console.warn(`Failed to load audio for phoneme "${newPhoneme}":`, err);
+          },
         });
         setSound(newSound);
         setPhoneme(newPhoneme);

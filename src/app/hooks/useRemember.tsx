@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const STORAGE_KEY = "phonics";
 
@@ -21,7 +21,9 @@ const useRemember = ({
       const saved: SavedState = JSON.parse(raw);
       setNavigationType(saved.navigationType ?? "Alphabet");
       window.setTimeout(() => window.scrollTo({ top: saved.top ?? 0 }), 0);
-    } catch {}
+    } catch (e) {
+      console.warn("Failed to restore saved state:", e);
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const remember = useCallback(() => {
@@ -29,15 +31,24 @@ const useRemember = ({
     localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
   }, [navigationType]);
 
+  const debounceRef = useRef<number | undefined>(undefined);
+
   useEffect(() => {
+    // Debounce localStorage writes to avoid thrashing on every scroll event
     const handleScroll = () => {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ navigationType, top: window.scrollY }),
-      );
+      clearTimeout(debounceRef.current);
+      debounceRef.current = window.setTimeout(() => {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ navigationType, top: window.scrollY }),
+        );
+      }, 300);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(debounceRef.current);
+    };
   }, [navigationType]);
 
   return { remember };

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import useRemember from "@/app/hooks/useRemember";
 
 const navigationTypes = [
@@ -36,4 +38,5 @@ const Navigation = ({ navigationType, setNavigationType }: NavigationProps) => {
   );
 };
 
-export { Navigation, navigationTypes };
+const MemoNavigation = memo(Navigation);
+export { MemoNavigation as Navigation, navigationTypes };

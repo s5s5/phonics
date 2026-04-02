@@ -1,13 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-import { Game } from "@/app/components/Game";
 import { PHONICS_LIST } from "@/app/constants";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
 
-import { Poster } from "./components/Poster";
+const Game = dynamic(
+  () => import("@/app/components/Game").then((m) => ({ default: m.Game })),
+  { ssr: false },
+);
+const Poster = dynamic(() =>
+  import("@/app/components/Poster").then((m) => ({ default: m.Poster })),
+);
 
 const Page = () => {
   const [showGame, setShowGame] = useState(true);
@@ -61,6 +67,7 @@ const Page = () => {
       </h1>
 
       <button
+        aria-label={showGame ? "Switch to poster mode" : "Switch to game mode"}
         className="fixed top-2 left-2 z-30 cursor-pointer grid px-1 font-bold pb-1 text lg:text-2xl font-doodle border-2 border-gray-800 border-dotted rounded hover:bg-indigo-500 hover:text-white hover:border-white"
         onClick={() => {
           setShowGame((prev) => !prev);

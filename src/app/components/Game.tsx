@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { createRef, useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo } from "react";
 import { Client } from "react-hydration-provider";
 
 import { GraphemeCard, GraphemeCardProps } from "@/app/components/GraphemeCard";
@@ -7,6 +7,7 @@ import { Line } from "@/app/components/Line";
 import { splitWord, WordCard, WordCardProps } from "@/app/components/WordCard";
 import { Phonics } from "@/app/constants";
 import { MeaningType } from "@/app/hooks/useMeaning";
+import { useGameStore } from "@/app/store/gameStore";
 
 const PHONICS_DISPLAY_LIMIT = 16;
 
@@ -17,24 +18,19 @@ type GameProps = {
 };
 
 const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
-  const [selectedWord, setSelectedWord] = useState<string | undefined>(
-    undefined,
-  );
-  const [selectedGrapheme, setSelectedGrapheme] = useState<string | undefined>(
-    undefined,
-  );
-
-  const [selectedWordGroup, setSelectedWordGroup] = useState<
-    number | undefined
-  >(undefined);
-  const [selectedGraphemeGroup, setSelectedGraphemeGroup] = useState<
-    number | undefined
-  >(undefined);
-
-  const [wordGroupIndex, setWordGroupIndex] = useState([0, 0, 0, 0]);
-  const [graphemeGroupIndex, setGraphemeGroupIndex] = useState([0, 0, 0, 0]);
-
-  const [resetCount, setResetCount] = useState(0);
+  const {
+    selectedWord,
+    selectedGrapheme,
+    selectedWordGroup,
+    selectedGraphemeGroup,
+    wordGroupIndex,
+    graphemeGroupIndex,
+    resetCount,
+    selectWord,
+    selectGrapheme,
+    advanceGroups,
+    reset,
+  } = useGameStore();
 
   const { wordGroups, graphemeGroups } = useMemo(() => {
     const wordList: WordCardProps[] = [];
@@ -49,7 +45,6 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
           grapheme,
           word: word.word,
           onClick: () => {
-            setSelectedWord(grapheme);
             showMeaning({
               word: word.word,
               pronunciation: word.pronunciation,
@@ -63,7 +58,6 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
           grapheme,
           pronunciation,
           onClick: () => {
-            setSelectedGrapheme(grapheme);
             play(phoneme);
             showMeaning({
               wordList: [{ word: grapheme }],
@@ -81,7 +75,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
         ...wordCard,
         onClick: () => {
           wordCard.onClick();
-          setSelectedWordGroup(wordDistribution[index]);
+          selectWord(wordCard.grapheme, wordDistribution[index]);
         },
       });
     });
@@ -93,14 +87,14 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
         ...graphemeCard,
         onClick: () => {
           graphemeCard.onClick();
-          setSelectedGraphemeGroup(graphemeDistribution[index]);
+          selectGrapheme(graphemeCard.grapheme, graphemeDistribution[index]);
         },
       });
     });
 
     return { wordGroups, graphemeGroups };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetCount]); // do not add `play`, `showMeaning`
+  }, [resetCount]); // do not add `play`, `showMeaning`, `selectWord`, `selectGrapheme`
 
   const graphemeList = useMemo(
     () => graphemeGroups.map((list, index) => list[graphemeGroupIndex[index]]),
@@ -113,18 +107,12 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
   );
 
   const completedCount = useMemo(
-    () =>
-      graphemeGroupIndex.reduce((previousValue, currentValue) => {
-        return previousValue + currentValue;
-      }, 0),
+    () => graphemeGroupIndex.reduce((sum, val) => sum + val, 0),
     [graphemeGroupIndex],
   );
 
   const totalCount = useMemo(
-    () =>
-      graphemeGroups.reduce((previousValue, currentValue) => {
-        return previousValue + currentValue.length;
-      }, 0),
+    () => graphemeGroups.reduce((sum, g) => sum + g.length, 0),
     [graphemeGroups],
   );
 
@@ -134,54 +122,22 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
     [completedCount, totalCount],
   );
 
-  const resetGame = () => {
-    setGraphemeGroupIndex([0, 0, 0, 0]);
-    setWordGroupIndex([0, 0, 0, 0]);
-    setSelectedWord(undefined);
-    setSelectedGrapheme(undefined);
-    setSelectedWordGroup(undefined);
-    setSelectedGraphemeGroup(undefined);
-    setResetCount((prev) => prev + 1);
-  };
-
   useEffect(() => {
     if (
       selectedWord !== undefined &&
       selectedGrapheme !== undefined &&
       selectedGrapheme === selectedWord
     ) {
-      setGraphemeGroupIndex((prev) => {
-        if (
-          graphemeGroups[selectedGraphemeGroup!].length ===
-          prev[selectedGraphemeGroup!]
-        ) {
-          return prev;
-        }
-        const copy = [...prev];
-        copy[selectedGraphemeGroup!] += 1;
-        return copy;
-      });
-      setWordGroupIndex((prev) => {
-        if (
-          wordGroups[selectedWordGroup!].length === prev[selectedWordGroup!]
-        ) {
-          return prev;
-        }
-        const copy = [...prev];
-        copy[selectedWordGroup!] += 1;
-        return copy;
-      });
-      setSelectedWord(undefined);
-      setSelectedGrapheme(undefined);
-      setSelectedWordGroup(undefined);
-      setSelectedGraphemeGroup(undefined);
+      advanceGroups(
+        wordGroups.map((g) => g.length),
+        graphemeGroups.map((g) => g.length),
+      );
     }
   }, [
+    advanceGroups,
     graphemeGroups,
     selectedGrapheme,
-    selectedGraphemeGroup,
     selectedWord,
-    selectedWordGroup,
     wordGroups,
   ]);
 
@@ -210,7 +166,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
           </motion.h3>
           <motion.button
             className="font-doodle text-3xl p-3 rounded-xl border-4 border-gray-800 border-dotted transition duration-300 hover:bg-indigo-500 hover:text-white hover:border-white cursor-pointer"
-            onClick={resetGame}
+            onClick={reset}
             initial={{ opacity: 0.5 }}
             animate={{ opacity: 1 }}
             transition={{ repeat: Infinity, repeatType: "reverse" }}
@@ -269,8 +225,14 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
   );
 };
 
+// Fisher-Yates shuffle for uniform distribution
 const shuffle = () => {
-  return [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+  const arr = [0, 1, 2, 3];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 };
 
 const distribute = (list: WordCardProps[] | GraphemeCardProps[]) => {
@@ -280,4 +242,3 @@ const distribute = (list: WordCardProps[] | GraphemeCardProps[]) => {
 };
 
 export { Game };
-
