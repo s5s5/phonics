@@ -2,18 +2,23 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect } from "react";
+import { notFound } from "next/navigation";
+import { use, useEffect } from "react";
 
 import { PHONICS_LIST } from "@/app/constants";
+import { SLUG_TO_CATEGORY } from "@/app/constants/categorySlug";
 import useHowler from "@/app/hooks/useHowler";
 import useMeaning from "@/app/hooks/useMeaning";
 
-const Game = dynamic(
-  () => import("@/app/components/Game").then((m) => ({ default: m.Game })),
-  { ssr: false },
+const Poster = dynamic(() =>
+  import("@/app/components/Poster").then((m) => ({ default: m.Poster })),
 );
 
-const Page = () => {
+const PosterCategoryPage = ({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) => {
   const { meaningContent, showMeaning } = useMeaning();
   const { play } = useHowler();
 
@@ -53,6 +58,13 @@ const Page = () => {
     });
   }, []);
 
+  const { category } = use(params);
+  const navigationType = SLUG_TO_CATEGORY[category];
+
+  if (!navigationType) {
+    notFound();
+  }
+
   return (
     <main className="font-sans bg-paper pb-52">
       <h1 className="text-center text-3xl lg:text-6xl font-doodle">
@@ -63,15 +75,16 @@ const Page = () => {
       </h1>
 
       <Link
-        href="/poster"
-        aria-label="Switch to poster mode"
+        href="/"
+        aria-label="Switch to game mode"
         className="fixed top-2 left-2 z-30 cursor-pointer grid px-1 font-bold pb-1 text lg:text-2xl font-doodle border-2 border-gray-800 border-dotted rounded hover:bg-indigo-500 hover:text-white hover:border-white"
       >
-        🀨
+        🎮
       </Link>
 
-      <Game
+      <Poster
         phonicsList={PHONICS_LIST}
+        navigationType={navigationType}
         play={play}
         showMeaning={showMeaning}
       />
@@ -95,4 +108,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default PosterCategoryPage;

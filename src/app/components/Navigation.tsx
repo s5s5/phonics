@@ -1,6 +1,9 @@
-import { memo } from "react";
+"use client";
 
-import useRemember from "@/app/hooks/useRemember";
+import { memo } from "react";
+import { useRouter } from "next/navigation";
+
+import { CATEGORY_TO_SLUG } from "@/app/constants/categorySlug";
 
 const navigationTypes = [
   "Alphabet",
@@ -11,24 +14,22 @@ const navigationTypes = [
 ];
 
 type NavigationProps = {
-  navigationType: string;
-  setNavigationType: (type: string) => void;
+  currentSlug: string;
 };
 
-const Navigation = ({ navigationType, setNavigationType }: NavigationProps) => {
-  const { remember } = useRemember({ navigationType, setNavigationType });
+const Navigation = ({ currentSlug }: NavigationProps) => {
+  const router = useRouter();
 
   return (
     <div className="rounded-b-xl bg-paper flex text-xs lg:text-xl font-doodle max-w-4xl mx-auto py-2 sticky top-0 z-10">
       {navigationTypes.map((type) => (
         <h2
           className={`flex-auto text-center cursor-pointer ${
-            type === navigationType && "underline decoration-double font-bold"
+            CATEGORY_TO_SLUG[type] === currentSlug && "underline decoration-double font-bold"
           } hover:underline`}
           key={type}
           onClick={() => {
-            setNavigationType(type);
-            remember();
+            router.push("/poster/" + CATEGORY_TO_SLUG[type]);
           }}
         >
           {type}

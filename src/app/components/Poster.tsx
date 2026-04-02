@@ -1,20 +1,20 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { GraphemeWithWords } from "@/app/components/GraphemeWithWords";
-import { Navigation, navigationTypes } from "@/app/components/Navigation";
+import { Navigation } from "@/app/components/Navigation";
 import { splitWord } from "@/app/components/WordCard";
 import { Phonics } from "@/app/constants";
+import { CATEGORY_TO_SLUG } from "@/app/constants/categorySlug";
 import { MeaningType } from "@/app/hooks/useMeaning";
 
 type PosterProps = {
   phonicsList: Phonics[];
+  navigationType: string;
   play: (phoneme: string) => void;
   showMeaning: (meaning: MeaningType) => void;
 };
 
-const Poster = ({ phonicsList, play, showMeaning }: PosterProps) => {
-  const [navigationType, setNavigationType] = useState(navigationTypes[0]);
-
+const Poster = ({ phonicsList, navigationType, play, showMeaning }: PosterProps) => {
   const cards = useMemo(() => {
     return phonicsList
       .filter(({ graphemeType }) => graphemeType === navigationType)
@@ -61,10 +61,7 @@ const Poster = ({ phonicsList, play, showMeaning }: PosterProps) => {
 
   return (
     <>
-      <Navigation
-        navigationType={navigationType}
-        setNavigationType={setNavigationType}
-      />
+      <Navigation currentSlug={CATEGORY_TO_SLUG[navigationType]} />
 
       {cards}
     </>
