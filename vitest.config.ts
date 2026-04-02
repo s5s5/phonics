@@ -11,7 +11,6 @@ export default defineConfig({
       reporter: ["text", "html"],
       include: [
         "src/app/utils/**",
-        "src/app/constants/categorySlug.ts",
         "src/app/store/**",
         "src/app/hooks/**",
         "src/app/components/**",
