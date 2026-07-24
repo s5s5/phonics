@@ -42,7 +42,7 @@
     "jsdom": "^29.1.1",
     "postcss": "^8.5.22",
     "prettier": "^3.9.6",
-    "typescript": "^7.0.2",
+    "typescript": "7.0.2",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"
   }
