@@ -14,7 +14,12 @@ type PosterProps = {
   showMeaning: (meaning: MeaningType) => void;
 };
 
-const Poster = ({ phonicsList, navigationType, play, showMeaning }: PosterProps) => {
+const Poster = ({
+  phonicsList,
+  navigationType,
+  play,
+  showMeaning,
+}: PosterProps) => {
   const cards = useMemo(() => {
     return phonicsList
       .filter(({ graphemeType }) => graphemeType === navigationType)
@@ -56,7 +61,7 @@ const Poster = ({ phonicsList, navigationType, play, showMeaning }: PosterProps)
           </div>
         );
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigationType]); // do not add `play`, `showMeaning`
 
   return (

@@ -62,7 +62,7 @@ describe("WordCard", () => {
     render(<WordCard word="apple" grapheme="a" onClick={vi.fn()} />);
     const spans = document.querySelectorAll("span");
     const plain = Array.from(spans).find(
-      (s) => !s.classList.contains("text-red-500") && s.textContent === "pple"
+      (s) => !s.classList.contains("text-red-500") && s.textContent === "pple",
     );
     expect(plain).toBeTruthy();
   });
@@ -92,7 +92,7 @@ describe("WordCard", () => {
 
   it("does not mark aria-pressed when selected is false", () => {
     render(
-      <WordCard word="rain" grapheme="ai" onClick={vi.fn()} selected={false} />
+      <WordCard word="rain" grapheme="ai" onClick={vi.fn()} selected={false} />,
     );
     const card = screen.getByRole("button", { name: "Word rain" });
     expect(card).toHaveAttribute("aria-pressed", "false");

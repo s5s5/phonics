@@ -14,10 +14,7 @@ vi.mock("framer-motion", () => ({
     }: React.HTMLAttributes<HTMLDivElement> & { animate?: unknown }) => (
       <div {...props}>{children}</div>
     ),
-    h3: ({
-      children,
-      ...props
-    }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
       <h3 {...props}>{children}</h3>
     ),
     button: ({
@@ -133,12 +130,16 @@ afterEach(() => {
 
 describe("Game", () => {
   it("renders the progress counter at 0", () => {
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     expect(screen.getByText("0")).toBeInTheDocument();
   });
 
   it("renders grapheme cards", () => {
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     // With Math.random=0, all 4 grapheme items are visible (one per column)
     const graphemeCards = screen
       .getAllByRole("button")
@@ -147,7 +148,9 @@ describe("Game", () => {
   });
 
   it("renders word cards", () => {
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     const wordCards = screen
       .getAllByRole("button")
       .filter((btn) => btn.dataset["testid"]?.startsWith("word-"));
@@ -155,7 +158,9 @@ describe("Game", () => {
   });
 
   it("renders the Line component", () => {
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     expect(screen.getByTestId("line")).toBeInTheDocument();
   });
 
@@ -163,7 +168,9 @@ describe("Game", () => {
     // With Math.random=0 and 4 items: each group has 1 item → totalCount=4
     // Setting graphemeGroupIndex=[1,1,1,1] gives completedCount=4=totalCount
     useGameStore.setState({ graphemeGroupIndex: [1, 1, 1, 1] }, false);
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     expect(screen.getByText(/Congratulations/)).toBeInTheDocument();
     expect(screen.getByText("PLAY AGAIN")).toBeInTheDocument();
   });
@@ -171,7 +178,9 @@ describe("Game", () => {
   it("resets the game when PLAY AGAIN is clicked", async () => {
     useGameStore.setState({ graphemeGroupIndex: [1, 1, 1, 1] }, false);
     const user = userEvent.setup();
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
     await user.click(screen.getByText("PLAY AGAIN"));
     const state = useGameStore.getState();
     expect(state.graphemeGroupIndex).toEqual([0, 0, 0, 0]);
@@ -182,7 +191,11 @@ describe("Game", () => {
     const user = userEvent.setup();
     const showMeaning = vi.fn();
     render(
-      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={showMeaning} />,
+      <Game
+        phonicsList={mockPhonics}
+        play={vi.fn()}
+        showMeaning={showMeaning}
+      />,
     );
     const graphemeCards = screen
       .getAllByRole("button")
@@ -194,7 +207,9 @@ describe("Game", () => {
   it("calls play when a grapheme card is clicked", async () => {
     const user = userEvent.setup();
     const play = vi.fn();
-    render(<Game phonicsList={mockPhonics} play={play} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={play} showMeaning={vi.fn()} />,
+    );
     const graphemeCards = screen
       .getAllByRole("button")
       .filter((btn) => btn.dataset["testid"]?.startsWith("grapheme-"));
@@ -206,7 +221,11 @@ describe("Game", () => {
     const user = userEvent.setup();
     const showMeaning = vi.fn();
     render(
-      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={showMeaning} />,
+      <Game
+        phonicsList={mockPhonics}
+        play={vi.fn()}
+        showMeaning={showMeaning}
+      />,
     );
     const wordCards = screen
       .getAllByRole("button")
@@ -217,7 +236,9 @@ describe("Game", () => {
 
   it("advances groups when matching grapheme and word are both selected", async () => {
     const user = userEvent.setup();
-    render(<Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />);
+    render(
+      <Game phonicsList={mockPhonics} play={vi.fn()} showMeaning={vi.fn()} />,
+    );
 
     // Click a grapheme card first, then click the matching word card
     const graphemeCards = screen
@@ -226,10 +247,12 @@ describe("Game", () => {
     await user.click(graphemeCards[0]);
 
     const selectedGrapheme = useGameStore.getState().selectedGrapheme;
-    const matchingWord = screen.queryByTestId(`word-${
-      // find a word card that matches the selected grapheme
-      ["apple", "ball", "cat", "dog"].find(() => true)
-    }`);
+    const matchingWord = screen.queryByTestId(
+      `word-${
+        // find a word card that matches the selected grapheme
+        ["apple", "ball", "cat", "dog"].find(() => true)
+      }`,
+    );
 
     // Find a word card with matching grapheme attribute
     const wordCards = screen

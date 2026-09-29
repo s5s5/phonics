@@ -46,25 +46,33 @@ describe("useHowler", () => {
   it("creates a Howl instance when play is called with a phoneme", async () => {
     const MockHowl = await getHowlMock();
     const { result } = renderHook(() => useHowler());
-    act(() => { result.current.play("æ"); });
+    act(() => {
+      result.current.play("æ");
+    });
     expect(MockHowl).toHaveBeenCalledTimes(1);
     expect(MockHowl).toHaveBeenCalledWith(
-      expect.objectContaining({ src: ["/sound/æ.mp3"], autoplay: true })
+      expect.objectContaining({ src: ["/sound/æ.mp3"], autoplay: true }),
     );
   });
 
   it("does nothing when called with an empty string", async () => {
     const MockHowl = await getHowlMock();
     const { result } = renderHook(() => useHowler());
-    act(() => { result.current.play(""); });
+    act(() => {
+      result.current.play("");
+    });
     expect(MockHowl).not.toHaveBeenCalled();
   });
 
   it("calls stop+play on existing Howl when same phoneme replayed", async () => {
     const MockHowl = await getHowlMock();
     const { result } = renderHook(() => useHowler());
-    act(() => { result.current.play("æ"); });
-    act(() => { result.current.play("æ"); });
+    act(() => {
+      result.current.play("æ");
+    });
+    act(() => {
+      result.current.play("æ");
+    });
     expect(MockHowl).toHaveBeenCalledTimes(1); // no new Howl created
     expect(MockHowl.__stop).toHaveBeenCalled();
     expect(MockHowl.__play).toHaveBeenCalled();
@@ -73,8 +81,12 @@ describe("useHowler", () => {
   it("creates a new Howl and unloads previous when phoneme changes", async () => {
     const MockHowl = await getHowlMock();
     const { result } = renderHook(() => useHowler());
-    act(() => { result.current.play("æ"); });
-    act(() => { result.current.play("ɑ"); });
+    act(() => {
+      result.current.play("æ");
+    });
+    act(() => {
+      result.current.play("ɑ");
+    });
     expect(MockHowl).toHaveBeenCalledTimes(2);
     expect(MockHowl.__stop).toHaveBeenCalled();
     expect(MockHowl.__unload).toHaveBeenCalled();
@@ -83,7 +95,9 @@ describe("useHowler", () => {
   it("unloads sound on hook unmount", async () => {
     const MockHowl = await getHowlMock();
     const { result, unmount } = renderHook(() => useHowler());
-    act(() => { result.current.play("æ"); });
+    act(() => {
+      result.current.play("æ");
+    });
     unmount();
     expect(MockHowl.__stop).toHaveBeenCalled();
     expect(MockHowl.__unload).toHaveBeenCalled();
@@ -93,7 +107,9 @@ describe("useHowler", () => {
     const MockHowl = await getHowlMock();
     const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
     const { result } = renderHook(() => useHowler());
-    act(() => { result.current.play("æ"); });
+    act(() => {
+      result.current.play("æ");
+    });
 
     // Retrieve the onloaderror callback passed to the Howl constructor
     const constructorOptions = MockHowl.mock.calls[0][0] as {

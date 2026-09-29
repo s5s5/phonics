@@ -2,7 +2,8 @@ import { renderHook } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import useVoiceSelector from "@/app/hooks/useVoiceSelector";
 
-const makeVoice = (name: string) => ({ name, lang: "en-US" } as SpeechSynthesisVoice);
+const makeVoice = (name: string) =>
+  ({ name, lang: "en-US" }) as SpeechSynthesisVoice;
 
 let mockGetVoices: ReturnType<typeof vi.fn>;
 
@@ -15,7 +16,9 @@ beforeEach(() => {
   });
 });
 
-afterEach(() => { vi.restoreAllMocks(); });
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 describe("useVoiceSelector", () => {
   it("selects Samantha voice when available", () => {

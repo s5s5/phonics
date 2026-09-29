@@ -43,7 +43,10 @@ export const useGameStore = create<GameStore>((set) => ({
   advanceGroups: (wordGroupMaxes, graphemeGroupMaxes) =>
     set((state) => {
       const { selectedWordGroup, selectedGraphemeGroup } = state;
-      if (selectedWordGroup === undefined || selectedGraphemeGroup === undefined)
+      if (
+        selectedWordGroup === undefined ||
+        selectedGraphemeGroup === undefined
+      )
         return state;
 
       const newWordIdx = [...state.wordGroupIndex];

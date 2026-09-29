@@ -104,6 +104,5 @@ const WordCard = ({
   );
 };
 
-
 const MemoWordCard = memo(WordCard);
 export { splitWord, MemoWordCard as WordCard, type WordCardProps };

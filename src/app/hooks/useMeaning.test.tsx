@@ -2,8 +2,12 @@ import { render, renderHook, act } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import useMeaning from "@/app/hooks/useMeaning";
 
-beforeEach(() => { vi.useFakeTimers(); });
-afterEach(() => { vi.useRealTimers(); });
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 describe("useMeaning", () => {
   it("returns null meaningContent initially", () => {
@@ -21,27 +25,45 @@ describe("useMeaning", () => {
 
   it("meaningContent disappears after 3000ms", () => {
     const { result } = renderHook(() => useMeaning());
-    act(() => { result.current.showMeaning({ word: "rain" }); });
+    act(() => {
+      result.current.showMeaning({ word: "rain" });
+    });
     expect(result.current.meaningContent).not.toBeNull();
-    act(() => { vi.advanceTimersByTime(3000); });
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
     expect(result.current.meaningContent).toBeNull();
   });
 
   it("does not disappear before 3000ms", () => {
     const { result } = renderHook(() => useMeaning());
-    act(() => { result.current.showMeaning({ word: "rain" }); });
-    act(() => { vi.advanceTimersByTime(2999); });
+    act(() => {
+      result.current.showMeaning({ word: "rain" });
+    });
+    act(() => {
+      vi.advanceTimersByTime(2999);
+    });
     expect(result.current.meaningContent).not.toBeNull();
   });
 
   it("resets the timer when showMeaning is called again", () => {
     const { result } = renderHook(() => useMeaning());
-    act(() => { result.current.showMeaning({ word: "apple" }); });
-    act(() => { vi.advanceTimersByTime(2000); });
-    act(() => { result.current.showMeaning({ word: "rain" }); }); // reset timer
-    act(() => { vi.advanceTimersByTime(2000); }); // total 4s from first, 2s from second
+    act(() => {
+      result.current.showMeaning({ word: "apple" });
+    });
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+    act(() => {
+      result.current.showMeaning({ word: "rain" });
+    }); // reset timer
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    }); // total 4s from first, 2s from second
     expect(result.current.meaningContent).not.toBeNull(); // still visible
-    act(() => { vi.advanceTimersByTime(1000); }); // now 3s since second call
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    }); // now 3s since second call
     expect(result.current.meaningContent).toBeNull();
   });
 

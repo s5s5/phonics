@@ -25,7 +25,8 @@ const Navigation = ({ currentSlug }: NavigationProps) => {
       {navigationTypes.map((type) => (
         <h2
           className={`flex-auto text-center cursor-pointer ${
-            CATEGORY_TO_SLUG[type] === currentSlug && "underline decoration-double font-bold"
+            CATEGORY_TO_SLUG[type] === currentSlug &&
+            "underline decoration-double font-bold"
           } hover:underline`}
           key={type}
           onClick={() => {

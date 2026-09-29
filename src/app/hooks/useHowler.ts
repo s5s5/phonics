@@ -16,7 +16,10 @@ const useHowler = () => {
           src: [`/sound/${newPhoneme}.mp3`],
           autoplay: true,
           onloaderror: (_id: number, err: unknown) => {
-            console.warn(`Failed to load audio for phoneme "${newPhoneme}":`, err);
+            console.warn(
+              `Failed to load audio for phoneme "${newPhoneme}":`,
+              err,
+            );
           },
         });
         setSound(newSound);

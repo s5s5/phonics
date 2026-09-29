@@ -23,13 +23,17 @@ describe("GraphemeWithWords", () => {
   ];
 
   it("renders the grapheme card", () => {
-    render(<GraphemeWithWords graphemeCard={graphemeCard} wordCards={wordCards} />);
+    render(
+      <GraphemeWithWords graphemeCard={graphemeCard} wordCards={wordCards} />,
+    );
     expect(screen.getByTestId("grapheme-card")).toBeInTheDocument();
     expect(screen.getByText("ai")).toBeInTheDocument();
   });
 
   it("renders all word cards", () => {
-    render(<GraphemeWithWords graphemeCard={graphemeCard} wordCards={wordCards} />);
+    render(
+      <GraphemeWithWords graphemeCard={graphemeCard} wordCards={wordCards} />,
+    );
     const cards = screen.getAllByTestId("word-card");
     expect(cards).toHaveLength(2);
     expect(screen.getByText("rain")).toBeInTheDocument();

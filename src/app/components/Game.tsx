@@ -93,7 +93,7 @@ const Game = ({ phonicsList, play, showMeaning }: GameProps) => {
     });
 
     return { wordGroups, graphemeGroups };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetCount]); // do not add `play`, `showMeaning`, `selectWord`, `selectGrapheme`
 
   const graphemeList = useMemo(

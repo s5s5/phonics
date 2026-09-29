@@ -69,10 +69,7 @@ describe("PageLayout", () => {
 
   it("renders meaningContent when provided", () => {
     render(
-      <PageLayout
-        {...defaultProps}
-        meaningContent={<div>meaning tooltip</div>}
-      >
+      <PageLayout {...defaultProps} meaningContent={<div>meaning tooltip</div>}>
         <span />
       </PageLayout>,
     );

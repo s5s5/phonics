@@ -28,7 +28,7 @@ describe("GraphemeCard", () => {
 
   it("renders pronunciation with underscore as two parts with italic span", () => {
     render(
-      <GraphemeCard grapheme="ou" pronunciation="aʊ_ɪ" onClick={vi.fn()} />
+      <GraphemeCard grapheme="ou" pronunciation="aʊ_ɪ" onClick={vi.fn()} />,
     );
     // partOne is plain text, partTwo is italic
     expect(screen.getByText(/aʊ/)).toBeInTheDocument();
@@ -39,7 +39,9 @@ describe("GraphemeCard", () => {
 
   it("has correct aria-label", () => {
     render(<GraphemeCard grapheme="ai" onClick={vi.fn()} />);
-    expect(screen.getByRole("button", { name: "Grapheme ai" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Grapheme ai" }),
+    ).toBeInTheDocument();
   });
 
   it("has aria-pressed false when not selected", () => {

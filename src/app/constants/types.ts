@@ -13,4 +13,3 @@ export type Phonics = {
   tips?: string;
   words: Word[];
 };
-
