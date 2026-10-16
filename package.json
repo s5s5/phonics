@@ -15,7 +15,7 @@
     "framer-motion": "^13.4.5",
     "howler": "^2.2.4",
     "mouse-firework": "^0.3.0",
-    "next": "^16.3.7",
+    "next": "^16.4.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-hydration-provider": "^2.1.0",
